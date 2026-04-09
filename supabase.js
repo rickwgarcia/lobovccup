@@ -1,0 +1,7 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+// REPLACE THESE WITH YOUR ACTUAL VALUES FROM SUPABASE PROJECT SETTINGS → API
+const SUPABASE_URL = 'https://wvehsyufxgfefcfnidhu.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2ZWhzeXVmeGdmZWZjZm5pZGh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3NDE5OTUsImV4cCI6MjA5MTMxNzk5NX0.TTw2cIfB19Z02TgJ4Eh2-R49yauxAvWu3H5ZNXXQF6s'
+
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)

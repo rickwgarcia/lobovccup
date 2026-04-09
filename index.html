@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lobo VC Cup 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cherry: #c0392b;
+      --cherry-dark: #922b21;
+      --sand: #f5f0e8;
+      --ink: #1a1a1a;
+      --muted: #666;
+      --border: #ddd;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sand);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--sand);
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--cherry);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 0.5rem 1.25rem;
+      border: 1.5px solid var(--ink);
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-link:hover { background: var(--ink); color: var(--sand); }
+
+    hero {
+      display: block;
+      max-width: 760px;
+      margin: 6rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--cherry);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1.5px solid var(--cherry);
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--cherry-dark); border-color: var(--cherry-dark); }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1.5px solid var(--ink);
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-secondary:hover { background: var(--ink); color: var(--sand); }
+
+    .divider {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .dates {
+      max-width: 760px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .dates h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .date-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+    }
+
+    .date-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      margin-bottom: 0.35rem;
+    }
+
+    .date-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .date-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    footer {
+      max-width: 760px;
+      margin: 4rem auto 2rem;
+      padding: 2rem 2rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--cherry); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">Lobo VC Cup 2026</span>
+    <a href="login.html" class="nav-link">Team Login</a>
+  </nav>
+
+  <hero>
+    <p class="eyebrow">University of New Mexico · Spring 2026</p>
+    <h1>Where student<br>founders meet<br>student VCs.</h1>
+    <p class="subtitle">
+      Pitch your startup. Raise real capital from a $20,000 prize pool.
+      Or join a VC team, evaluate startups, and compete for $10,000.
+    </p>
+    <div class="cta-group">
+      <a href="login.html" class="btn-primary">Submit Your Materials</a>
+      <a href="https://docs.google.com/document/d/1BIPgCaye6sbsHqKr79l6j_rjUNdpuu85Ro8ISw_5KDo/edit" target="_blank" class="btn-secondary">Register Your Team</a>
+    </div>
+  </hero>
+
+  <div class="divider"></div>
+
+  <div class="dates">
+    <h2>Key Dates</h2>
+    <div class="date-grid">
+      <div class="date-card">
+        <p class="date-label">March 2–6</p>
+        <p class="date-title">Education Week</p>
+        <p class="date-desc">Virtual daily mentor sessions on startup & VC fundamentals.</p>
+      </div>
+      <div class="date-card">
+        <p class="date-label">March 13</p>
+        <p class="date-title">Submissions Due</p>
+        <p class="date-desc">Pitch decks (Founders) and LP pitch videos (VC teams).</p>
+      </div>
+      <div class="date-card">
+        <p class="date-label">March 25–26</p>
+        <p class="date-title">Discovery Days</p>
+        <p class="date-desc">In-person pitching and due diligence. MCM-1010, 5–7 PM.</p>
+      </div>
+      <div class="date-card">
+        <p class="date-label">March 30</p>
+        <p class="date-title">Investment Day</p>
+        <p class="date-desc">Negotiate terms. Jackson Student Center, 6:30–8:30 PM.</p>
+      </div>
+      <div class="date-card">
+        <p class="date-label">April 3</p>
+        <p class="date-title">Awards Ceremony</p>
+        <p class="date-desc">Winners announced. Jackson Student Center, 11:30 AM–1 PM.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Questions? Contact <a href="mailto:delcampo@unm.edu">Rob DelCampo</a> or <a href="mailto:agajjo@unm.edu">Andoni</a>.</p>
+  </footer>
+
+</body>
+</html>
