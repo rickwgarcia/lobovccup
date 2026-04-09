@@ -60,10 +60,10 @@ Vercel will run `npm install` in the `backend/` directory automatically via the 
 
 ### 3. Grant admin access
 
-After Rob or Andoni registers through the portal, run this in the Supabase SQL Editor:
+After Rick registers through the portal, run this in the Supabase SQL Editor:
 
 ```sql
-UPDATE public.users SET role = 'admin' WHERE email = 'delcampo@unm.edu';
+UPDATE public.users SET role = 'admin' WHERE email = 'rickwgarcia@unm.edu';
 ```
 
 ---
@@ -117,7 +117,7 @@ Edit files in `/content/` — no code changes or restarts needed.
 
 ## Contact
 
-- **Rob DelCampo** — delcampo@unm.edu
+- **Rick G** — rickwgarcia@unm.edu
 - **Andoni Gajjo** — agajjo@unm.edu
 
 Anderson School of Management, University of New Mexico

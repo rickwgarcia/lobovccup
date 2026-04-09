@@ -58,7 +58,7 @@
 /*
 
 -- Step 1: Set admin role
-UPDATE public.users SET role = 'admin' WHERE email = 'delcampo@unm.edu';
+UPDATE public.users SET role = 'admin' WHERE email = 'rickwgarcia@unm.edu';
 
 -- Step 2: Insert startup teams
 INSERT INTO public.teams (id, name, pathway, idea_description, key_contact_id) VALUES
