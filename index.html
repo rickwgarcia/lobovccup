@@ -100,31 +100,33 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 120px;
+      width: 100%;
       pointer-events: none;
-      z-index: 10;
+      z-index: 0;
     }
 
     #map-path-svg {
       overflow: visible;
       display: block;
+      width: 100%;
     }
 
     #map-path {
       fill: none;
       stroke: var(--ink);
-      stroke-width: 2.5;
+      stroke-width: 2;
       stroke-linecap: round;
+      stroke-dasharray: 10 6;
+      opacity: 0.18;
     }
 
     /* ===== LAYOUT ===== */
     .content-wrap {
       padding-top: 80px;
+      position: relative;
+      z-index: 1;
     }
 
-    @media (min-width: 769px) {
-      .content-wrap { margin-left: 120px; }
-    }
 
     /* ===== SECTION TITLES ===== */
     .section-title {
@@ -969,14 +971,7 @@
 
     /* ===== MOBILE ===== */
     @media (max-width: 768px) {
-      #map-path-container {
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0.25;
-        z-index: 0;
-      }
-
-      .hero-compass { left: 10px; top: 80px; width: 70px; }
+.hero-compass { left: 10px; top: 80px; width: 70px; }
       .hero-wolf { right: 10px; top: 80px; width: 40px; }
 
       .about-cards { grid-template-columns: 1fr; }
@@ -999,7 +994,7 @@
 
   <!-- MAP PATH SVG — absolutely positioned, spans full page -->
   <div id="map-path-container">
-    <svg id="map-path-svg" width="120">
+    <svg id="map-path-svg">
       <!-- Waypoint circles will be added by JS -->
       <path id="map-path" stroke="#2C1810" stroke-width="2.5" stroke-dasharray="8 5" fill="none" stroke-linecap="round"/>
     </svg>
@@ -1795,68 +1790,54 @@
 
     function buildMapPath() {
       const totalH = document.documentElement.scrollHeight;
+      const W = window.innerWidth;
+      const margin = Math.max(40, W * 0.08);
+
       pathContainer.style.height = totalH + 'px';
       pathSvg.setAttribute('height', totalH);
-      pathSvg.setAttribute('viewBox', `0 0 120 ${totalH}`);
+      pathSvg.setAttribute('width', W);
+      pathSvg.setAttribute('viewBox', `0 0 ${W} ${totalH}`);
 
-      // Section midpoint Y positions
-      const sectionIds = ['hero', 'about', 'timeline', 'prizes', 'mentors', 'recap', 'faq', 'waitlist'];
-      const waypoints = sectionIds.map(id => {
-        const el = document.getElementById(id);
-        if (!el) return null;
-        return el.offsetTop + el.offsetHeight * 0.4;
-      }).filter(Boolean);
+      // Generate random waypoints that weave back and forth
+      const numPoints = 22;
+      const points = [{ x: W / 2, y: 0 }];
 
-      // Build winding cubic bezier path
-      let d = `M 60 0`;
-      let prevY = 0;
+      // Use a fixed seed-like sequence so it looks intentional, not jittery on resize
+      const offsets = [0.72, 0.18, 0.85, 0.31, 0.63, 0.09, 0.78, 0.44, 0.92, 0.25,
+                       0.56, 0.13, 0.81, 0.38, 0.67, 0.05, 0.74, 0.49, 0.88, 0.22, 0.61, 0.35];
 
-      waypoints.forEach((y, i) => {
-        const xTarget = i % 2 === 0 ? 75 : 45;
-        const midY = (prevY + y) / 2;
-        const cp1x = 60 + (i % 2 === 0 ? 20 : -20);
-        const cp2x = xTarget;
-        d += ` C ${cp1x} ${midY - 40}, ${cp2x} ${midY + 40}, ${xTarget} ${y}`;
-        prevY = y;
-      });
+      for (let i = 1; i <= numPoints; i++) {
+        const y = (totalH / numPoints) * i;
+        // Alternate left/right bias, offset by pseudo-random nudge
+        const side = i % 2 === 0 ? 1 : -1;
+        const rand = offsets[(i - 1) % offsets.length];
+        const x = margin + rand * (W - margin * 2);
+        points.push({ x, y });
+      }
 
-      // Continue to bottom
-      d += ` C ${60} ${prevY + 100}, 60 ${totalH - 50}, 60 ${totalH}`;
+      // Build smooth cubic bezier path through points
+      let d = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 1; i < points.length; i++) {
+        const prev = points[i - 1];
+        const curr = points[i];
+        const segH = curr.y - prev.y;
+        // Control points: hold each end's x for ~40% of the segment height
+        // to create flowing s-curves
+        const cp1x = prev.x + (curr.x - prev.x) * 0.15;
+        const cp1y = prev.y + segH * 0.45;
+        const cp2x = curr.x - (curr.x - prev.x) * 0.15;
+        const cp2y = curr.y - segH * 0.45;
+        d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${curr.x} ${curr.y}`;
+      }
+
       pathEl.setAttribute('d', d);
-
-      // Dash animation setup
-      const pathLength = pathEl.getTotalLength();
-      pathEl.style.strokeDasharray = `8 5`;
-      pathEl.style.strokeDashoffset = pathLength;
-      pathEl.dataset.pathLength = pathLength;
-
-      // Also store a full-length dasharray for animation
-      pathEl.dataset.solidLength = pathLength;
-      // Use solid reveal: set dasharray to full length
-      pathEl.style.strokeDasharray = `${pathLength} ${pathLength}`;
-      pathEl.style.strokeDashoffset = pathLength;
+      // Static dim path — no scroll animation
+      pathEl.style.strokeDasharray = '10 6';
+      pathEl.style.strokeDashoffset = '0';
     }
 
-    function updatePathProgress() {
-      const solidLength = parseFloat(pathEl.dataset.solidLength);
-      if (!solidLength) return;
-      const scrollTop = window.scrollY;
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = Math.min(scrollTop / docH, 1);
-      const drawn = solidLength * pct;
-      pathEl.style.strokeDashoffset = solidLength - drawn;
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      buildMapPath();
-      updatePathProgress();
-    });
-
-    window.addEventListener('scroll', updatePathProgress, { passive: true });
-    window.addEventListener('resize', () => {
-      buildMapPath();
-      updatePathProgress();
-    });
+    window.addEventListener('DOMContentLoaded', buildMapPath);
+    window.addEventListener('resize', buildMapPath);
 
     // ===========================
     // WAYPOINT PIN STAMPS
