@@ -140,13 +140,15 @@
     </div>
   </div>
 
-  <script type="module">
-    import { supabase } from './supabase.js'
-    window._sb = supabase
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="supabase.js"></script>
+  <script>
+    _initSupabase()
 
     // Redirect if already logged in
-    const { data: { session } } = await supabase.auth.getSession()
-    if (session) window.location.href = 'submit.html'
+    window._sb.auth.getSession().then(({ data: { session } }) => {
+      if (session) window.location.href = 'submit.html'
+    })
 
     window.handleLogin = async () => {
       const email = document.getElementById('email').value.trim()

@@ -235,17 +235,19 @@
     </div>
   </main>
 
-  <script type="module">
-    import { supabase } from './supabase.js'
-    window._sb = supabase
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="supabase.js"></script>
+  <script>
+    _initSupabase()
 
-    // Auth gate — redirect if not logged in
-    const { data: { session } } = await supabase.auth.getSession()
-    if (!session) { window.location.href = 'login.html'; }
-    else {
-      document.getElementById('user-email').textContent = session.user.email
-      document.getElementById('main-content').style.display = 'block'
-    }
+    // Auth gate
+    window._sb.auth.getSession().then(({ data: { session } }) => {
+      if (!session) { window.location.href = 'login.html' }
+      else {
+        document.getElementById('user-email').textContent = session.user.email
+        document.getElementById('main-content').style.display = 'block'
+      }
+    })
 
     window.signOut = async () => {
       await window._sb.auth.signOut()
@@ -257,7 +259,6 @@
       if (file) document.getElementById('file-name-display').textContent = '✓ ' + file.name
     }
 
-    // Drag & drop styling
     const zone = document.getElementById('drop-zone')
     zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover') })
     zone.addEventListener('dragleave', () => zone.classList.remove('dragover'))
@@ -289,14 +290,12 @@
       const userId = session.user.id
       const filePath = `${userId}/${teamName.replace(/\s+/g, '_')}_${Date.now()}_${file.name}`
 
-      // Show progress bar
       const progressWrap = document.getElementById('progress-wrap')
       const progressBar = document.getElementById('progress-bar')
       progressWrap.style.display = 'block'
       progressBar.style.width = '30%'
 
-      // Upload file to Supabase Storage
-      const { data: storageData, error: storageError } = await window._sb.storage
+      const { error: storageError } = await window._sb.storage
         .from('submissions')
         .upload(filePath, file)
 
@@ -310,17 +309,14 @@
 
       progressBar.style.width = '70%'
 
-      // Get public URL (or signed URL for private bucket)
       const { data: urlData } = window._sb.storage.from('submissions').getPublicUrl(filePath)
       const fileUrl = urlData?.publicUrl || filePath
 
-      // Insert row into submissions table
       const { error: dbError } = await window._sb
         .from('submissions')
         .insert({ team_name: teamName, pathway, file_url: fileUrl, user_id: userId })
 
       progressBar.style.width = '100%'
-
       btn.disabled = false; btn.textContent = 'Submit Materials'
 
       if (dbError) {
@@ -329,7 +325,6 @@
         return
       }
 
-      // Success
       progressWrap.style.display = 'none'
       document.querySelector('.card').style.display = 'none'
       document.getElementById('success-banner').style.display = 'block'
