@@ -133,10 +133,7 @@
       color: var(--ink);
       text-align: center;
       margin-bottom: 0.4rem;
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
+      display: block;
     }
 
     .section-title-wrap {
@@ -433,6 +430,18 @@
       position: relative;
     }
 
+    .timeline-wrap::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      border-left: 2.5px dashed rgba(44, 24, 16, 0.3);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
     .timeline-line-svg {
       position: absolute;
       left: 50%;
@@ -466,6 +475,7 @@
       background: var(--parchment);
       border: 2.5px solid var(--ink);
       flex-shrink: 0;
+      position: relative;
       z-index: 2;
     }
 
