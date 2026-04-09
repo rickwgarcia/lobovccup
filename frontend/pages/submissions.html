@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submissions — Lobo VC Cup 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles/main.css" />
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────────────── -->
+<nav class="nav scrolled" id="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">LOBO <span>VC</span> CUP</a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="../index.html#schedule">Schedule</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <div class="nav__actions" id="nav-actions"></div>
+      <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Loading Overlay ──────────────────────────────────────── -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="spinner" style="width:36px;height:36px;border-width:3px;"></div>
+  <p>Loading your portal...</p>
+</div>
+
+<!-- ── Redirect prompt (unauthenticated) ────────────────────── -->
+<div id="auth-required" style="display:none; min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; text-align:center; padding:40px;">
+  <div style="font-size:3rem;">🔒</div>
+  <h2>Login Required</h2>
+  <p style="color:rgba(255,255,255,0.5);">You need to be logged in and registered to access the submissions portal.</p>
+  <a href="register.html" class="btn btn--primary btn--lg">Log In / Register</a>
+</div>
+
+<!-- ── Main Portal ───────────────────────────────────────────── -->
+<div id="portal" style="display:none;">
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;">
+        <div>
+          <div class="page-hero__eyebrow" id="portal-track-label">Submissions Portal</div>
+          <h1 class="page-hero__title">Upload Your Materials</h1>
+          <p class="page-hero__subtitle" id="portal-subtitle">Submit your competition materials before the deadline.</p>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Team</div>
+          <div style="font-family:var(--font-display); font-size:1.4rem;" id="portal-team-name">—</div>
+          <button class="btn btn--secondary btn--sm" style="margin-top:8px;" onclick="logout()">Log Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main style="padding: 48px 0 100px;">
+    <div class="container">
+
+      <!-- Deadlines reminder -->
+      <div class="alert alert--info" id="deadline-banner" style="margin-bottom:32px;">
+        <span>📅</span>
+        <div id="deadline-text"></div>
+      </div>
+
+      <!-- ── FOUNDER VIEW ── -->
+      <div id="founder-view" style="display:none;">
+        <div class="submission-card">
+          <div class="submission-card__header">
+            <div>
+              <div class="submission-card__title">Pitch Deck</div>
+              <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-top:4px;">
+                PDF or PPTX — Max 50 MB — Due March 13, 11:59 PM
+              </div>
+            </div>
+            <div class="submission-card__status status--missing" id="deck-status">Not Uploaded</div>
+          </div>
+
+          <div id="deck-existing" style="display:none; margin-bottom:16px; padding:14px; background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.2); border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div style="font-size:0.9rem; font-weight:600;" id="deck-filename">—</div>
+                <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:2px;" id="deck-updated">—</div>
+              </div>
+              <button class="btn btn--sm btn--outline-gold" onclick="downloadFile(currentSubmissions.pitch_deck?.id)">
+                Download
+              </button>
+            </div>
+          </div>
+
+          <label class="upload-zone" id="deck-zone" for="deck-file">
+            <input type="file" id="deck-file" accept=".pdf,.pptx,.ppt" onchange="handleUpload(event, 'pitch_deck', 'deck')" />
+            <div class="upload-zone__icon">📄</div>
+            <div class="upload-zone__text">Drop your pitch deck here or click to browse</div>
+            <div class="upload-zone__hint">PDF or PPTX only. Max 50 MB.</div>
+          </label>
+          <div id="deck-progress" style="display:none; margin-top:12px;">
+            <div style="height:4px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden;">
+              <div id="deck-progress-bar" style="height:100%; background:var(--gold); width:0%; transition:width 0.3s;"></div>
+            </div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:6px;" id="deck-progress-text">Uploading...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── VC VIEW ── -->
+      <div id="vc-view" style="display:none;">
+
+        <!-- LP Video (before deadline) -->
+        <div class="submission-card">
+          <div class="submission-card__header">
+            <div>
+              <div class="submission-card__title">LP Pitch Video</div>
+              <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-top:4px;">
+                MP4 or MOV — Max 2 GB — Due March 13, 11:59 PM
+              </div>
+            </div>
+            <div class="submission-card__status status--missing" id="video-status">Not Uploaded</div>
+          </div>
+
+          <div id="video-existing" style="display:none; margin-bottom:16px; padding:14px; background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.2); border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div style="font-size:0.9rem; font-weight:600;" id="video-filename">—</div>
+                <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:2px;" id="video-updated">—</div>
+              </div>
+              <button class="btn btn--sm btn--outline-gold" onclick="downloadFile(currentSubmissions.lp_video?.id)">
+                Download
+              </button>
+            </div>
+          </div>
+
+          <label class="upload-zone" id="video-zone" for="video-file">
+            <input type="file" id="video-file" accept=".mp4,.mov,.MOV" onchange="handleUpload(event, 'lp_video', 'video')" />
+            <div class="upload-zone__icon">🎥</div>
+            <div class="upload-zone__text">Drop your LP pitch video here or click to browse</div>
+            <div class="upload-zone__hint">MP4 or MOV only. Max 2 GB. 5–7 minutes recommended.</div>
+          </label>
+          <div id="video-progress" style="display:none; margin-top:12px;">
+            <div style="height:4px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden;">
+              <div id="video-progress-bar" style="height:100%; background:var(--gold); width:0%; transition:width 0.3s;"></div>
+            </div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:6px;" id="video-progress-text">Uploading...</div>
+          </div>
+        </div>
+
+        <!-- Post-Discovery Days section -->
+        <div id="post-discovery-section" style="display:none; margin-top:40px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:32px;">
+            <div style="height:1px; flex:1; background:rgba(255,255,255,0.1);"></div>
+            <div style="font-family:var(--font-display); font-size:1.1rem; color:var(--gold); letter-spacing:0.05em;">POST-DISCOVERY DAYS</div>
+            <div style="height:1px; flex:1; background:rgba(255,255,255,0.1);"></div>
+          </div>
+
+          <div class="alert alert--info" style="margin-bottom:24px;">
+            <span>📋</span>
+            <div>Upload deal documents for each company you invested in. Due March 31, 11:59 PM.</div>
+          </div>
+
+          <!-- Portfolio Summary (one total) -->
+          <div class="submission-card">
+            <div class="submission-card__header">
+              <div>
+                <div class="submission-card__title">Portfolio Summary</div>
+                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-top:4px;">
+                  One document covering your full fund — PDF, DOCX, or PPTX — Due March 31
+                </div>
+              </div>
+              <div class="submission-card__status status--missing" id="portfolio-status">Not Uploaded</div>
+            </div>
+            <label class="upload-zone" for="portfolio-file">
+              <input type="file" id="portfolio-file" accept=".pdf,.docx,.pptx" onchange="handleUpload(event, 'portfolio_summary', 'portfolio')" />
+              <div class="upload-zone__icon">📊</div>
+              <div class="upload-zone__text">Portfolio Summary</div>
+              <div class="upload-zone__hint">PDF, DOCX, or PPTX. Max 50 MB.</div>
+            </label>
+          </div>
+
+          <!-- Per-company docs -->
+          <div id="deal-docs-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:32px 0 20px;">
+              <h3 style="font-family:var(--font-display);">Per-Company Documents</h3>
+              <button class="btn btn--outline-gold btn--sm" onclick="addCompanySection()">
+                + Add Company
+              </button>
+            </div>
+            <p style="color:rgba(255,255,255,0.4); font-size:0.85rem; margin-bottom:20px;">
+              For each company you invested in, upload a Deal Memo, Term Sheet, and Due Diligence Notes.
+            </p>
+            <div id="companies-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="upload-feedback" class="alert" style="display:none; margin-top:20px;"></div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<footer class="footer" style="border-top: 1px solid rgba(255,255,255,0.07);">
+  <div class="container">
+    <div class="footer__bottom" style="padding-top:0; border-top:none;">
+      <span class="footer__copy">© 2026 Lobo VC Cup — Anderson School of Management, UNM</span>
+      <div style="display:flex; gap:20px;">
+        <a href="mailto:delcampo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">delcampo@unm.edu</a>
+        <a href="mailto:agajjo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">agajjo@unm.edu</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const API = '/api';
+  let authToken = localStorage.getItem('lvc_token');
+  let currentUser = null;
+  let currentTeam = null;
+  let currentSubmissions = {};
+
+  // Dates
+  const SUBMISSION_DEADLINE = new Date('2026-03-13T23:59:00-07:00');
+  const DISCOVERY_DAYS_END = new Date('2026-03-26T19:00:00-07:00');
+  const FINAL_DEADLINE = new Date('2026-03-31T23:59:00-07:00');
+
+  window.addEventListener('DOMContentLoaded', async () => {
+    if (!authToken) {
+      showAuthRequired();
+      return;
+    }
+    await initPortal();
+  });
+
+  function showAuthRequired() {
+    document.getElementById('loading-overlay').classList.add('hidden');
+    document.getElementById('auth-required').style.display = 'flex';
+  }
+
+  async function initPortal() {
+    try {
+      // Verify session
+      const meRes = await fetch(`${API}/auth/me`, {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      });
+      if (!meRes.ok) { showAuthRequired(); return; }
+      currentUser = await meRes.json();
+
+      // Get team
+      const teamRes = await fetch(`${API}/teams/me`, {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      });
+      if (!teamRes.ok) {
+        // Logged in but no team — redirect to register
+        document.getElementById('loading-overlay').classList.add('hidden');
+        document.getElementById('auth-required').innerHTML = `
+          <div style="font-size:3rem;">📝</div>
+          <h2>Register Your Team First</h2>
+          <p style="color:rgba(255,255,255,0.5);">You're logged in but haven't registered a team yet.</p>
+          <a href="register.html" class="btn btn--primary btn--lg">Register Your Team</a>
+        `;
+        document.getElementById('auth-required').style.display = 'flex';
+        return;
+      }
+      const { team } = await teamRes.json();
+      currentTeam = team;
+
+      // Get submissions
+      const subRes = await fetch(`${API}/submissions/me`, {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      });
+      const { submissions } = await subRes.json();
+      submissions.forEach(s => { currentSubmissions[s.type] = s; });
+
+      renderPortal();
+    } catch (err) {
+      console.error(err);
+      showAuthRequired();
+    } finally {
+      document.getElementById('loading-overlay').classList.add('hidden');
+    }
+  }
+
+  function renderPortal() {
+    document.getElementById('portal').style.display = 'block';
+    document.getElementById('portal-team-name').textContent = currentTeam.name;
+
+    const now = new Date();
+    const pathway = currentTeam.pathway;
+    const isVC = pathway === 'vc';
+    const postDiscovery = now > DISCOVERY_DAYS_END;
+
+    // Update nav
+    document.getElementById('nav-actions').innerHTML = `
+      <span style="font-size:0.8rem;color:rgba(255,255,255,0.4);margin-right:8px;">${currentUser.email}</span>
+      <button class="btn btn--secondary btn--sm" onclick="logout()">Log Out</button>
+    `;
+
+    // Track label & subtitle
+    if (isVC) {
+      document.getElementById('portal-track-label').textContent = 'VC Track — Submissions Portal';
+      document.getElementById('portal-subtitle').textContent =
+        'Upload your LP pitch video before March 13. After Discovery Days, upload your deal documents.';
+    } else {
+      document.getElementById('portal-track-label').textContent = 'Founder Track — Submissions Portal';
+      document.getElementById('portal-subtitle').textContent =
+        'Upload your pitch deck before March 13, 11:59 PM Mountain Time.';
+    }
+
+    // Deadline banner
+    const beforeDeadline = now < SUBMISSION_DEADLINE;
+    const daysLeft = Math.max(0, Math.ceil((SUBMISSION_DEADLINE - now) / 86400000));
+    document.getElementById('deadline-text').innerHTML = beforeDeadline
+      ? `<strong>Submission deadline: March 13, 11:59 PM MT.</strong> ${daysLeft} day${daysLeft !== 1 ? 's' : ''} remaining. Re-uploads are allowed before the deadline.`
+      : `<strong>Initial submission deadline has passed.</strong> ${isVC && now < FINAL_DEADLINE ? 'Post-Discovery Days submissions due March 31, 11:59 PM MT.' : 'Contact organizers if you have questions.'}`;
+
+    if (isVC) {
+      document.getElementById('vc-view').style.display = 'block';
+      renderVCSubmissions(postDiscovery);
+    } else {
+      document.getElementById('founder-view').style.display = 'block';
+      renderFounderSubmissions();
+    }
+  }
+
+  function renderFounderSubmissions() {
+    const sub = currentSubmissions['pitch_deck'];
+    if (sub) {
+      document.getElementById('deck-status').textContent = 'Uploaded ✓';
+      document.getElementById('deck-status').className = 'submission-card__status status--submitted';
+      document.getElementById('deck-existing').style.display = 'block';
+      document.getElementById('deck-filename').textContent = sub.file_name;
+      document.getElementById('deck-updated').textContent = `Last uploaded: ${formatDate(sub.updated_at || sub.submitted_at)}`;
+      document.getElementById('deck-zone').querySelector('.upload-zone__text').textContent = 'Replace your pitch deck (click or drop new file)';
+    }
+  }
+
+  function renderVCSubmissions(postDiscovery) {
+    const video = currentSubmissions['lp_video'];
+    if (video) {
+      document.getElementById('video-status').textContent = 'Uploaded ✓';
+      document.getElementById('video-status').className = 'submission-card__status status--submitted';
+      document.getElementById('video-existing').style.display = 'block';
+      document.getElementById('video-filename').textContent = video.file_name;
+      document.getElementById('video-updated').textContent = `Last uploaded: ${formatDate(video.updated_at || video.submitted_at)}`;
+    }
+
+    if (postDiscovery) {
+      document.getElementById('post-discovery-section').style.display = 'block';
+      const portfolio = currentSubmissions['portfolio_summary'];
+      if (portfolio) {
+        document.getElementById('portfolio-status').textContent = 'Uploaded ✓';
+        document.getElementById('portfolio-status').className = 'submission-card__status status--submitted';
+      }
+    }
+  }
+
+  // ── Upload handler
+  async function handleUpload(event, type, prefix) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const progressEl = document.getElementById(`${prefix}-progress`);
+    const progressBar = document.getElementById(`${prefix}-progress-bar`);
+    const progressText = document.getElementById(`${prefix}-progress-text`);
+
+    if (progressEl) {
+      progressEl.style.display = 'block';
+      if (progressBar) progressBar.style.width = '0%';
+      if (progressText) progressText.textContent = 'Uploading...';
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('type', type);
+
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', `${API}/submissions/upload`);
+      xhr.setRequestHeader('Authorization', `Bearer ${authToken}`);
+
+      if (progressBar) {
+        xhr.upload.addEventListener('progress', (e) => {
+          if (e.lengthComputable) {
+            const pct = Math.round((e.loaded / e.total) * 100);
+            progressBar.style.width = `${pct}%`;
+            if (progressText) progressText.textContent = `Uploading... ${pct}%`;
+          }
+        });
+      }
+
+      await new Promise((resolve, reject) => {
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) resolve(JSON.parse(xhr.responseText));
+          else reject(new Error(JSON.parse(xhr.responseText)?.error || 'Upload failed'));
+        };
+        xhr.onerror = () => reject(new Error('Network error'));
+        xhr.send(formData);
+      });
+
+      showFeedback('success', `${file.name} uploaded successfully.`);
+      currentSubmissions[type] = { file_name: file.name, updated_at: new Date().toISOString() };
+
+      // Update UI
+      const statusEl = document.getElementById(`${prefix}-status`);
+      if (statusEl) {
+        statusEl.textContent = 'Uploaded ✓';
+        statusEl.className = 'submission-card__status status--submitted';
+      }
+      const existingEl = document.getElementById(`${prefix}-existing`);
+      const filenameEl = document.getElementById(`${prefix}-filename`);
+      const updatedEl = document.getElementById(`${prefix}-updated`);
+      if (existingEl) existingEl.style.display = 'block';
+      if (filenameEl) filenameEl.textContent = file.name;
+      if (updatedEl) updatedEl.textContent = `Last uploaded: ${formatDate(new Date().toISOString())}`;
+
+      const zone = document.getElementById(`${prefix}-zone`);
+      if (zone) zone.classList.add('upload-zone--success');
+
+    } catch (err) {
+      showFeedback('error', err.message || 'Upload failed. Please try again.');
+    } finally {
+      if (progressEl) progressEl.style.display = 'none';
+      event.target.value = '';
+    }
+  }
+
+  // ── Per-company sections (post-Discovery)
+  let companyCount = 0;
+  function addCompanySection() {
+    companyCount++;
+    const div = document.createElement('div');
+    div.className = 'form-section';
+    div.id = `company-${companyCount}`;
+    const cid = companyCount;
+
+    div.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <div class="form-section__title" style="margin-bottom:0;">Company ${cid}</div>
+        <button type="button" onclick="removeCompany(${cid})" style="background:none;border:none;color:rgba(255,255,255,0.3);cursor:pointer;font-size:1.2rem;">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company Name <span>*</span></label>
+        <input type="text" class="form-input company-name-input" id="company-name-${cid}" placeholder="e.g. Lobos Health" />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:16px;">
+        ${makeCompanyUploadSlot(cid, 'deal_memo', '📑', 'Deal Memo', '.pdf,.docx')}
+        ${makeCompanyUploadSlot(cid, 'term_sheet', '📋', 'Term Sheet', '.pdf,.docx')}
+        ${makeCompanyUploadSlot(cid, 'due_diligence', '🔍', 'Due Diligence Notes', '.pdf,.docx')}
+      </div>
+    `;
+    document.getElementById('companies-list').appendChild(div);
+
+    // Wire up inputs
+    ['deal_memo','term_sheet','due_diligence'].forEach(type => {
+      const input = div.querySelector(`#company-${cid}-${type}-file`);
+      if (input) {
+        input.addEventListener('change', (e) => handleCompanyUpload(e, type, cid));
+      }
+    });
+  }
+
+  function makeCompanyUploadSlot(cid, type, icon, label, accept) {
+    return `
+      <div>
+        <div style="font-size:0.8rem; font-weight:600; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;">${label}</div>
+        <label class="upload-zone" style="padding:20px;" for="company-${cid}-${type}-file">
+          <input type="file" id="company-${cid}-${type}-file" accept="${accept}" />
+          <div style="font-size:1.5rem;">${icon}</div>
+          <div class="upload-zone__hint" style="margin-top:8px;">Click to upload</div>
+        </label>
+        <div id="company-${cid}-${type}-status" style="font-size:0.75rem; margin-top:6px; color:rgba(255,255,255,0.3);"></div>
+      </div>
+    `;
+  }
+
+  async function handleCompanyUpload(event, type, cid) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const companyName = document.getElementById(`company-name-${cid}`)?.value.trim();
+    if (!companyName) {
+      showFeedback('error', 'Please enter the company name before uploading documents.');
+      event.target.value = '';
+      return;
+    }
+
+    const statusEl = document.getElementById(`company-${cid}-${type}-status`);
+    if (statusEl) statusEl.textContent = 'Uploading...';
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('type', type);
+    formData.append('company_name', companyName);
+
+    try {
+      const res = await fetch(`${API}/submissions/upload`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${authToken}` },
+        body: formData
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      if (statusEl) statusEl.textContent = `✓ ${file.name}`;
+      if (statusEl) statusEl.style.color = 'var(--green)';
+      const zone = event.target.closest('.upload-zone');
+      if (zone) zone.classList.add('upload-zone--success');
+    } catch (err) {
+      if (statusEl) statusEl.textContent = `Error: ${err.message}`;
+      if (statusEl) statusEl.style.color = 'var(--red)';
+    }
+    event.target.value = '';
+  }
+
+  function removeCompany(cid) {
+    document.getElementById(`company-${cid}`)?.remove();
+  }
+
+  // ── Download
+  async function downloadFile(submissionId) {
+    if (!submissionId) return;
+    try {
+      const res = await fetch(`${API}/submissions/download/${submissionId}`, {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      });
+      const { url } = await res.json();
+      window.open(url, '_blank');
+    } catch {
+      showFeedback('error', 'Failed to get download link.');
+    }
+  }
+
+  function showFeedback(type, msg) {
+    const el = document.getElementById('upload-feedback');
+    el.className = `alert alert--${type}`;
+    el.innerHTML = `<span>${type === 'success' ? '✓' : '⚠'}</span> ${msg}`;
+    el.style.display = 'flex';
+    setTimeout(() => { el.style.display = 'none'; }, 6000);
+  }
+
+  function formatDate(isoString) {
+    return new Date(isoString).toLocaleString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', timeZone: 'America/Denver'
+    }) + ' MT';
+  }
+
+  function logout() {
+    localStorage.removeItem('lvc_token');
+    window.location.href = 'register.html';
+  }
+
+  // ── Drag-and-drop on upload zones
+  document.addEventListener('dragover', (e) => e.preventDefault());
+  document.addEventListener('drop', (e) => e.preventDefault());
+
+  document.querySelectorAll('.upload-zone').forEach(zone => {
+    zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      const input = zone.querySelector('input[type=file]');
+      if (input && e.dataTransfer.files.length) {
+        const dt = new DataTransfer();
+        dt.items.add(e.dataTransfer.files[0]);
+        input.files = dt.files;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  });
+
+  // ── Mobile nav
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-toggle').classList.toggle('open');
+    document.getElementById('nav-links').classList.toggle('mobile-open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — Lobo VC Cup 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles/main.css" />
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────────────── -->
+<nav class="nav scrolled" id="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">LOBO <span>VC</span> CUP</a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#tracks">Tracks</a></li>
+        <li><a href="../index.html#schedule">Schedule</a></li>
+        <li><a href="../index.html#prizes">Prizes</a></li>
+      </ul>
+      <div class="nav__actions" id="nav-actions">
+        <a href="register.html" class="btn btn--primary btn--sm">Register Now</a>
+      </div>
+      <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Page Hero ────────────────────────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__eyebrow">Lobo VC Cup 2026</div>
+    <h1 class="page-hero__title">Register to Compete</h1>
+    <p class="page-hero__subtitle">Create your account, choose your track, and register your team. Registration closes March 7.</p>
+  </div>
+</div>
+
+<!-- ── Main Content ──────────────────────────────────────────── -->
+<main style="padding: 60px 0 100px;">
+  <div class="container" style="max-width: 800px;">
+
+    <!-- Auth step (shown first) -->
+    <div id="auth-section">
+      <div class="auth-card">
+        <h2 class="auth-card__title">Get Started</h2>
+        <p class="auth-card__subtitle">Use your UNM email address (@unm.edu) to sign up or log in.</p>
+
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+          <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Log In</button>
+        </div>
+
+        <div id="auth-error" class="alert alert--error" style="display:none;"></div>
+        <div id="auth-success" class="alert alert--success" style="display:none;"></div>
+
+        <!-- Signup Form -->
+        <form id="signup-form" onsubmit="handleSignup(event)">
+          <div class="form-group">
+            <label class="form-label">Email Address <span>*</span></label>
+            <input type="email" class="form-input" id="signup-email" placeholder="youremail@unm.edu" required />
+            <div class="form-hint">Must be a @unm.edu address</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password <span>*</span></label>
+            <input type="password" class="form-input" id="signup-password" placeholder="At least 8 characters" minlength="8" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password <span>*</span></label>
+            <input type="password" class="form-input" id="signup-confirm" placeholder="Confirm your password" required />
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" id="signup-btn">
+            Create Account
+          </button>
+          <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:rgba(255,255,255,0.4);">
+            Already have an account? <a href="#" onclick="switchAuthTab('login')">Log in</a>
+          </p>
+        </form>
+
+        <!-- Login Form -->
+        <form id="login-form" onsubmit="handleLogin(event)" style="display:none;">
+          <div class="form-group">
+            <label class="form-label">Email Address <span>*</span></label>
+            <input type="email" class="form-input" id="login-email" placeholder="youremail@unm.edu" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password <span>*</span></label>
+            <input type="password" class="form-input" id="login-password" placeholder="Your password" required />
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" id="login-btn">
+            Log In
+          </button>
+          <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:rgba(255,255,255,0.4);">
+            No account yet? <a href="#" onclick="switchAuthTab('signup')">Sign up</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Team registration step (shown after auth) -->
+    <div id="team-section" style="display:none;">
+
+      <div class="alert alert--info" id="already-registered" style="display:none;">
+        <span>✓</span>
+        <div>
+          <strong>You're already registered!</strong>
+          <span id="already-team-name"></span>
+          <br /><a href="submissions.html">Go to your submissions →</a>
+        </div>
+      </div>
+
+      <form id="team-form" onsubmit="handleTeamSubmit(event)">
+        <!-- Track Selection -->
+        <div class="form-section">
+          <div class="form-section__title">Choose Your Track</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;" id="track-selector">
+            <label class="track-option" id="opt-startup" style="cursor:pointer;">
+              <input type="radio" name="pathway" value="startup" id="radio-startup" style="display:none;" />
+              <div class="track-card" style="padding:24px;" onclick="selectTrack('startup')">
+                <div style="font-size:1.5rem; margin-bottom:8px;">🚀</div>
+                <div class="track-card__title" style="font-size:1.2rem;">Founder Track</div>
+                <div class="track-card__desc" style="font-size:0.85rem; margin-bottom:0;">Pitch for real investment capital</div>
+              </div>
+            </label>
+            <label class="track-option" id="opt-vc" style="cursor:pointer;">
+              <input type="radio" name="pathway" value="vc" id="radio-vc" style="display:none;" />
+              <div class="track-card" style="padding:24px;" onclick="selectTrack('vc')">
+                <div style="font-size:1.5rem; margin-bottom:8px;">💼</div>
+                <div class="track-card__title" style="font-size:1.2rem;">VC Track</div>
+                <div class="track-card__desc" style="font-size:0.85rem; margin-bottom:0;">Build a fund, deploy capital, win prizes</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Team Info -->
+        <div class="form-section">
+          <div class="form-section__title">Team Information</div>
+          <div class="form-group">
+            <label class="form-label">Team Name <span>*</span></label>
+            <input type="text" class="form-input" id="team-name" placeholder="e.g. Mesa Ventures, Lobos Health" required maxlength="80" />
+          </div>
+
+          <!-- Startup only -->
+          <div id="startup-fields" style="display:none;">
+            <div class="form-group">
+              <label class="form-label">Startup Idea Description <span>*</span></label>
+              <textarea class="form-textarea" id="idea-desc" placeholder="Briefly describe your startup idea, the problem you're solving, and your proposed solution. 2–4 sentences is fine." style="min-height:120px;"></textarea>
+              <div class="form-hint">This is for internal use only — not public-facing.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Contact -->
+        <div class="form-section">
+          <div class="form-section__title">Key Contact</div>
+          <div class="alert alert--info" style="margin-bottom:16px;">
+            <span>ℹ</span>
+            <div>You are the key contact. Your UNM email will be used for all competition communications.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Email</label>
+            <input type="email" class="form-input" id="contact-email" readonly style="opacity:0.6;" />
+          </div>
+        </div>
+
+        <!-- Team Members -->
+        <div class="form-section">
+          <div class="form-section__title">Team Members</div>
+          <p style="color:rgba(255,255,255,0.5); font-size:0.85rem; margin-bottom:20px;">
+            Add all team members (including yourself if you want). Founders: 1–5 members. VCs: 2–6 members. All must have @unm.edu emails.
+          </p>
+          <div id="members-list"></div>
+          <button type="button" class="btn btn--secondary btn--sm" onclick="addMemberRow()">
+            + Add Team Member
+          </button>
+        </div>
+
+        <div id="team-error" class="alert alert--error" style="display:none;"></div>
+        <div id="team-success" class="alert alert--success" style="display:none;"></div>
+
+        <button type="submit" class="btn btn--primary btn--full btn--lg" id="team-submit-btn">
+          Register Team
+        </button>
+      </form>
+    </div>
+
+    <!-- Confirmation step -->
+    <div id="confirm-section" style="display:none; text-align:center; padding: 40px 0;">
+      <div style="font-size:4rem; margin-bottom:24px;">🎉</div>
+      <h2 style="margin-bottom:16px;">You're Registered!</h2>
+      <p style="color:rgba(255,255,255,0.6); max-width:480px; margin:0 auto 32px;" id="confirm-msg">
+        Your team has been registered for Lobo VC Cup 2026. Check your email for confirmation.
+      </p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="submissions.html" class="btn btn--primary btn--lg">Go to Submissions Portal</a>
+        <a href="../index.html" class="btn btn--secondary">Back to Home</a>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div id="faq" style="margin-top:80px;">
+      <div class="section-header" style="text-align:left; margin-bottom:32px;">
+        <div class="section-header__eyebrow">Common Questions</div>
+        <h2 class="section-header__title">FAQ</h2>
+      </div>
+      <div id="content-faq" class="content-body">
+        <div style="text-align:center; padding:40px;"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="padding-top:0; border-top:none;">
+      <span class="footer__copy">© 2026 Lobo VC Cup — Anderson School of Management, UNM</span>
+      <div style="display:flex; gap:20px;">
+        <a href="mailto:delcampo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">delcampo@unm.edu</a>
+        <a href="mailto:agajjo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">agajjo@unm.edu</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const API = '/api';
+  let authToken = null;
+  let currentUser = null;
+  let memberCount = 0;
+
+  // ── Check for track param in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const preselectedTrack = urlParams.get('track');
+
+  // ── Check if already logged in
+  window.addEventListener('DOMContentLoaded', async () => {
+    const stored = localStorage.getItem('lvc_token');
+    if (stored) {
+      authToken = stored;
+      await checkSession();
+    }
+    loadContent('faq', 'content-faq');
+    if (preselectedTrack === 'startup' || preselectedTrack === 'vc') {
+      // Will be applied after auth section shows team section
+    }
+  });
+
+  async function checkSession() {
+    try {
+      const res = await fetch(`${API}/auth/me`, {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      });
+      if (!res.ok) { authToken = null; localStorage.removeItem('lvc_token'); return; }
+      currentUser = await res.json();
+      showTeamSection();
+    } catch {
+      authToken = null;
+    }
+  }
+
+  // ── Tab switching
+  function switchAuthTab(tab) {
+    document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
+    document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
+    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    clearMessages();
+  }
+
+  function clearMessages() {
+    ['auth-error','auth-success','team-error','team-success'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.style.display = 'none'; el.textContent = ''; }
+    });
+  }
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    el.innerHTML = `<span>⚠</span> ${msg}`;
+    el.style.display = 'flex';
+  }
+  function showSuccess(id, msg) {
+    const el = document.getElementById(id);
+    el.innerHTML = `<span>✓</span> ${msg}`;
+    el.style.display = 'flex';
+  }
+
+  // ── Signup
+  async function handleSignup(e) {
+    e.preventDefault();
+    clearMessages();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value;
+    const confirm = document.getElementById('signup-confirm').value;
+
+    if (!email.endsWith('@unm.edu')) {
+      return showError('auth-error', 'Only @unm.edu email addresses are allowed.');
+    }
+    if (password !== confirm) {
+      return showError('auth-error', 'Passwords do not match.');
+    }
+
+    setLoading('signup-btn', true);
+    try {
+      const res = await fetch(`${API}/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) return showError('auth-error', data.error || 'Signup failed.');
+      showSuccess('auth-success', 'Account created! Check your email to confirm, then log in.');
+      switchAuthTab('login');
+      document.getElementById('login-email').value = email;
+    } catch {
+      showError('auth-error', 'Network error. Please try again.');
+    } finally {
+      setLoading('signup-btn', false);
+    }
+  }
+
+  // ── Login
+  async function handleLogin(e) {
+    e.preventDefault();
+    clearMessages();
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    setLoading('login-btn', true);
+    try {
+      const res = await fetch(`${API}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) return showError('auth-error', data.error || 'Login failed.');
+
+      authToken = data.token;
+      currentUser = data.user;
+      localStorage.setItem('lvc_token', authToken);
+      showTeamSection();
+    } catch {
+      showError('auth-error', 'Network error. Please try again.');
+    } finally {
+      setLoading('login-btn', false);
+    }
+  }
+
+  // ── Show team registration after auth
+  async function showTeamSection() {
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('team-section').style.display = 'block';
+
+    // Pre-fill contact email
+    document.getElementById('contact-email').value = currentUser.email;
+
+    // Update nav to show logout
+    document.getElementById('nav-actions').innerHTML = `
+      <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);margin-right:8px;">${currentUser.email}</span>
+      <button class="btn btn--secondary btn--sm" onclick="logout()">Log Out</button>
+    `;
+
+    // Check if already has a team
+    try {
+      const res = await fetch(`${API}/teams/me`, {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      });
+      if (res.ok) {
+        const { team } = await res.json();
+        const el = document.getElementById('already-registered');
+        document.getElementById('already-team-name').textContent = ` — ${team.name} (${team.pathway === 'vc' ? 'VC Track' : 'Founder Track'})`;
+        el.style.display = 'flex';
+        document.getElementById('team-form').style.display = 'none';
+      }
+    } catch {}
+
+    // Apply preselected track
+    if (preselectedTrack === 'startup' || preselectedTrack === 'vc') {
+      selectTrack(preselectedTrack);
+    }
+  }
+
+  // ── Track selection
+  function selectTrack(track) {
+    document.getElementById('radio-startup').checked = track === 'startup';
+    document.getElementById('radio-vc').checked = track === 'vc';
+
+    const optStartup = document.getElementById('opt-startup').querySelector('.track-card');
+    const optVc = document.getElementById('opt-vc').querySelector('.track-card');
+
+    optStartup.style.borderColor = track === 'startup' ? 'var(--gold)' : '';
+    optStartup.style.boxShadow = track === 'startup' ? 'var(--shadow-gold)' : '';
+    optVc.style.borderColor = track === 'vc' ? 'var(--gold)' : '';
+    optVc.style.boxShadow = track === 'vc' ? 'var(--shadow-gold)' : '';
+
+    document.getElementById('startup-fields').style.display = track === 'startup' ? 'block' : 'none';
+  }
+
+  // ── Member rows
+  function addMemberRow() {
+    memberCount++;
+    const id = memberCount;
+    const div = document.createElement('div');
+    div.className = 'member-row';
+    div.id = `member-row-${id}`;
+    div.innerHTML = `
+      <div class="form-group" style="margin-bottom:0;">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input member-name" placeholder="Full name" />
+      </div>
+      <div class="form-group" style="margin-bottom:0;">
+        <label class="form-label">UNM Email</label>
+        <input type="email" class="form-input member-email" placeholder="name@unm.edu" />
+      </div>
+      <button type="button" class="btn--remove" onclick="removeMemberRow(${id})" title="Remove">✕</button>
+    `;
+    document.getElementById('members-list').appendChild(div);
+  }
+
+  function removeMemberRow(id) {
+    const el = document.getElementById(`member-row-${id}`);
+    if (el) el.remove();
+  }
+
+  // ── Team form submit
+  async function handleTeamSubmit(e) {
+    e.preventDefault();
+    clearMessages();
+
+    const pathway = document.querySelector('input[name="pathway"]:checked')?.value;
+    if (!pathway) return showError('team-error', 'Please select a track (Founder or VC).');
+
+    const name = document.getElementById('team-name').value.trim();
+    if (!name) return showError('team-error', 'Team name is required.');
+
+    const idea_description = pathway === 'startup'
+      ? document.getElementById('idea-desc').value.trim()
+      : null;
+    if (pathway === 'startup' && !idea_description) {
+      return showError('team-error', 'Please provide an idea description for your startup.');
+    }
+
+    // Collect members
+    const members = [];
+    document.querySelectorAll('.member-row').forEach(row => {
+      const nameVal = row.querySelector('.member-name').value.trim();
+      const emailVal = row.querySelector('.member-email').value.trim().toLowerCase();
+      if (nameVal && emailVal) {
+        if (!emailVal.endsWith('@unm.edu')) {
+          showError('team-error', `Member email ${emailVal} must be a @unm.edu address.`);
+          return;
+        }
+        members.push({ name: nameVal, email: emailVal });
+      }
+    });
+    if (document.getElementById('team-error').style.display === 'flex') return;
+
+    setLoading('team-submit-btn', true);
+    try {
+      const res = await fetch(`${API}/teams`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify({ name, pathway, idea_description, members })
+      });
+      const data = await res.json();
+      if (!res.ok) return showError('team-error', data.error || 'Registration failed.');
+
+      showConfirmation(name, pathway);
+    } catch {
+      showError('team-error', 'Network error. Please try again.');
+    } finally {
+      setLoading('team-submit-btn', false);
+    }
+  }
+
+  function showConfirmation(teamName, pathway) {
+    document.getElementById('team-section').style.display = 'none';
+    document.getElementById('confirm-section').style.display = 'block';
+    const pathLabel = pathway === 'vc' ? 'VC Track' : 'Founder Track';
+    document.getElementById('confirm-msg').textContent =
+      `Team "${teamName}" is registered for Lobo VC Cup 2026 — ${pathLabel}. Check your UNM email for confirmation details.`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function logout() {
+    localStorage.removeItem('lvc_token');
+    authToken = null;
+    currentUser = null;
+    location.reload();
+  }
+
+  function setLoading(btnId, loading) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.disabled = loading;
+    btn.innerHTML = loading
+      ? '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Please wait...'
+      : btn.getAttribute('data-label') || btn.textContent;
+  }
+
+  // ── Load FAQ content
+  async function loadContent(page, targetId) {
+    try {
+      const res = await fetch(`${API}/content/${page}`);
+      const { html } = await res.json();
+      document.getElementById(targetId).innerHTML = html;
+    } catch {
+      document.getElementById(targetId).innerHTML = '';
+    }
+  }
+
+  // ── Mobile nav
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-toggle').classList.toggle('open');
+    document.getElementById('nav-links').classList.toggle('mobile-open');
+  });
+</script>
+</body>
+</html>
