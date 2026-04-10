@@ -38,13 +38,13 @@ You want to work in venture capital. Here's your shot. Build a fund thesis, pitc
 
 ## Who's Behind It?
 
-The Lobo VC Cup is run by the **Anderson School of Management** at the University of New Mexico, led by faculty advisors Rob DelCampo and Andoni Gajjo. It brings together students from across disciplines — business, engineering, CS, pre-med, and beyond.
+The Lobo VC Cup is run by the **Anderson School of Management** at the University of New Mexico, led by faculty advisors Rob DelCampo and Andoni Gajjo. It brings together students from across disciplines, business, engineering, CS, pre-med, and beyond.
 
 ---
 
-## The Prize Pool
+## Real Money
 
-**$20,000 total in prizes**
+**$36,000 total in prizes**
 
 | Place | VC Prize |
 |-------|----------|
@@ -53,3 +53,8 @@ The Lobo VC Cup is run by the **Anderson School of Management** at the Universit
 | 3rd | $1,000 |
 
 Founders receive **actual investment capital** from student VC teams — no fixed prize amount. The best pitch wins the most money.
+
+| Total Startup Pool |
+|--------------------|
+| $20,000 |
+
