@@ -149,18 +149,6 @@ p { max-width: 68ch; }
   color: #1e0f05;
   opacity: 1;
 }
-.btn--gold {
-  background: var(--gold);
-  color: #1e0f05;
-  border: 2px solid var(--gold-dark);
-}
-.btn--gold:hover {
-  background: var(--gold-dark);
-  color: #1e0f05;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(180,130,20,0.35);
-  opacity: 1;
-}
 .btn--sm { padding: 9px 18px; font-size: 0.85rem; }
 .btn--lg { padding: 18px 36px; font-size: 1.05rem; }
 .btn--full { width: 100%; justify-content: center; }

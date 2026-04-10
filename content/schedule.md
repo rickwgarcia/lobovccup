@@ -40,7 +40,7 @@
 </div>
 
 <div class="timeline__item">
-<div class="timeline__dot" style="background: var(--crimson-bright); width:18px; height:18px; left:-41px; top:2px;"></div>
+<div class="timeline__dot"></div>
 <div class="timeline__date">March 25–26 — 5–7 PM</div>
 <div class="timeline__title">Discovery Days</div>
 <div class="timeline__desc">MCM-1010. Startups pitch. VCs evaluate. The main event.</div>
