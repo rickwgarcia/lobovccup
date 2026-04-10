@@ -32,7 +32,7 @@
 <li>Build an investment track record</li>
 <li>Compete for $16,000 in prizes</li>
 </ul>
-<a href="pages/register.html?track=vc" class="btn btn--primary">Register as VC</a>
+<a href="pages/register.html?track=vc" class="btn btn--gold">Register as VC</a>
 <a href="#" class="btn btn--secondary btn--sm vc-guide-trigger" style="margin-top:12px;">View VC Guide</a>
 </div>
 
