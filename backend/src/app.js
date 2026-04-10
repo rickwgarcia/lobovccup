@@ -56,7 +56,7 @@ app.use('/api/admin', adminRoutes);
 // Content endpoint — reads /content/{page}.md, returns parsed HTML
 // Path is relative to this file: backend/src/app.js → ../../content
 const CONTENT_DIR = resolve(__dirname, '../../content');
-const VALID_PAGES = ['home', 'founder-guide', 'vc-guide', 'schedule', 'faq'];
+const VALID_PAGES = ['home', 'founder-guide', 'vc-guide', 'schedule', 'faq', 'hero', 'tracks', 'prizes', 'mentors', 'cta'];
 
 app.get('/api/content/:page', async (req, res) => {
   const { page } = req.params;

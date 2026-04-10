@@ -21,12 +21,11 @@
         <li><a href="#about">About</a></li>
         <li><a href="#tracks">Tracks</a></li>
         <li><a href="#schedule">Schedule</a></li>
-        <li><a href="#prizes">Prizes</a></li>
         <li><a href="#mentors">Mentors</a></li>
         <li><a href="pages/register.html#faq">FAQ</a></li>
       </ul>
       <div class="nav__actions">
-        <a href="pages/register.html" class="btn btn--primary btn--sm">Register Now</a>
+        <a href="pages/register.html" class="btn btn--primary btn--sm">Join</a>
       </div>
       <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -41,13 +40,7 @@
   <div class="hero__overlay"></div>
   <div class="container">
     <div class="hero__content fade-in-up">
-      <div class="hero__eyebrow">UNM Anderson School of Management — 2026</div>
-      <h1 class="hero__title">
-        The Future of<br /><em>Venture Capital</em><br />Starts Here
-      </h1>
-      <p class="hero__subtitle">
-        <span class="accent--crimson">Student founders</span> pitch. <span class="accent--gold">Student VCs</span> invest. Real capital. The most intensive venture competition in the Southwest — at UNM.
-      </p>
+      <div id="content-hero"></div>
 
       <!-- Countdown to Discovery Days -->
       <div class="countdown" id="countdown">
@@ -72,15 +65,6 @@
         </div>
       </div>
       <p style="font-size:0.75rem; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:40px; margin-top:-32px;">until Discovery Days — March 25</p>
-
-      <div class="hero__actions">
-        <a href="pages/register.html?track=startup" class="btn btn--primary btn--lg">
-          I'm a Founder →
-        </a>
-        <a href="pages/register.html?track=vc" class="btn btn--gold btn--lg">
-          I'm a VC →
-        </a>
-      </div>
 
       <div class="hero__stats">
         <div class="hero__stat">
@@ -119,44 +103,8 @@
 <!-- ── Tracks ─────────────────────────────────────────────── -->
 <section class="section" id="tracks" style="background: var(--bg-alt);">
   <div class="container">
-    <div class="section-header">
-      <div class="section-header__eyebrow">Two Ways to Compete</div>
-      <h2 class="section-header__title">Pick Your Track</h2>
-      <p class="section-header__subtitle">Whether you're building the next big thing or hunting for it — there's a track for you.</p>
-    </div>
-    <div class="tracks">
-      <div class="track-card">
-        <div class="track-card__icon">🚀</div>
-        <div class="track-card__title">Founder Track</div>
-        <p class="track-card__desc">
-          You've got a startup idea — or an early-stage company. Pitch student VC teams during Discovery Days and raise real capital. No judges picking winners. Just investors making bets.
-        </p>
-        <ul class="track-card__features">
-          <li>Pitch to multiple VC teams</li>
-          <li>Compete for real investment capital</li>
-          <li>Access mentors and advisors</li>
-          <li>Build your investor materials</li>
-          <li>Founders win what they raise</li>
-        </ul>
-        <a href="pages/register.html?track=startup" class="btn btn--primary">Register as Founder</a>
-        <a href="#" id="founder-guide-link" class="btn btn--secondary btn--sm" style="margin-top:12px;">View Founder Guide</a>
-      </div>
-      <div class="track-card" style="border-color: rgba(243,156,18,0.25);">
-        <div class="track-card__icon">💼</div>
-        <div class="track-card__title">VC Track</div>
-        <p class="track-card__desc">
-          You want to work in venture. Build a fund, pitch real LPs, source deals, run diligence, and deploy capital. You'll be judged on process, rigor, and conviction.
-        </p>
-        <ul class="track-card__features">
-          <li>Pitch an LP panel for real capital</li>
-          <li>Source and evaluate startup deals</li>
-          <li>Write term sheets + deal memos</li>
-          <li>Build an investment track record</li>
-          <li>Compete for $16,000 in prizes</li>
-        </ul>
-        <a href="pages/register.html?track=vc" class="btn btn--outline-gold">Register as VC</a>
-        <a href="#" id="vc-guide-link" class="btn btn--secondary btn--sm" style="margin-top:12px;">View VC Guide</a>
-      </div>
+    <div id="content-tracks">
+      <div style="text-align:center; padding: 60px 0; color: rgba(44,24,16,0.35);"><div class="spinner"></div></div>
     </div>
   </div>
 </section>
@@ -164,105 +112,8 @@
 <!-- ── Schedule ───────────────────────────────────────────── -->
 <section class="section" id="schedule">
   <div class="container">
-    <div class="section-header">
-      <div class="section-header__eyebrow">Key Dates</div>
-      <h2 class="section-header__title">Competition Timeline</h2>
-      <p class="section-header__subtitle">Six weeks. From first pitch deck to Investment Day.</p>
-    </div>
-    <div style="max-width: 700px; margin: 0 auto;">
-      <div class="timeline">
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">March 2–6</div>
-          <div class="timeline__title">Education Week</div>
-          <div class="timeline__desc">Virtual workshops on pitch prep, VC fundamentals, term sheets, and more.</div>
-          <span class="timeline__badge">Virtual</span>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">March 7</div>
-          <div class="timeline__title">Team Registration Deadline</div>
-          <div class="timeline__desc">All teams (Founders + VCs) must be registered. No late exceptions.</div>
-          <span class="timeline__badge">Deadline</span>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">March 9–12</div>
-          <div class="timeline__title">Pitch Prep Week</div>
-          <div class="timeline__desc">Mentor office hours, deck reviews, LP pitch coaching.</div>
-          <span class="timeline__badge">Virtual</span>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">March 13 — 11:59 PM</div>
-          <div class="timeline__title">Submissions Due</div>
-          <div class="timeline__desc">Founders upload pitch decks. VCs upload LP pitch videos.</div>
-          <span class="timeline__badge" style="background:rgba(239,68,68,0.15);color:#ef4444;">Hard Deadline</span>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__dot" style="background: var(--crimson-bright); width:18px; height:18px; left:-41px; top:2px;"></div>
-          <div class="timeline__date">March 25–26 — 5–7 PM</div>
-          <div class="timeline__title">Discovery Days</div>
-          <div class="timeline__desc">MCM-1010. Startups pitch. VCs evaluate. The main event.</div>
-          <span class="timeline__badge">IN-PERSON</span>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">March 30 — 6:30–8:30 PM</div>
-          <div class="timeline__title">Investment Day</div>
-          <div class="timeline__desc">JSC. Term sheets submitted. Negotiations happen live.</div>
-          <span class="timeline__badge">IN-PERSON</span>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">March 31 — 11:59 PM</div>
-          <div class="timeline__title">Final VC Submissions Due</div>
-          <div class="timeline__desc">VCs upload deal memos, term sheets, due diligence, and portfolio summary.</div>
-          <span class="timeline__badge" style="background:rgba(239,68,68,0.15);color:#ef4444;">VC Teams Only</span>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__dot"></div>
-          <div class="timeline__date">April 3 — 11:30 AM – 1 PM</div>
-          <div class="timeline__title">Awards Ceremony</div>
-          <div class="timeline__desc">JSC. Prize winners announced. Lunch served. Celebrate.</div>
-          <span class="timeline__badge">IN-PERSON</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Prizes ──────────────────────────────────────────────── -->
-<section class="section" id="prizes">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-header__eyebrow">The Stakes</div>
-      <h2 class="section-header__title">$20,000 in Prizes</h2>
-      <p class="section-header__subtitle">VCs compete for prizes. Founders compete for investment. Everybody plays for real.</p>
-    </div>
-    <div class="prize-section">
-      <p style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; color: rgba(44,24,16,0.45); margin-bottom:8px;">VC Track Prizes</p>
-      <div class="prize-grid">
-        <div class="prize-card prize-card--first">
-          <div class="prize-card__place">1st Place</div>
-          <div class="prize-card__amount">$10,000</div>
-        </div>
-        <div class="prize-card">
-          <div class="prize-card__place">2nd Place</div>
-          <div class="prize-card__amount">$5,000</div>
-        </div>
-        <div class="prize-card">
-          <div class="prize-card__place">3rd Place</div>
-          <div class="prize-card__amount">$1,000</div>
-        </div>
-      </div>
-      <div style="margin-top: 48px; padding-top: 48px; border-top: 1px solid rgba(44,24,16,0.08);">
-        <p style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; color: rgba(44,24,16,0.45); margin-bottom:8px;">Founder Track</p>
-        <div style="font-family: var(--font-handwritten); font-size: 2.2rem; margin-bottom:8px; color: var(--text);">Win What You Raise</div>
-        <p style="color: rgba(44,24,16,0.60); font-size:0.95rem; max-width: 440px; margin: 0 auto;">
-          Founders don't compete for fixed prizes — they receive actual investment capital from student VC teams. The best pitches raise the most money.
-        </p>
-      </div>
+    <div id="content-schedule">
+      <div style="text-align:center; padding: 60px 0; color: rgba(44,24,16,0.35);"><div class="spinner"></div></div>
     </div>
   </div>
 </section>
@@ -270,51 +121,18 @@
 <!-- ── Mentors ─────────────────────────────────────────────── -->
 <section class="section" id="mentors" style="background: var(--bg-alt);">
   <div class="container">
-    <div class="section-header">
-      <div class="section-header__eyebrow">Support Network</div>
-      <h2 class="section-header__title">Mentors & Advisors</h2>
-      <p class="section-header__subtitle">Access Albuquerque's venture and startup ecosystem throughout the competition.</p>
+    <div id="content-mentors">
+      <div style="text-align:center; padding: 60px 0; color: rgba(44,24,16,0.35);"><div class="spinner"></div></div>
     </div>
-    <div class="mentor-grid">
-      <div class="mentor-card">
-        <div class="mentor-card__name">Rob DelCampo</div>
-        <div class="mentor-card__affil">Anderson School of Management, UNM</div>
-      </div>
-      <div class="mentor-card">
-        <div class="mentor-card__name">Andoni Gajjo</div>
-        <div class="mentor-card__affil">Anderson School of Management, UNM</div>
-      </div>
-      <div class="mentor-card">
-        <div class="mentor-card__name">VC Partners</div>
-        <div class="mentor-card__affil">Albuquerque Venture Community</div>
-      </div>
-      <div class="mentor-card">
-        <div class="mentor-card__name">Angel Investors</div>
-        <div class="mentor-card__affil">UNM Alumni Network</div>
-      </div>
-      <div class="mentor-card">
-        <div class="mentor-card__name">Serial Entrepreneurs</div>
-        <div class="mentor-card__affil">New Mexico Startup Ecosystem</div>
-      </div>
-      <div class="mentor-card">
-        <div class="mentor-card__name">Fund Managers</div>
-        <div class="mentor-card__affil">NM Investment Community</div>
-      </div>
-    </div>
-    <p style="text-align:center; margin-top:32px; font-size:0.85rem; color:rgba(44,24,16,0.42);">
-      Full mentor list and office hours booking released during registration.
-    </p>
   </div>
 </section>
 
 <!-- ── CTA ─────────────────────────────────────────────────── -->
 <section class="section" style="background: linear-gradient(135deg, rgba(192,57,43,0.07) 0%, rgba(192,57,43,0.02) 100%); border-top: 1px solid rgba(192,57,43,0.16); border-bottom: 1px solid rgba(192,57,43,0.16);">
   <div class="container" style="text-align:center;">
-    <div class="section-header__eyebrow" style="display:block; margin-bottom:16px;">Registrations Open</div>
-    <h2 style="margin-bottom:16px;">Ready to Compete?</h2>
-    <p style="color:rgba(44,24,16,0.62); max-width:480px; margin: 0 auto 40px;">
-      Registration closes March 7. Don't wait — spots are limited and the best teams move fast.
-    </p>
+    <div id="content-cta">
+      <div style="text-align:center; padding: 40px 0; color: rgba(44,24,16,0.35);"><div class="spinner"></div></div>
+    </div>
     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
       <a href="pages/register.html?track=startup" class="btn btn--primary btn--lg">Register as Founder</a>
       <a href="pages/register.html?track=vc" class="btn btn--outline-gold btn--lg">Register as VC</a>
@@ -498,7 +316,12 @@
         '<p style="color:rgba(44,24,16,0.42)">Content unavailable — check back soon.</p>';
     }
   }
-  loadContent('home', 'content-home');
+  loadContent('hero',     'content-hero');
+  loadContent('home',     'content-home');
+  loadContent('tracks',   'content-tracks');
+  loadContent('schedule', 'content-schedule');
+  loadContent('mentors',  'content-mentors');
+  loadContent('cta',      'content-cta');
 
   // ── Guide modal
   let guideLoaded = {};
@@ -534,17 +357,14 @@
     if (e.target === e.currentTarget) closeGuide();
   });
 
-  document.getElementById('founder-guide-link').addEventListener('click', (e) => {
-    e.preventDefault(); openGuide('founder-guide');
+  // Event delegation for guide triggers (content is loaded dynamically)
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('.founder-guide-trigger, #footer-founder-guide');
+    if (link) { e.preventDefault(); openGuide('founder-guide'); }
   });
-  document.getElementById('vc-guide-link').addEventListener('click', (e) => {
-    e.preventDefault(); openGuide('vc-guide');
-  });
-  document.getElementById('footer-founder-guide').addEventListener('click', (e) => {
-    e.preventDefault(); openGuide('founder-guide');
-  });
-  document.getElementById('footer-vc-guide').addEventListener('click', (e) => {
-    e.preventDefault(); openGuide('vc-guide');
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('.vc-guide-trigger, #footer-vc-guide');
+    if (link) { e.preventDefault(); openGuide('vc-guide'); }
   });
 </script>
 </body>
