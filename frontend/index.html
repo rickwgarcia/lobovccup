@@ -7,7 +7,7 @@
   <meta name="description" content="The University of New Mexico's premier startup investment competition. Student VCs pitch for real capital, deploy it into student-founded startups. $20,000 in prizes." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles/main.css" />
 </head>
 <body>
@@ -141,7 +141,7 @@
         <a href="pages/register.html?track=startup" class="btn btn--primary">Register as Founder</a>
         <a href="#" id="founder-guide-link" class="btn btn--secondary btn--sm" style="margin-top:12px;">View Founder Guide</a>
       </div>
-      <div class="track-card" style="border-color: rgba(245,197,24,0.2);">
+      <div class="track-card" style="border-color: rgba(192,57,43,0.2);">
         <div class="track-card__icon">💼</div>
         <div class="track-card__title">VC Track</div>
         <p class="track-card__desc">
@@ -200,18 +200,18 @@
           <span class="timeline__badge" style="background:rgba(239,68,68,0.15);color:#ef4444;">Hard Deadline</span>
         </div>
         <div class="timeline__item">
-          <div class="timeline__dot" style="background: var(--gold); width:18px; height:18px; left:-41px; top:2px;"></div>
+          <div class="timeline__dot" style="background: var(--crimson-bright); width:18px; height:18px; left:-41px; top:2px;"></div>
           <div class="timeline__date">March 25–26 — 5–7 PM</div>
           <div class="timeline__title">Discovery Days</div>
           <div class="timeline__desc">MCM-1010. Startups pitch. VCs evaluate. The main event.</div>
-          <span class="timeline__badge" style="background:rgba(245,197,24,0.2);color:var(--gold);">IN-PERSON</span>
+          <span class="timeline__badge">IN-PERSON</span>
         </div>
         <div class="timeline__item">
           <div class="timeline__dot"></div>
           <div class="timeline__date">March 30 — 6:30–8:30 PM</div>
           <div class="timeline__title">Investment Day</div>
           <div class="timeline__desc">JSC. Term sheets submitted. Negotiations happen live.</div>
-          <span class="timeline__badge" style="background:rgba(245,197,24,0.2);color:var(--gold);">IN-PERSON</span>
+          <span class="timeline__badge">IN-PERSON</span>
         </div>
         <div class="timeline__item">
           <div class="timeline__dot"></div>
@@ -225,7 +225,7 @@
           <div class="timeline__date">April 3 — 11:30 AM – 1 PM</div>
           <div class="timeline__title">Awards Ceremony</div>
           <div class="timeline__desc">JSC. Prize winners announced. Lunch served. Celebrate.</div>
-          <span class="timeline__badge" style="background:rgba(245,197,24,0.2);color:var(--gold);">IN-PERSON</span>
+          <span class="timeline__badge">IN-PERSON</span>
         </div>
       </div>
     </div>
@@ -308,7 +308,7 @@
 </section>
 
 <!-- ── CTA ─────────────────────────────────────────────────── -->
-<section class="section" style="background: linear-gradient(135deg, rgba(245,197,24,0.08) 0%, rgba(245,197,24,0.02) 100%); border-top: 1px solid rgba(245,197,24,0.15); border-bottom: 1px solid rgba(245,197,24,0.15);">
+<section class="section" style="background: linear-gradient(135deg, rgba(192,57,43,0.1) 0%, rgba(192,57,43,0.03) 100%); border-top: 1px solid rgba(192,57,43,0.2); border-bottom: 1px solid rgba(192,57,43,0.2);">
   <div class="container" style="text-align:center;">
     <div class="section-header__eyebrow" style="display:block; margin-bottom:16px;">Registrations Open</div>
     <h2 style="margin-bottom:16px;">Ready to Compete?</h2>
@@ -422,7 +422,7 @@
       ctx.clearRect(0, 0, W, H);
 
       // Grid lines
-      ctx.strokeStyle = 'rgba(245,197,24,0.04)';
+      ctx.strokeStyle = 'rgba(192,57,43,0.05)';
       ctx.lineWidth = 1;
       const gridSize = 80;
       for (let x = 0; x < W; x += gridSize) {
@@ -441,7 +441,7 @@
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(245,197,24,${p.alpha})`;
+        ctx.fillStyle = `rgba(243,156,18,${p.alpha})`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -451,7 +451,7 @@
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = `rgba(245,197,24,${0.06 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `rgba(243,156,18,${0.06 * (1 - dist / 120)})`;
             ctx.stroke();
           }
         }
@@ -472,7 +472,7 @@
     const diff = TARGET - now;
     if (diff <= 0) {
       document.getElementById('countdown').innerHTML =
-        '<div style="font-family:var(--font-display);font-size:1.5rem;color:var(--gold)">Discovery Days is happening NOW</div>';
+        '<div style="font-family:var(--font-display);font-size:1.5rem;color:var(--crimson-bright)">Discovery Days is happening NOW</div>';
       return;
     }
     const days = Math.floor(diff / 86400000);
