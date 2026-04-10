@@ -6,7 +6,7 @@
   <title>Admin — Lobo VC Cup 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/styles/main.css" />
 </head>
 <body>
@@ -33,7 +33,7 @@
 <div id="access-denied" style="display:none; min-height:100vh; align-items:center; justify-content:center; flex-direction:column; gap:20px; text-align:center; padding:40px;">
   <div style="font-size:3rem;">🔒</div>
   <h2>Access Denied</h2>
-  <p style="color:rgba(255,255,255,0.5);">You need admin privileges to view this page.</p>
+  <p style="color:rgba(44,24,16,0.5);">You need admin privileges to view this page.</p>
   <a href="register.html" class="btn btn--primary">Log In</a>
 </div>
 
@@ -96,12 +96,12 @@
           <option value="true">Eligible</option>
           <option value="false">Ineligible</option>
         </select>
-        <div style="margin-left:auto; font-size:0.85rem; color:rgba(255,255,255,0.4);" id="teams-count"></div>
+        <div style="margin-left:auto; font-size:0.85rem; color:rgba(44,24,16,0.4);" id="teams-count"></div>
       </div>
 
       <!-- Teams Table -->
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.07); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:40px;">
-        <div style="padding:20px 24px; border-bottom:1px solid rgba(255,255,255,0.07); display:flex; justify-content:space-between; align-items:center;">
+      <div style="background:var(--navy-light); border:1px solid rgba(44,24,16,0.07); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:40px;">
+        <div style="padding:20px 24px; border-bottom:1px solid rgba(44,24,16,0.07); display:flex; justify-content:space-between; align-items:center;">
           <div style="font-family:var(--font-display); font-size:1.3rem;">Registered Teams</div>
           <button class="btn btn--sm btn--outline-gold" onclick="exportCSV()">Export CSV</button>
         </div>
@@ -120,7 +120,7 @@
               </tr>
             </thead>
             <tbody id="teams-tbody">
-              <tr><td colspan="8" style="text-align:center; padding:40px; color:rgba(255,255,255,0.3);">Loading teams...</td></tr>
+              <tr><td colspan="8" style="text-align:center; padding:40px; color:rgba(44,24,16,0.3);">Loading teams...</td></tr>
             </tbody>
           </table>
         </div>
@@ -135,7 +135,7 @@
   <div class="modal" style="max-width:640px; max-height:80vh; overflow-y:auto;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h2 class="modal__title" id="panel-team-name">Team Submissions</h2>
-      <button onclick="closePanel()" style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:1.5rem;">✕</button>
+      <button onclick="closePanel()" style="background:none;border:none;color:rgba(44,24,16,0.5);cursor:pointer;font-size:1.5rem;">✕</button>
     </div>
     <div id="panel-content">
       <div style="text-align:center;padding:40px;"><div class="spinner"></div></div>
@@ -144,7 +144,7 @@
 </div>
 
 <!-- ── Footer ──────────────────────────────────────────────── -->
-<footer class="footer" style="border-top:1px solid rgba(255,255,255,0.07);">
+<footer class="footer">
   <div class="container">
     <div class="footer__bottom" style="padding-top:0; border-top:none;">
       <span class="footer__copy">© 2026 Lobo VC Cup Admin Panel</span>
@@ -177,7 +177,7 @@
       if (user.role !== 'admin') { showDenied(); return; }
 
       document.getElementById('nav-actions').innerHTML = `
-        <span style="font-size:0.8rem;color:rgba(255,255,255,0.4);margin-right:8px;">${user.email}</span>
+        <span style="font-size:0.8rem;color:rgba(44,24,16,0.4);margin-right:8px;">${user.email}</span>
         <button class="btn btn--secondary btn--sm" onclick="logout()">Log Out</button>
       `;
 
@@ -222,24 +222,24 @@
     document.getElementById('teams-count').textContent = `${teams.length} team${teams.length !== 1 ? 's' : ''}`;
     if (!teams.length) {
       document.getElementById('teams-tbody').innerHTML =
-        '<tr><td colspan="8" style="text-align:center;padding:40px;color:rgba(255,255,255,0.3);">No teams found.</td></tr>';
+        '<tr><td colspan="8" style="text-align:center;padding:40px;color:rgba(44,24,16,0.3);">No teams found.</td></tr>';
       return;
     }
     document.getElementById('teams-tbody').innerHTML = teams.map(t => `
       <tr>
         <td>
           <div style="font-weight:600;">${escHtml(t.name)}</div>
-          ${t.idea_description ? `<div style="font-size:0.75rem;color:rgba(255,255,255,0.35);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(t.idea_description)}</div>` : ''}
+          ${t.idea_description ? `<div style="font-size:0.75rem;color:rgba(44,24,16,0.35);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(t.idea_description)}</div>` : ''}
         </td>
         <td><span class="badge badge--${t.pathway}">${t.pathway === 'vc' ? 'VC' : 'Founder'}</span></td>
         <td style="font-size:0.85rem;">${escHtml(t.users?.email || '—')}</td>
-        <td style="color:rgba(255,255,255,0.6);">${(t.team_members || []).length}</td>
+        <td style="color:rgba(44,24,16,0.6);">${(t.team_members || []).length}</td>
         <td>
-          <span style="font-family:var(--font-display);font-size:1.1rem;color:${t.submission_count > 0 ? 'var(--green)' : 'rgba(255,255,255,0.3)'}">
+          <span style="font-family:var(--font-display);font-size:1.1rem;color:${t.submission_count > 0 ? 'var(--green)' : 'rgba(44,24,16,0.3)'}">
             ${t.submission_count}
           </span>
         </td>
-        <td style="font-size:0.82rem;color:rgba(255,255,255,0.5);">${formatDate(t.created_at)}</td>
+        <td style="font-size:0.82rem;color:rgba(44,24,16,0.5);">${formatDate(t.created_at)}</td>
         <td>
           <span class="badge badge--${t.is_eligible ? 'eligible' : 'ineligible'}">
             ${t.is_eligible ? 'Eligible' : 'Ineligible'}
@@ -311,7 +311,7 @@
 
       if (!submissions.length) {
         document.getElementById('panel-content').innerHTML =
-          '<p style="color:rgba(255,255,255,0.4);text-align:center;padding:40px;">No submissions yet.</p>';
+          '<p style="color:rgba(44,24,16,0.4);text-align:center;padding:40px;">No submissions yet.</p>';
         return;
       }
 
@@ -325,13 +325,13 @@
       };
 
       document.getElementById('panel-content').innerHTML = submissions.map(s => `
-        <div style="padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.07);">
+        <div style="padding:16px 0; border-bottom:1px solid rgba(44,24,16,0.07);">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <div>
               <div style="font-weight:600; font-size:0.95rem;">${TYPE_LABELS[s.type] || s.type}</div>
               ${s.company_name ? `<div style="font-size:0.8rem; color:var(--gold); margin-top:2px;">${escHtml(s.company_name)}</div>` : ''}
-              <div style="font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:3px;">${escHtml(s.file_name)} · ${formatFileSize(s.file_size)}</div>
-              <div style="font-size:0.75rem; color:rgba(255,255,255,0.3);">${formatDate(s.updated_at || s.submitted_at)}</div>
+              <div style="font-size:0.8rem; color:rgba(44,24,16,0.4); margin-top:3px;">${escHtml(s.file_name)} · ${formatFileSize(s.file_size)}</div>
+              <div style="font-size:0.75rem; color:rgba(44,24,16,0.3);">${formatDate(s.updated_at || s.submitted_at)}</div>
             </div>
             <button class="btn btn--sm btn--outline-gold" onclick="downloadFile('${s.id}')">
               Download
@@ -340,7 +340,7 @@
         </div>
       `).join('') + `
         <div style="padding-top:20px; text-align:right;">
-          <span style="font-size:0.85rem; color:rgba(255,255,255,0.4);">${submissions.length} file${submissions.length !== 1 ? 's' : ''} total</span>
+          <span style="font-size:0.85rem; color:rgba(44,24,16,0.4);">${submissions.length} file${submissions.length !== 1 ? 's' : ''} total</span>
         </div>
       `;
     } catch {

@@ -6,7 +6,7 @@
   <title>Submissions — Lobo VC Cup 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/styles/main.css" />
 </head>
 <body>
@@ -38,7 +38,7 @@
 <div id="auth-required" style="display:none; min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; text-align:center; padding:40px;">
   <div style="font-size:3rem;">🔒</div>
   <h2>Login Required</h2>
-  <p style="color:rgba(255,255,255,0.5);">You need to be logged in and registered to access the submissions portal.</p>
+  <p style="color:rgba(44,24,16,0.5);">You need to be logged in and registered to access the submissions portal.</p>
   <a href="register.html" class="btn btn--primary btn--lg">Log In / Register</a>
 </div>
 
@@ -55,7 +55,7 @@
           <p class="page-hero__subtitle" id="portal-subtitle">Submit your competition materials before the deadline.</p>
         </div>
         <div style="text-align:right;">
-          <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Team</div>
+          <div style="font-size:0.75rem; color:rgba(44,24,16,0.4); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Team</div>
           <div style="font-family:var(--font-display); font-size:1.4rem;" id="portal-team-name">—</div>
           <button class="btn btn--secondary btn--sm" style="margin-top:8px;" onclick="logout()">Log Out</button>
         </div>
@@ -78,7 +78,7 @@
           <div class="submission-card__header">
             <div>
               <div class="submission-card__title">Pitch Deck</div>
-              <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-top:4px;">
+              <div style="font-size:0.85rem; color:rgba(44,24,16,0.5); margin-top:4px;">
                 PDF or PPTX — Max 50 MB — Due March 13, 11:59 PM
               </div>
             </div>
@@ -89,7 +89,7 @@
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
               <div>
                 <div style="font-size:0.9rem; font-weight:600;" id="deck-filename">—</div>
-                <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:2px;" id="deck-updated">—</div>
+                <div style="font-size:0.75rem; color:rgba(44,24,16,0.4); margin-top:2px;" id="deck-updated">—</div>
               </div>
               <button class="btn btn--sm btn--outline-gold" onclick="downloadFile(currentSubmissions.pitch_deck?.id)">
                 Download
@@ -104,10 +104,10 @@
             <div class="upload-zone__hint">PDF or PPTX only. Max 50 MB.</div>
           </label>
           <div id="deck-progress" style="display:none; margin-top:12px;">
-            <div style="height:4px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden;">
+            <div style="height:4px; background:rgba(44,24,16,0.08); border-radius:2px; overflow:hidden;">
               <div id="deck-progress-bar" style="height:100%; background:var(--gold); width:0%; transition:width 0.3s;"></div>
             </div>
-            <div style="font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:6px;" id="deck-progress-text">Uploading...</div>
+            <div style="font-size:0.8rem; color:rgba(44,24,16,0.4); margin-top:6px;" id="deck-progress-text">Uploading...</div>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@
           <div class="submission-card__header">
             <div>
               <div class="submission-card__title">LP Pitch Video</div>
-              <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-top:4px;">
+              <div style="font-size:0.85rem; color:rgba(44,24,16,0.5); margin-top:4px;">
                 MP4 or MOV — Max 2 GB — Due March 13, 11:59 PM
               </div>
             </div>
@@ -131,7 +131,7 @@
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
               <div>
                 <div style="font-size:0.9rem; font-weight:600;" id="video-filename">—</div>
-                <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:2px;" id="video-updated">—</div>
+                <div style="font-size:0.75rem; color:rgba(44,24,16,0.4); margin-top:2px;" id="video-updated">—</div>
               </div>
               <button class="btn btn--sm btn--outline-gold" onclick="downloadFile(currentSubmissions.lp_video?.id)">
                 Download
@@ -146,19 +146,19 @@
             <div class="upload-zone__hint">MP4 or MOV only. Max 2 GB. 5–7 minutes recommended.</div>
           </label>
           <div id="video-progress" style="display:none; margin-top:12px;">
-            <div style="height:4px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden;">
+            <div style="height:4px; background:rgba(44,24,16,0.08); border-radius:2px; overflow:hidden;">
               <div id="video-progress-bar" style="height:100%; background:var(--gold); width:0%; transition:width 0.3s;"></div>
             </div>
-            <div style="font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:6px;" id="video-progress-text">Uploading...</div>
+            <div style="font-size:0.8rem; color:rgba(44,24,16,0.4); margin-top:6px;" id="video-progress-text">Uploading...</div>
           </div>
         </div>
 
         <!-- Post-Discovery Days section -->
         <div id="post-discovery-section" style="display:none; margin-top:40px;">
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:32px;">
-            <div style="height:1px; flex:1; background:rgba(255,255,255,0.1);"></div>
+            <div style="height:1px; flex:1; background:rgba(44,24,16,0.1);"></div>
             <div style="font-family:var(--font-display); font-size:1.1rem; color:var(--gold); letter-spacing:0.05em;">POST-DISCOVERY DAYS</div>
-            <div style="height:1px; flex:1; background:rgba(255,255,255,0.1);"></div>
+            <div style="height:1px; flex:1; background:rgba(44,24,16,0.1);"></div>
           </div>
 
           <div class="alert alert--info" style="margin-bottom:24px;">
@@ -171,7 +171,7 @@
             <div class="submission-card__header">
               <div>
                 <div class="submission-card__title">Portfolio Summary</div>
-                <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); margin-top:4px;">
+                <div style="font-size:0.85rem; color:rgba(44,24,16,0.5); margin-top:4px;">
                   One document covering your full fund — PDF, DOCX, or PPTX — Due March 31
                 </div>
               </div>
@@ -193,7 +193,7 @@
                 + Add Company
               </button>
             </div>
-            <p style="color:rgba(255,255,255,0.4); font-size:0.85rem; margin-bottom:20px;">
+            <p style="color:rgba(44,24,16,0.4); font-size:0.85rem; margin-bottom:20px;">
               For each company you invested in, upload a Deal Memo, Term Sheet, and Due Diligence Notes.
             </p>
             <div id="companies-list"></div>
@@ -208,13 +208,13 @@
 </div>
 
 <!-- ── Footer ──────────────────────────────────────────────── -->
-<footer class="footer" style="border-top: 1px solid rgba(255,255,255,0.07);">
+<footer class="footer">
   <div class="container">
     <div class="footer__bottom" style="padding-top:0; border-top:none;">
       <span class="footer__copy">© 2026 Lobo VC Cup — Anderson School of Management, UNM</span>
       <div style="display:flex; gap:20px;">
-        <a href="mailto:delcampo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">delcampo@unm.edu</a>
-        <a href="mailto:agajjo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">agajjo@unm.edu</a>
+        <a href="mailto:delcampo@unm.edu" style="color:rgba(44,24,16,0.4); font-size:0.8rem;">delcampo@unm.edu</a>
+        <a href="mailto:agajjo@unm.edu" style="color:rgba(44,24,16,0.4); font-size:0.8rem;">agajjo@unm.edu</a>
       </div>
     </div>
   </div>
@@ -264,7 +264,7 @@
         document.getElementById('auth-required').innerHTML = `
           <div style="font-size:3rem;">📝</div>
           <h2>Register Your Team First</h2>
-          <p style="color:rgba(255,255,255,0.5);">You're logged in but haven't registered a team yet.</p>
+          <p style="color:rgba(44,24,16,0.5);">You're logged in but haven't registered a team yet.</p>
           <a href="register.html" class="btn btn--primary btn--lg">Register Your Team</a>
         `;
         document.getElementById('auth-required').style.display = 'flex';
@@ -300,7 +300,7 @@
 
     // Update nav
     document.getElementById('nav-actions').innerHTML = `
-      <span style="font-size:0.8rem;color:rgba(255,255,255,0.4);margin-right:8px;">${currentUser.email}</span>
+      <span style="font-size:0.8rem;color:rgba(44,24,16,0.4);margin-right:8px;">${currentUser.email}</span>
       <button class="btn btn--secondary btn--sm" onclick="logout()">Log Out</button>
     `;
 
@@ -445,7 +445,7 @@
     div.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
         <div class="form-section__title" style="margin-bottom:0;">Company ${cid}</div>
-        <button type="button" onclick="removeCompany(${cid})" style="background:none;border:none;color:rgba(255,255,255,0.3);cursor:pointer;font-size:1.2rem;">✕</button>
+        <button type="button" onclick="removeCompany(${cid})" style="background:none;border:none;color:rgba(44,24,16,0.3);cursor:pointer;font-size:1.2rem;">✕</button>
       </div>
       <div class="form-group">
         <label class="form-label">Company Name <span>*</span></label>
@@ -471,13 +471,13 @@
   function makeCompanyUploadSlot(cid, type, icon, label, accept) {
     return `
       <div>
-        <div style="font-size:0.8rem; font-weight:600; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;">${label}</div>
+        <div style="font-size:0.8rem; font-weight:600; color:rgba(44,24,16,0.5); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;">${label}</div>
         <label class="upload-zone" style="padding:20px;" for="company-${cid}-${type}-file">
           <input type="file" id="company-${cid}-${type}-file" accept="${accept}" />
           <div style="font-size:1.5rem;">${icon}</div>
           <div class="upload-zone__hint" style="margin-top:8px;">Click to upload</div>
         </label>
-        <div id="company-${cid}-${type}-status" style="font-size:0.75rem; margin-top:6px; color:rgba(255,255,255,0.3);"></div>
+        <div id="company-${cid}-${type}-status" style="font-size:0.75rem; margin-top:6px; color:rgba(44,24,16,0.3);"></div>
       </div>
     `;
   }
