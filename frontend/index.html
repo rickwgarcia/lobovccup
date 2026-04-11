@@ -64,26 +64,7 @@
           <span class="countdown__label">Secs</span>
         </div>
       </div>
-      <p style="font-size:0.75rem; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:40px; margin-top:-32px;">until Discovery Days — March 25</p>
-
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="hero__stat-value">$20K</div>
-          <div class="hero__stat-label">Prize Pool</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-value">15+</div>
-          <div class="hero__stat-label">Teams</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-value">2</div>
-          <div class="hero__stat-label">Tracks</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-value">1</div>
-          <div class="hero__stat-label">Semester</div>
-        </div>
-      </div>
+      <div id="content-hero-stats"></div>
     </div>
   </div>
 </section>
@@ -316,7 +297,8 @@
         '<p style="color:rgba(44,24,16,0.42)">Content unavailable — check back soon.</p>';
     }
   }
-  loadContent('hero',     'content-hero');
+  loadContent('hero',       'content-hero');
+  loadContent('hero-stats', 'content-hero-stats');
   loadContent('home',     'content-home');
   loadContent('tracks',   'content-tracks');
   loadContent('schedule', 'content-schedule');
