@@ -270,8 +270,7 @@
     const now = Date.now();
     const diff = TARGET - now;
     if (diff <= 0) {
-      document.getElementById('countdown').innerHTML =
-        '<div style="font-family:var(--font-display);font-size:1.5rem;color:var(--crimson-bright)">Discovery Days is happening NOW</div>';
+      document.getElementById('countdown').innerHTML = '';
       return;
     }
     const days = Math.floor(diff / 86400000);
