@@ -241,7 +241,7 @@ p { max-width: 68ch; }
   );
   z-index: 1;
 }
-.hero__content { position: relative; z-index: 2; max-width: 800px; }
+.hero__content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; text-align: center; }
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
@@ -278,11 +278,14 @@ p { max-width: 68ch; }
   color: rgba(255,255,255,0.72);
   margin-bottom: 40px;
   max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .accent--crimson { color: var(--crimson-bright); font-weight: 600; }
 .accent--gold { color: var(--gold); font-weight: 600; }
-.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
-.hero__stats { display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 80px; }
+.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; justify-content: center; }
+.hero__stats { display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 80px; justify-content: center; }
+.hero__stat { display: flex; flex-direction: column; gap: 4px; }
 .hero__stat-value {
   font-family: var(--font-display);
   font-size: 2rem;
@@ -812,7 +815,7 @@ p { max-width: 68ch; }
     background: var(--bg-dark);
     border-top-color: rgba(255,255,255,0.08);
   }
-  .hero__actions { flex-direction: column; align-items: flex-start; }
+  .hero__actions { flex-direction: column; align-items: center; }
   .countdown { gap: 12px; }
   .countdown__value { font-size: 2rem; min-width: 52px; }
   .footer__grid { grid-template-columns: 1fr; }

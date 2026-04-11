@@ -1,6 +1,6 @@
 <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--crimson-bright);margin-bottom:16px;">Coming back Spring 2027</div>
 
-<p style="font-size:0.75rem; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:40px; margin-top:-32px;">Join the email list!</p>
+<p style="font-size:0.75rem; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:40px; margin-top:4px;">Join the email list!</p>
 
 <div class="hero__stats">
 <div class="hero__stat">
