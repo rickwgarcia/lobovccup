@@ -4,8 +4,7 @@
 
 ## General Questions
 
-**Question**
-Answer 
+
 
 ---
 
