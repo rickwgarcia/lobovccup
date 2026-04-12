@@ -793,16 +793,16 @@ p { max-width: 68ch; }
     position: absolute;
     top: 100%;
     left: 0; right: 0;
-    background: var(--bg);
+    background: var(--bg-dark);
     padding: 24px;
     gap: 20px;
-    border-top: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
   }
   .nav__links.mobile-open a {
-    color: var(--text);
+    color: rgba(255,255,255,0.85);
   }
   .nav__links.mobile-open a:hover {
-    color: var(--crimson);
+    color: var(--white);
     opacity: 1;
   }
   .hero__actions { flex-direction: column; align-items: center; }
