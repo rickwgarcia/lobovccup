@@ -8,7 +8,6 @@ import { fileURLToPath } from 'url';
 import { marked } from 'marked';
 import { env } from './config/env.js';
 
-import authRoutes from './routes/auth.routes.js';
 import teamsRoutes from './routes/teams.routes.js';
 import submissionsRoutes from './routes/submissions.routes.js';
 import dealsRoutes from './routes/deals.routes.js';
@@ -42,14 +41,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 20,
-  message: { error: 'Too many auth requests. Please wait before trying again.' },
-});
-
 // API routes
-app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/teams', teamsRoutes);
 app.use('/api/submissions', submissionsRoutes);
 app.use('/api/deals', dealsRoutes);

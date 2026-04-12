@@ -10,9 +10,6 @@
  */
 
 (function () {
-  const API = '/api';
-  const TOKEN_KEY = 'lvc_token';
-
   function getBase() {
     const root = document.getElementById('nav-root');
     return root ? (root.dataset.base || '') : '';
@@ -154,40 +151,12 @@
     }
   }
 
-  // Global logout handler (called from dropdown button)
-  window.__navLogout = function () {
-    localStorage.removeItem(TOKEN_KEY);
-    const base = getBase() || '';
-    window.location.href = `${base}pages/login.html`;
-  };
-
-  // Bootstrap: check session, then inject nav
-  async function init() {
-    const token = localStorage.getItem(TOKEN_KEY);
-    let user = null;
-
-    if (token) {
-      try {
-        const res = await fetch(`${API}/auth/me`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (res.ok) {
-          user = await res.json();
-        } else {
-          // Token expired or invalid
-          localStorage.removeItem(TOKEN_KEY);
-        }
-      } catch {
-        // Network error — render logged-out nav
-      }
-    }
-
-    inject(user);
-
-    // Expose user to the page script if needed
-    window.__navUser = user;
-    window.__navToken = token;
-    document.dispatchEvent(new CustomEvent('nav:ready', { detail: { user, token } }));
+  // Auth disabled — always render as logged-out
+  function init() {
+    inject(null);
+    window.__navUser = null;
+    window.__navToken = null;
+    document.dispatchEvent(new CustomEvent('nav:ready', { detail: { user: null, token: null } }));
   }
 
   if (document.readyState === 'loading') {

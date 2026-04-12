@@ -15,7 +15,7 @@
 <div id="nav-root" data-page="login" data-base="../"></div>
 <script src="../assets/js/nav.js"></script>
 
-<!-- ── Page Hero ────────────────────────────────────────────── -->
+<!-- Page Hero -->
 <div class="page-hero">
   <div class="container">
     <div class="page-hero__eyebrow">Lobo VC Cup 2026</div>
@@ -24,36 +24,19 @@
   </div>
 </div>
 
-<!-- ── Login Form ─────────────────────────────────────────────── -->
+<!-- Coming Soon -->
 <main style="padding: 60px 0 100px;">
-  <div class="container" style="max-width: 480px;">
+  <div class="container" style="max-width: 480px; text-align: center;">
     <div class="auth-card">
-      <h2 class="auth-card__title">Log In</h2>
-
-      <div id="login-error" class="alert alert--error" style="display:none;"></div>
-
-      <form id="login-form" onsubmit="handleLogin(event)">
-        <div class="form-group">
-          <label class="form-label">Email Address <span>*</span></label>
-          <input type="email" class="form-input" id="login-email" placeholder="you@email.com" required autofocus />
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password <span>*</span></label>
-          <input type="password" class="form-input" id="login-password" placeholder="Your password" required />
-        </div>
-        <button type="submit" class="btn btn--primary btn--full" id="login-btn">
-          Log In
-        </button>
-      </form>
-
-      <p style="text-align:center; margin-top:20px; font-size:0.88rem; color:rgba(44,24,16,0.5);">
-        No account yet? <a href="register.html">Register here</a>
+      <h2 class="auth-card__title">Login Coming Soon</h2>
+      <p style="color:rgba(44,24,16,0.55); margin-top: 12px;">
+        Account login is not yet available. Check back soon.
       </p>
     </div>
   </div>
 </main>
 
-<!-- ── Footer ─────────────────────────────────────────────── -->
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="footer__bottom" style="padding-top:0; border-top:none;">
@@ -66,63 +49,5 @@
   </div>
 </footer>
 
-<script>
-  const API = '/api';
-
-  // Redirect if already logged in
-  document.addEventListener('nav:ready', ({ detail: { user } }) => {
-    if (user) {
-      window.location.href = 'dashboard.html';
-    }
-  });
-
-  async function handleLogin(e) {
-    e.preventDefault();
-    clearError();
-
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-
-    setLoading(true);
-    try {
-      const res = await fetch(`${API}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        showError(data.error || 'Login failed. Check your email and password.');
-        return;
-      }
-
-      localStorage.setItem('lvc_token', data.token);
-      window.location.href = 'dashboard.html';
-    } catch {
-      showError('Network error. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  function showError(msg) {
-    const el = document.getElementById('login-error');
-    el.innerHTML = `<span>⚠</span> ${msg}`;
-    el.style.display = 'flex';
-  }
-
-  function clearError() {
-    const el = document.getElementById('login-error');
-    el.style.display = 'none';
-  }
-
-  function setLoading(loading) {
-    const btn = document.getElementById('login-btn');
-    btn.disabled = loading;
-    btn.innerHTML = loading
-      ? '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Logging in...'
-      : 'Log In';
-  }
-</script>
 </body>
 </html>
