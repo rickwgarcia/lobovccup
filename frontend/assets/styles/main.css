@@ -160,7 +160,7 @@ p { max-width: 68ch; }
   top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 16px 0;
-  background: var(--crimson);
+  background: var(--bg-dark);
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   transition: background var(--transition), box-shadow var(--transition);
 }
@@ -189,7 +189,7 @@ p { max-width: 68ch; }
 }
 /* Scrolled state — slightly darker to show depth */
 .nav.scrolled {
-  background: #a93226;
+  background: #0d0602;
   box-shadow: 0 2px 12px rgba(0,0,0,0.22);
 }
 .nav__inner {
