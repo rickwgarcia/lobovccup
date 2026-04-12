@@ -12,21 +12,8 @@
 <body>
 
 <!-- ── Nav ─────────────────────────────────────────────────── -->
-<nav class="nav scrolled" id="nav">
-  <div class="container">
-    <div class="nav__inner">
-      <a href="../index.html" class="nav__logo">LOBO <span>VC</span> CUP</a>
-      <ul class="nav__links" id="nav-links">
-        <li><a href="../index.html#schedule">Schedule</a></li>
-        <li><a href="register.html">Register</a></li>
-      </ul>
-      <div class="nav__actions" id="nav-actions"></div>
-      <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
+<div id="nav-root" data-page="submissions" data-base="../"></div>
+<script src="../assets/js/nav.js"></script>
 
 <!-- ── Loading Overlay ──────────────────────────────────────── -->
 <div class="loading-overlay" id="loading-overlay">
@@ -39,7 +26,7 @@
   <div style="font-size:3rem;">🔒</div>
   <h2>Login Required</h2>
   <p style="color:rgba(44,24,16,0.5);">You need to be logged in and registered to access the submissions portal.</p>
-  <a href="register.html" class="btn btn--primary btn--lg">Log In / Register</a>
+  <a href="login.html" class="btn btn--primary btn--lg">Log In</a>
 </div>
 
 <!-- ── Main Portal ───────────────────────────────────────────── -->
@@ -57,7 +44,7 @@
         <div style="text-align:right;">
           <div style="font-size:0.75rem; color:rgba(44,24,16,0.4); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Team</div>
           <div style="font-family:var(--font-display); font-size:1.4rem;" id="portal-team-name">—</div>
-          <button class="btn btn--secondary btn--sm" style="margin-top:8px;" onclick="logout()">Log Out</button>
+          <a href="dashboard.html" class="btn btn--secondary btn--sm" style="margin-top:8px;">My Dashboard</a>
         </div>
       </div>
     </div>
@@ -222,7 +209,7 @@
 
 <script>
   const API = '/api';
-  let authToken = localStorage.getItem('lvc_token');
+  let authToken = null;
   let currentUser = null;
   let currentTeam = null;
   let currentSubmissions = {};
@@ -232,11 +219,13 @@
   const DISCOVERY_DAYS_END = new Date('2026-03-26T19:00:00-07:00');
   const FINAL_DEADLINE = new Date('2026-03-31T23:59:00-07:00');
 
-  window.addEventListener('DOMContentLoaded', async () => {
-    if (!authToken) {
+  document.addEventListener('nav:ready', async ({ detail: { user, token } }) => {
+    if (!user || !token) {
       showAuthRequired();
       return;
     }
+    authToken = token;
+    currentUser = user;
     await initPortal();
   });
 
@@ -247,13 +236,6 @@
 
   async function initPortal() {
     try {
-      // Verify session
-      const meRes = await fetch(`${API}/auth/me`, {
-        headers: { 'Authorization': `Bearer ${authToken}` }
-      });
-      if (!meRes.ok) { showAuthRequired(); return; }
-      currentUser = await meRes.json();
-
       // Get team
       const teamRes = await fetch(`${API}/teams/me`, {
         headers: { 'Authorization': `Bearer ${authToken}` }
@@ -297,12 +279,6 @@
     const pathway = currentTeam.pathway;
     const isVC = pathway === 'vc';
     const postDiscovery = now > DISCOVERY_DAYS_END;
-
-    // Update nav
-    document.getElementById('nav-actions').innerHTML = `
-      <span style="font-size:0.8rem;color:rgba(44,24,16,0.4);margin-right:8px;">${currentUser.email}</span>
-      <button class="btn btn--secondary btn--sm" onclick="logout()">Log Out</button>
-    `;
 
     // Track label & subtitle
     if (isVC) {
@@ -553,11 +529,6 @@
     }) + ' MT';
   }
 
-  function logout() {
-    localStorage.removeItem('lvc_token');
-    window.location.href = 'register.html';
-  }
-
   // ── Drag-and-drop on upload zones
   document.addEventListener('dragover', (e) => e.preventDefault());
   document.addEventListener('drop', (e) => e.preventDefault());
@@ -578,11 +549,6 @@
     });
   });
 
-  // ── Mobile nav
-  document.getElementById('mobile-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-toggle').classList.toggle('open');
-    document.getElementById('nav-links').classList.toggle('mobile-open');
-  });
 </script>
 </body>
 </html>

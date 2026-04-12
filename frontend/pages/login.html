@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In — Lobo VC Cup 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles/main.css" />
+</head>
+<body>
+
+<!-- Shared nav -->
+<div id="nav-root" data-page="login" data-base="../"></div>
+<script src="../assets/js/nav.js"></script>
+
+<!-- ── Page Hero ────────────────────────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__eyebrow">Lobo VC Cup 2026</div>
+    <h1 class="page-hero__title">Welcome Back</h1>
+    <p class="page-hero__subtitle">Sign in to access your team dashboard and submissions.</p>
+  </div>
+</div>
+
+<!-- ── Login Form ─────────────────────────────────────────────── -->
+<main style="padding: 60px 0 100px;">
+  <div class="container" style="max-width: 480px;">
+    <div class="auth-card">
+      <h2 class="auth-card__title">Log In</h2>
+
+      <div id="login-error" class="alert alert--error" style="display:none;"></div>
+
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Email Address <span>*</span></label>
+          <input type="email" class="form-input" id="login-email" placeholder="you@email.com" required autofocus />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password <span>*</span></label>
+          <input type="password" class="form-input" id="login-password" placeholder="Your password" required />
+        </div>
+        <button type="submit" class="btn btn--primary btn--full" id="login-btn">
+          Log In
+        </button>
+      </form>
+
+      <p style="text-align:center; margin-top:20px; font-size:0.88rem; color:rgba(44,24,16,0.5);">
+        No account yet? <a href="register.html">Register here</a>
+      </p>
+    </div>
+  </div>
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="padding-top:0; border-top:none;">
+      <span class="footer__copy">© 2026 Lobo VC Cup — Anderson School of Management, UNM</span>
+      <div style="display:flex; gap:20px;">
+        <a href="mailto:delcampo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">delcampo@unm.edu</a>
+        <a href="mailto:agajjo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">agajjo@unm.edu</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const API = '/api';
+
+  // Redirect if already logged in
+  document.addEventListener('nav:ready', ({ detail: { user } }) => {
+    if (user) {
+      window.location.href = 'dashboard.html';
+    }
+  });
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    clearError();
+
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${API}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showError(data.error || 'Login failed. Check your email and password.');
+        return;
+      }
+
+      localStorage.setItem('lvc_token', data.token);
+      window.location.href = 'dashboard.html';
+    } catch {
+      showError('Network error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('login-error');
+    el.innerHTML = `<span>⚠</span> ${msg}`;
+    el.style.display = 'flex';
+  }
+
+  function clearError() {
+    const el = document.getElementById('login-error');
+    el.style.display = 'none';
+  }
+
+  function setLoading(loading) {
+    const btn = document.getElementById('login-btn');
+    btn.disabled = loading;
+    btn.innerHTML = loading
+      ? '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Logging in...'
+      : 'Log In';
+  }
+</script>
+</body>
+</html>

@@ -12,25 +12,8 @@
 <body>
 
 <!-- ── Nav ─────────────────────────────────────────────────── -->
-<nav class="nav scrolled" id="nav">
-  <div class="container">
-    <div class="nav__inner">
-      <a href="../index.html" class="nav__logo">LOBO <span>VC</span> CUP</a>
-      <ul class="nav__links" id="nav-links">
-        <li><a href="../index.html#about">About</a></li>
-        <li><a href="../index.html#tracks">Tracks</a></li>
-        <li><a href="../index.html#schedule">Schedule</a></li>
-        <li><a href="../index.html#prizes">Prizes</a></li>
-      </ul>
-      <div class="nav__actions" id="nav-actions">
-        <a href="register.html" class="btn btn--primary btn--sm">Register Now</a>
-      </div>
-      <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
+<div id="nav-root" data-page="register" data-base="../"></div>
+<script src="../assets/js/nav.js"></script>
 
 <!-- ── Page Hero ────────────────────────────────────────────── -->
 <div class="page-hero">
@@ -48,13 +31,8 @@
     <!-- Auth step (shown first) -->
     <div id="auth-section">
       <div class="auth-card">
-        <h2 class="auth-card__title">Get Started</h2>
-        <p class="auth-card__subtitle">Use your UNM email address (@unm.edu) to sign up or log in.</p>
-
-        <div class="auth-tabs">
-          <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
-          <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Log In</button>
-        </div>
+        <h2 class="auth-card__title">Create Account</h2>
+        <p class="auth-card__subtitle">Register a new account to join Lobo VC Cup 2026.</p>
 
         <div id="auth-error" class="alert alert--error" style="display:none;"></div>
         <div id="auth-success" class="alert alert--success" style="display:none;"></div>
@@ -63,8 +41,7 @@
         <form id="signup-form" onsubmit="handleSignup(event)">
           <div class="form-group">
             <label class="form-label">Email Address <span>*</span></label>
-            <input type="email" class="form-input" id="signup-email" placeholder="youremail@unm.edu" required />
-            <div class="form-hint">Must be a @unm.edu address</div>
+            <input type="email" class="form-input" id="signup-email" placeholder="you@email.com" required autofocus />
           </div>
           <div class="form-group">
             <label class="form-label">Password <span>*</span></label>
@@ -78,25 +55,7 @@
             Create Account
           </button>
           <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:rgba(44,24,16,0.45);">
-            Already have an account? <a href="#" onclick="switchAuthTab('login')">Log in</a>
-          </p>
-        </form>
-
-        <!-- Login Form -->
-        <form id="login-form" onsubmit="handleLogin(event)" style="display:none;">
-          <div class="form-group">
-            <label class="form-label">Email Address <span>*</span></label>
-            <input type="email" class="form-input" id="login-email" placeholder="youremail@unm.edu" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Password <span>*</span></label>
-            <input type="password" class="form-input" id="login-password" placeholder="Your password" required />
-          </div>
-          <button type="submit" class="btn btn--primary btn--full" id="login-btn">
-            Log In
-          </button>
-          <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:rgba(44,24,16,0.45);">
-            No account yet? <a href="#" onclick="switchAuthTab('signup')">Sign up</a>
+            Already have an account? <a href="login.html">Log in here</a>
           </p>
         </form>
       </div>
@@ -110,7 +69,7 @@
         <div>
           <strong>You're already registered!</strong>
           <span id="already-team-name"></span>
-          <br /><a href="submissions.html">Go to your submissions →</a>
+          <br /><a href="dashboard.html">Go to your dashboard →</a>
         </div>
       </div>
 
@@ -173,7 +132,7 @@
         <div class="form-section">
           <div class="form-section__title">Team Members</div>
           <p style="color:rgba(44,24,16,0.55); font-size:0.85rem; margin-bottom:20px;">
-            Add all team members (including yourself if you want). Founders: 1–5 members. VCs: 2–6 members. All must have @unm.edu emails.
+            Add all team members (including yourself if you want). Founders: 1–5 members. VCs: 2–6 members.
           </p>
           <div id="members-list"></div>
           <button type="button" class="btn btn--secondary btn--sm" onclick="addMemberRow()">
@@ -198,7 +157,7 @@
         Your team has been registered for Lobo VC Cup 2026. Check your email for confirmation.
       </p>
       <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-        <a href="submissions.html" class="btn btn--primary btn--lg">Go to Submissions Portal</a>
+        <a href="dashboard.html" class="btn btn--primary btn--lg">Go to My Dashboard</a>
         <a href="../index.html" class="btn btn--secondary">Back to Home</a>
       </div>
     </div>
@@ -240,40 +199,15 @@
   const urlParams = new URLSearchParams(window.location.search);
   const preselectedTrack = urlParams.get('track');
 
-  // ── Check if already logged in
-  window.addEventListener('DOMContentLoaded', async () => {
-    const stored = localStorage.getItem('lvc_token');
-    if (stored) {
-      authToken = stored;
-      await checkSession();
-    }
+  // ── Wait for nav to resolve auth, then decide what to show
+  document.addEventListener('nav:ready', async ({ detail: { user, token } }) => {
     loadContent('faq', 'content-faq');
-    if (preselectedTrack === 'startup' || preselectedTrack === 'vc') {
-      // Will be applied after auth section shows team section
+    if (user && token) {
+      authToken = token;
+      currentUser = user;
+      showTeamSection();
     }
   });
-
-  async function checkSession() {
-    try {
-      const res = await fetch(`${API}/auth/me`, {
-        headers: { 'Authorization': `Bearer ${authToken}` }
-      });
-      if (!res.ok) { authToken = null; localStorage.removeItem('lvc_token'); return; }
-      currentUser = await res.json();
-      showTeamSection();
-    } catch {
-      authToken = null;
-    }
-  }
-
-  // ── Tab switching
-  function switchAuthTab(tab) {
-    document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
-    document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
-    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
-    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
-    clearMessages();
-  }
 
   function clearMessages() {
     ['auth-error','auth-success','team-error','team-success'].forEach(id => {
@@ -301,11 +235,11 @@
     const password = document.getElementById('signup-password').value;
     const confirm = document.getElementById('signup-confirm').value;
 
-    if (!email.endsWith('@unm.edu')) {
-      return showError('auth-error', 'Only @unm.edu email addresses are allowed.');
-    }
     if (password !== confirm) {
       return showError('auth-error', 'Passwords do not match.');
+    }
+    if (password.length < 8) {
+      return showError('auth-error', 'Password must be at least 8 characters.');
     }
 
     setLoading('signup-btn', true);
@@ -317,41 +251,11 @@
       });
       const data = await res.json();
       if (!res.ok) return showError('auth-error', data.error || 'Signup failed.');
-      showSuccess('auth-success', 'Account created! Check your email to confirm, then log in.');
-      switchAuthTab('login');
-      document.getElementById('login-email').value = email;
+      showSuccess('auth-success', 'Account created! Check your email to confirm, then <a href="login.html">log in</a>.');
     } catch {
       showError('auth-error', 'Network error. Please try again.');
     } finally {
       setLoading('signup-btn', false);
-    }
-  }
-
-  // ── Login
-  async function handleLogin(e) {
-    e.preventDefault();
-    clearMessages();
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-
-    setLoading('login-btn', true);
-    try {
-      const res = await fetch(`${API}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await res.json();
-      if (!res.ok) return showError('auth-error', data.error || 'Login failed.');
-
-      authToken = data.token;
-      currentUser = data.user;
-      localStorage.setItem('lvc_token', authToken);
-      showTeamSection();
-    } catch {
-      showError('auth-error', 'Network error. Please try again.');
-    } finally {
-      setLoading('login-btn', false);
     }
   }
 
@@ -362,12 +266,6 @@
 
     // Pre-fill contact email
     document.getElementById('contact-email').value = currentUser.email;
-
-    // Update nav to show logout
-    document.getElementById('nav-actions').innerHTML = `
-      <span style="font-size:0.8rem;color:rgba(44,24,16,0.50);margin-right:8px;">${currentUser.email}</span>
-      <button class="btn btn--secondary btn--sm" onclick="logout()">Log Out</button>
-    `;
 
     // Check if already has a team
     try {
@@ -419,7 +317,7 @@
       </div>
       <div class="form-group" style="margin-bottom:0;">
         <label class="form-label">UNM Email</label>
-        <input type="email" class="form-input member-email" placeholder="name@unm.edu" />
+        <input type="email" class="form-input member-email" placeholder="name@email.com" />
       </div>
       <button type="button" class="btn--remove" onclick="removeMemberRow(${id})" title="Remove">✕</button>
     `;
@@ -455,10 +353,6 @@
       const nameVal = row.querySelector('.member-name').value.trim();
       const emailVal = row.querySelector('.member-email').value.trim().toLowerCase();
       if (nameVal && emailVal) {
-        if (!emailVal.endsWith('@unm.edu')) {
-          showError('team-error', `Member email ${emailVal} must be a @unm.edu address.`);
-          return;
-        }
         members.push({ name: nameVal, email: emailVal });
       }
     });
@@ -490,15 +384,8 @@
     document.getElementById('confirm-section').style.display = 'block';
     const pathLabel = pathway === 'vc' ? 'VC Track' : 'Founder Track';
     document.getElementById('confirm-msg').textContent =
-      `Team "${teamName}" is registered for Lobo VC Cup 2026 — ${pathLabel}. Check your UNM email for confirmation details.`;
+      `Team "${teamName}" is registered for Lobo VC Cup 2026 — ${pathLabel}. Check your email for confirmation details.`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function logout() {
-    localStorage.removeItem('lvc_token');
-    authToken = null;
-    currentUser = null;
-    location.reload();
   }
 
   function setLoading(btnId, loading) {
@@ -521,11 +408,6 @@
     }
   }
 
-  // ── Mobile nav
-  document.getElementById('mobile-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-toggle').classList.toggle('open');
-    document.getElementById('nav-links').classList.toggle('mobile-open');
-  });
 </script>
 </body>
 </html>

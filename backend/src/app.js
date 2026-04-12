@@ -13,6 +13,8 @@ import teamsRoutes from './routes/teams.routes.js';
 import submissionsRoutes from './routes/submissions.routes.js';
 import dealsRoutes from './routes/deals.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import tasksRoutes from './routes/tasks.routes.js';
+import taskSubmissionsRoutes from './routes/task-submissions.routes.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -52,6 +54,8 @@ app.use('/api/teams', teamsRoutes);
 app.use('/api/submissions', submissionsRoutes);
 app.use('/api/deals', dealsRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/tasks', tasksRoutes);
+app.use('/api/task-submissions', taskSubmissionsRoutes);
 
 // Content endpoint — reads /content/{page}.md, returns parsed HTML
 // Path is relative to this file: backend/src/app.js → ../../content

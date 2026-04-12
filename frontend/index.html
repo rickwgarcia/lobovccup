@@ -13,26 +13,8 @@
 <body class="hero-page">
 
 <!-- ── Navigation ──────────────────────────────────────── -->
-<nav class="nav" id="nav">
-  <div class="container">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo">LOBO <span>VC</span> CUP</a>
-      <ul class="nav__links" id="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#tracks">Tracks</a></li>
-        <li><a href="#schedule">Schedule</a></li>
-        <li><a href="#mentors">Mentors</a></li>
-        <li><a href="pages/register.html#faq">FAQ</a></li>
-      </ul>
-      <div class="nav__actions">
-        <a href="pages/register.html" class="btn btn--primary btn--sm">Join</a>
-      </div>
-      <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
+<div id="nav-root" data-page="home" data-hero="true" data-base=""></div>
+<script src="assets/js/nav.js"></script>
 
 <!-- ── Hero ─────────────────────────────────────────────── -->
 <section class="hero">
@@ -176,19 +158,6 @@
 
 <script>
   const API = '/api';
-
-  // ── Nav scroll effect
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // ── Mobile nav
-  const toggle = document.getElementById('mobile-toggle');
-  const navLinks = document.getElementById('nav-links');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    navLinks.classList.toggle('mobile-open');
-  });
 
   // ── Hero canvas particle grid
   (function () {

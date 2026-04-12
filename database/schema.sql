@@ -1,6 +1,6 @@
 -- ============================================================
--- Lobo VC Cup 2026 — Database Schema
--- Run this in the Supabase SQL editor after creating your project
+-- Lobo VC Cup 2026 — Database Schema (v2)
+-- Run this in the Supabase SQL editor (fresh project or after dropping old tables)
 -- ============================================================
 
 -- Enable UUID extension (usually already enabled in Supabase)
@@ -58,28 +58,45 @@ CREATE TABLE IF NOT EXISTS public.team_members (
 );
 
 -- ============================================================
--- SUBMISSIONS
+-- TASKS (admin-created assignments, like Canvas assignments)
 -- ============================================================
-CREATE TABLE IF NOT EXISTS public.submissions (
-  id           UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  team_id      UUID NOT NULL REFERENCES public.teams(id) ON DELETE CASCADE,
-  type         TEXT NOT NULL CHECK (type IN (
-                 'pitch_deck',
-                 'lp_video',
-                 'deal_memo',
-                 'term_sheet',
-                 'due_diligence',
-                 'portfolio_summary'
-               )),
-  file_url     TEXT NOT NULL,
-  file_name    TEXT NOT NULL,
-  file_size    BIGINT,
-  company_name TEXT,                        -- For per-investment docs (deal_memo, term_sheet, due_diligence)
-  submitted_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
+CREATE TABLE IF NOT EXISTS public.tasks (
+  id                 UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title              TEXT NOT NULL,
+  description        TEXT,
+  due_date           TIMESTAMPTZ,
+  track              TEXT NOT NULL DEFAULT 'all' CHECK (track IN ('startup', 'vc', 'all')),
+  requires_file      BOOLEAN NOT NULL DEFAULT TRUE,
+  allowed_file_types TEXT[],          -- e.g. ARRAY['application/pdf', 'video/mp4']
+  max_file_size_mb   INTEGER NOT NULL DEFAULT 50,
+  storage_bucket     TEXT,            -- which Supabase Storage bucket to use
+  sort_order         INTEGER NOT NULL DEFAULT 0,
+  created_by         UUID REFERENCES public.users(id) ON DELETE SET NULL,
+  created_at         TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at         TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Updated at trigger
+-- ============================================================
+-- TASK SUBMISSIONS (replaces the old submissions table)
+-- One submission per team per task (upsert pattern)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS public.task_submissions (
+  id           UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  task_id      UUID NOT NULL REFERENCES public.tasks(id) ON DELETE CASCADE,
+  team_id      UUID NOT NULL REFERENCES public.teams(id) ON DELETE CASCADE,
+  file_url     TEXT,
+  file_name    TEXT,
+  file_size    BIGINT,
+  company_name TEXT,           -- for per-investment VC docs
+  notes        TEXT,           -- optional text note alongside file
+  submitted_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE (task_id, team_id)    -- one submission per team per task
+);
+
+-- ============================================================
+-- UPDATED-AT TRIGGERS
+-- ============================================================
 CREATE OR REPLACE FUNCTION public.set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -88,25 +105,39 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS submissions_updated_at ON public.submissions;
-CREATE TRIGGER submissions_updated_at
-  BEFORE UPDATE ON public.submissions
+DROP TRIGGER IF EXISTS tasks_updated_at ON public.tasks;
+CREATE TRIGGER tasks_updated_at
+  BEFORE UPDATE ON public.tasks
+  FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
+
+DROP TRIGGER IF EXISTS task_submissions_updated_at ON public.task_submissions;
+CREATE TRIGGER task_submissions_updated_at
+  BEFORE UPDATE ON public.task_submissions
   FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
 
 -- ============================================================
 -- ROW LEVEL SECURITY (RLS)
 -- ============================================================
 
-ALTER TABLE public.users       ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.teams       ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.team_members ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.submissions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.users           ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.teams           ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.team_members    ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.tasks           ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.task_submissions ENABLE ROW LEVEL SECURITY;
+
+-- Drop old submissions table policies if they exist from a previous schema run
+DROP POLICY IF EXISTS "Teams can view their own submissions"   ON public.submissions;
+DROP POLICY IF EXISTS "Teams can insert their own submissions" ON public.submissions;
+DROP POLICY IF EXISTS "Teams can update their own submissions" ON public.submissions;
+DROP POLICY IF EXISTS "Admins can view all submissions"        ON public.submissions;
 
 -- USERS policies
+DROP POLICY IF EXISTS "Users can view their own profile" ON public.users;
 CREATE POLICY "Users can view their own profile"
   ON public.users FOR SELECT
   USING (auth.uid() = id);
 
+DROP POLICY IF EXISTS "Admins can view all users" ON public.users;
 CREATE POLICY "Admins can view all users"
   ON public.users FOR SELECT
   USING (
@@ -116,23 +147,28 @@ CREATE POLICY "Admins can view all users"
     )
   );
 
+DROP POLICY IF EXISTS "Users can update their own profile" ON public.users;
 CREATE POLICY "Users can update their own profile"
   ON public.users FOR UPDATE
   USING (auth.uid() = id);
 
 -- TEAMS policies
+DROP POLICY IF EXISTS "Anyone authenticated can view teams" ON public.teams;
 CREATE POLICY "Anyone authenticated can view teams"
   ON public.teams FOR SELECT
   USING (auth.role() = 'authenticated');
 
+DROP POLICY IF EXISTS "Authenticated users can create a team" ON public.teams;
 CREATE POLICY "Authenticated users can create a team"
   ON public.teams FOR INSERT
   WITH CHECK (auth.uid() = key_contact_id);
 
+DROP POLICY IF EXISTS "Key contact can update their team" ON public.teams;
 CREATE POLICY "Key contact can update their team"
   ON public.teams FOR UPDATE
   USING (auth.uid() = key_contact_id);
 
+DROP POLICY IF EXISTS "Admins can update any team" ON public.teams;
 CREATE POLICY "Admins can update any team"
   ON public.teams FOR UPDATE
   USING (
@@ -143,10 +179,12 @@ CREATE POLICY "Admins can update any team"
   );
 
 -- TEAM MEMBERS policies
+DROP POLICY IF EXISTS "Anyone authenticated can view team members" ON public.team_members;
 CREATE POLICY "Anyone authenticated can view team members"
   ON public.team_members FOR SELECT
   USING (auth.role() = 'authenticated');
 
+DROP POLICY IF EXISTS "Team key contact can manage members" ON public.team_members;
 CREATE POLICY "Team key contact can manage members"
   ON public.team_members FOR ALL
   USING (
@@ -156,9 +194,46 @@ CREATE POLICY "Team key contact can manage members"
     )
   );
 
--- SUBMISSIONS policies
-CREATE POLICY "Teams can view their own submissions"
-  ON public.submissions FOR SELECT
+-- TASKS policies
+DROP POLICY IF EXISTS "Authenticated users can view tasks" ON public.tasks;
+CREATE POLICY "Authenticated users can view tasks"
+  ON public.tasks FOR SELECT
+  USING (auth.role() = 'authenticated');
+
+DROP POLICY IF EXISTS "Admins can insert tasks" ON public.tasks;
+CREATE POLICY "Admins can insert tasks"
+  ON public.tasks FOR INSERT
+  WITH CHECK (
+    EXISTS (
+      SELECT 1 FROM public.users u
+      WHERE u.id = auth.uid() AND u.role = 'admin'
+    )
+  );
+
+DROP POLICY IF EXISTS "Admins can update tasks" ON public.tasks;
+CREATE POLICY "Admins can update tasks"
+  ON public.tasks FOR UPDATE
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.users u
+      WHERE u.id = auth.uid() AND u.role = 'admin'
+    )
+  );
+
+DROP POLICY IF EXISTS "Admins can delete tasks" ON public.tasks;
+CREATE POLICY "Admins can delete tasks"
+  ON public.tasks FOR DELETE
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.users u
+      WHERE u.id = auth.uid() AND u.role = 'admin'
+    )
+  );
+
+-- TASK SUBMISSIONS policies
+DROP POLICY IF EXISTS "Teams can view their own task submissions" ON public.task_submissions;
+CREATE POLICY "Teams can view their own task submissions"
+  ON public.task_submissions FOR SELECT
   USING (
     EXISTS (
       SELECT 1 FROM public.teams t
@@ -166,8 +241,9 @@ CREATE POLICY "Teams can view their own submissions"
     )
   );
 
-CREATE POLICY "Teams can insert their own submissions"
-  ON public.submissions FOR INSERT
+DROP POLICY IF EXISTS "Teams can insert their own task submissions" ON public.task_submissions;
+CREATE POLICY "Teams can insert their own task submissions"
+  ON public.task_submissions FOR INSERT
   WITH CHECK (
     EXISTS (
       SELECT 1 FROM public.teams t
@@ -175,8 +251,9 @@ CREATE POLICY "Teams can insert their own submissions"
     )
   );
 
-CREATE POLICY "Teams can update their own submissions"
-  ON public.submissions FOR UPDATE
+DROP POLICY IF EXISTS "Teams can update their own task submissions" ON public.task_submissions;
+CREATE POLICY "Teams can update their own task submissions"
+  ON public.task_submissions FOR UPDATE
   USING (
     EXISTS (
       SELECT 1 FROM public.teams t
@@ -184,8 +261,19 @@ CREATE POLICY "Teams can update their own submissions"
     )
   );
 
-CREATE POLICY "Admins can view all submissions"
-  ON public.submissions FOR SELECT
+DROP POLICY IF EXISTS "Admins can view all task submissions" ON public.task_submissions;
+CREATE POLICY "Admins can view all task submissions"
+  ON public.task_submissions FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.users u
+      WHERE u.id = auth.uid() AND u.role = 'admin'
+    )
+  );
+
+DROP POLICY IF EXISTS "Admins can delete task submissions" ON public.task_submissions;
+CREATE POLICY "Admins can delete task submissions"
+  ON public.task_submissions FOR DELETE
   USING (
     EXISTS (
       SELECT 1 FROM public.users u
@@ -196,23 +284,28 @@ CREATE POLICY "Admins can view all submissions"
 -- ============================================================
 -- STORAGE BUCKETS
 -- Create these in the Supabase dashboard under Storage,
--- or via the Supabase CLI. This is documentation of what to create.
+-- or via the Supabase CLI.
 -- ============================================================
--- Bucket: pitch-decks      (founders only, private)
--- Bucket: lp-videos        (VC only, private)
--- Bucket: deal-memos       (VC only, private)
--- Bucket: term-sheets      (VC only, private)
--- Bucket: due-diligence    (VC only, private)
--- Bucket: portfolio-summaries (VC only, private)
+-- Bucket: task-submissions   (all tracks, private, 2 GB max per file)
+--   This single bucket handles all task file uploads.
+--   File naming: {team_id}/{task_id}/{timestamp}_{original_filename}
 --
--- File naming: {team_id}/{timestamp}_{original_filename}
+-- Legacy buckets (keep if migrating old data, otherwise skip):
+-- Bucket: pitch-decks
+-- Bucket: lp-videos
+-- Bucket: deal-memos
+-- Bucket: term-sheets
+-- Bucket: due-diligence
+-- Bucket: portfolio-summaries
 -- ============================================================
 
 -- ============================================================
 -- INDEXES for performance
 -- ============================================================
-CREATE INDEX IF NOT EXISTS teams_pathway_idx ON public.teams(pathway);
-CREATE INDEX IF NOT EXISTS teams_eligible_idx ON public.teams(is_eligible);
-CREATE INDEX IF NOT EXISTS team_members_team_idx ON public.team_members(team_id);
-CREATE INDEX IF NOT EXISTS submissions_team_idx ON public.submissions(team_id);
-CREATE INDEX IF NOT EXISTS submissions_type_idx ON public.submissions(type);
+CREATE INDEX IF NOT EXISTS teams_pathway_idx        ON public.teams(pathway);
+CREATE INDEX IF NOT EXISTS teams_eligible_idx        ON public.teams(is_eligible);
+CREATE INDEX IF NOT EXISTS team_members_team_idx     ON public.team_members(team_id);
+CREATE INDEX IF NOT EXISTS tasks_track_idx           ON public.tasks(track);
+CREATE INDEX IF NOT EXISTS tasks_sort_order_idx      ON public.tasks(sort_order);
+CREATE INDEX IF NOT EXISTS task_subs_team_idx        ON public.task_submissions(team_id);
+CREATE INDEX IF NOT EXISTS task_subs_task_idx        ON public.task_submissions(task_id);

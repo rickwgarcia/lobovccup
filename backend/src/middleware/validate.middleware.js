@@ -1,19 +1,29 @@
-const UNM_EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@unm\.edu$/i;
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
 
-// Validates email is a @unm.edu address
+// Validates any standard email address
+export function validateEmail(email) {
+  return EMAIL_REGEX.test(email);
+}
+
+// Kept for backwards compat — now accepts any valid email
 export function validateUnmEmail(email) {
-  return UNM_EMAIL_REGEX.test(email);
+  return validateEmail(email);
 }
 
 // Express middleware for signup email validation
-export function requireUnmEmail(req, res, next) {
+export function requireValidEmail(req, res, next) {
   const { email } = req.body;
-  if (!email || !validateUnmEmail(email)) {
+  if (!email || !validateEmail(email)) {
     return res.status(400).json({
-      error: 'Only @unm.edu email addresses are allowed to register.',
+      error: 'A valid email address is required.',
     });
   }
   next();
+}
+
+// Kept for backwards compat
+export function requireUnmEmail(req, res, next) {
+  return requireValidEmail(req, res, next);
 }
 
 // Generic field presence check

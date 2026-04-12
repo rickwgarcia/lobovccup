@@ -1,5 +1,5 @@
 import { supabaseAdmin } from '../config/supabase.js';
-import { validateUnmEmail } from '../middleware/validate.middleware.js';
+import { validateEmail } from '../middleware/validate.middleware.js';
 import { sendRegistrationConfirmation } from '../services/email.service.js';
 
 export async function createTeam(req, res) {
@@ -22,9 +22,9 @@ export async function createTeam(req, res) {
       if (!m.name || !m.email) {
         return res.status(400).json({ error: 'Each member must have a name and email' });
       }
-      if (!validateUnmEmail(m.email)) {
+      if (!validateEmail(m.email)) {
         return res.status(400).json({
-          error: `Member email ${m.email} must be a @unm.edu address`,
+          error: `Member email ${m.email} is not a valid email address`,
         });
       }
     }

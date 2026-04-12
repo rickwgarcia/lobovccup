@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Lobo VC Cup 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles/main.css" />
+</head>
+<body>
+
+<!-- Shared nav -->
+<div id="nav-root" data-page="dashboard" data-base="../"></div>
+<script src="../assets/js/nav.js"></script>
+
+<!-- ── Loading overlay ──────────────────────────────────────── -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="spinner" style="width:36px;height:36px;border-width:3px;"></div>
+  <p>Loading your dashboard...</p>
+</div>
+
+<!-- ── Not-logged-in gate ────────────────────────────────────── -->
+<div id="auth-gate" style="display:none; min-height:100vh; align-items:center; justify-content:center; flex-direction:column; gap:20px; text-align:center; padding:40px;">
+  <div style="font-size:3rem;">🔒</div>
+  <h2>Please Log In</h2>
+  <p style="color:rgba(44,24,16,0.5);">You need to be logged in to view your dashboard.</p>
+  <a href="login.html" class="btn btn--primary">Log In</a>
+</div>
+
+<!-- ── No-team gate ──────────────────────────────────────────── -->
+<div id="no-team-gate" style="display:none; min-height:100vh; align-items:center; justify-content:center; flex-direction:column; gap:20px; text-align:center; padding:40px;">
+  <div style="font-size:3rem;">📋</div>
+  <h2>Register Your Team</h2>
+  <p style="color:rgba(44,24,16,0.5);">You're logged in, but you haven't registered a team yet.</p>
+  <a href="register.html" class="btn btn--primary">Register a Team</a>
+</div>
+
+<!-- ── Dashboard ────────────────────────────────────────────── -->
+<div id="dashboard" style="display:none;">
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero__eyebrow">Team Dashboard</div>
+      <h1 class="page-hero__title" id="dash-title">My Dashboard</h1>
+      <p class="page-hero__subtitle" id="dash-subtitle">Track your tasks and manage your submissions.</p>
+    </div>
+  </div>
+
+  <main style="padding: 48px 0 100px;">
+    <div class="container" style="max-width: 960px;">
+
+      <!-- Team Info Card -->
+      <div class="dash-team-card" id="team-card" style="margin-bottom:40px;"></div>
+
+      <!-- Tasks Section -->
+      <div class="section-header" style="margin-bottom:24px;">
+        <div class="section-header__eyebrow">Assignments</div>
+        <h2 class="section-header__title" style="font-size:1.8rem;">My Tasks</h2>
+      </div>
+
+      <div id="tasks-empty" style="display:none; text-align:center; padding:60px 20px; color:rgba(44,24,16,0.35);">
+        <div style="font-size:3rem; margin-bottom:16px;">📭</div>
+        <p>No tasks assigned yet. Check back soon.</p>
+      </div>
+
+      <div id="tasks-list"></div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ── Upload Panel (slide-in) ───────────────────────────────── -->
+<div class="modal-overlay" id="upload-panel">
+  <div class="modal" style="max-width:560px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <h2 class="modal__title" id="upload-panel-title">Upload File</h2>
+      <button onclick="closeUploadPanel()" style="background:none;border:none;color:rgba(44,24,16,0.5);cursor:pointer;font-size:1.5rem;" aria-label="Close">✕</button>
+    </div>
+    <p id="upload-panel-desc" style="color:rgba(44,24,16,0.55); font-size:0.9rem; margin-bottom:20px;"></p>
+
+    <div id="upload-panel-body"></div>
+
+    <!-- Upload zone -->
+    <div class="upload-zone" id="upload-zone"
+         ondragover="handleDragOver(event)"
+         ondragleave="handleDragLeave(event)"
+         ondrop="handleDrop(event)">
+      <div class="upload-zone__icon">📎</div>
+      <div class="upload-zone__text">Drag & drop your file here, or <label for="file-input" style="color:var(--crimson);cursor:pointer;">browse</label></div>
+      <div class="upload-zone__hint" id="upload-hint">PDF, PPTX, MP4 up to 2 GB</div>
+      <input type="file" id="file-input" style="display:none;" onchange="handleFileSelect(event)" />
+    </div>
+
+    <div id="selected-file" style="display:none; margin-top:12px; padding:12px 16px; background:rgba(44,24,16,0.04); border-radius:8px; display:none;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:1.3rem;">📄</span>
+        <div style="flex:1; min-width:0;">
+          <div id="selected-file-name" style="font-weight:600; font-size:0.9rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></div>
+          <div id="selected-file-size" style="font-size:0.78rem; color:rgba(44,24,16,0.4);"></div>
+        </div>
+        <button onclick="clearFile()" style="background:none;border:none;color:rgba(44,24,16,0.35);cursor:pointer;font-size:1.1rem;" aria-label="Remove file">✕</button>
+      </div>
+    </div>
+
+    <div id="upload-progress" style="display:none; margin-top:12px;">
+      <div class="progress-bar">
+        <div class="progress-bar__fill" id="progress-fill" style="width:0%;"></div>
+      </div>
+      <div style="font-size:0.8rem; color:rgba(44,24,16,0.4); margin-top:4px; text-align:right;" id="progress-text">0%</div>
+    </div>
+
+    <div id="upload-error" class="alert alert--error" style="display:none; margin-top:12px;"></div>
+    <div id="upload-success" class="alert alert--success" style="display:none; margin-top:12px;"></div>
+
+    <div style="display:flex; gap:12px; margin-top:20px;">
+      <button class="btn btn--secondary" onclick="closeUploadPanel()">Cancel</button>
+      <button class="btn btn--primary" id="upload-submit-btn" onclick="submitUpload()" disabled>Upload</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="padding-top:0; border-top:none;">
+      <span class="footer__copy">© 2026 Lobo VC Cup — Anderson School of Management, UNM</span>
+      <div style="display:flex; gap:20px;">
+        <a href="mailto:delcampo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">delcampo@unm.edu</a>
+        <a href="mailto:agajjo@unm.edu" style="color:rgba(255,255,255,0.4); font-size:0.8rem;">agajjo@unm.edu</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const API = '/api';
+  let authToken = null;
+  let currentUser = null;
+  let currentTeam = null;
+  let tasks = [];
+  let mySubmissions = {};     // keyed by task_id
+  let currentTaskId = null;
+  let selectedFile = null;
+
+  // ── Bootstrap: wait for nav to resolve auth
+  document.addEventListener('nav:ready', async ({ detail: { user, token } }) => {
+    if (!user || !token) {
+      document.getElementById('loading-overlay').classList.add('hidden');
+      document.getElementById('auth-gate').style.display = 'flex';
+      return;
+    }
+    authToken = token;
+    currentUser = user;
+    await loadDashboard();
+  });
+
+  async function loadDashboard() {
+    try {
+      // Fetch team
+      const teamRes = await fetch(`${API}/teams/me`, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
+
+      if (!teamRes.ok) {
+        // No team yet
+        document.getElementById('loading-overlay').classList.add('hidden');
+        document.getElementById('no-team-gate').style.display = 'flex';
+        return;
+      }
+
+      const { team } = await teamRes.json();
+      currentTeam = team;
+
+      // Fetch tasks and submissions in parallel
+      const [tasksRes, subsRes] = await Promise.all([
+        fetch(`${API}/tasks`, { headers: { Authorization: `Bearer ${authToken}` } }),
+        fetch(`${API}/task-submissions/me`, { headers: { Authorization: `Bearer ${authToken}` } }),
+      ]);
+
+      tasks = tasksRes.ok ? (await tasksRes.json()).tasks || [] : [];
+      const subsData = subsRes.ok ? (await subsRes.json()).submissions || [] : [];
+
+      // Build submission lookup by task_id
+      subsData.forEach(s => { mySubmissions[s.task_id] = s; });
+
+      renderTeamCard(team);
+      renderTasks(tasks);
+
+      document.getElementById('loading-overlay').classList.add('hidden');
+      document.getElementById('dashboard').style.display = 'block';
+    } catch (err) {
+      console.error(err);
+      document.getElementById('loading-overlay').classList.add('hidden');
+      document.getElementById('auth-gate').style.display = 'flex';
+    }
+  }
+
+  function renderTeamCard(team) {
+    const track = team.pathway === 'vc' ? 'VC Track' : 'Founder Track';
+    const memberCount = (team.team_members || []).length;
+
+    document.getElementById('dash-title').textContent = team.name;
+    document.getElementById('dash-subtitle').textContent =
+      `${track} · ${memberCount} member${memberCount !== 1 ? 's' : ''}`;
+
+    document.getElementById('team-card').innerHTML = `
+      <div style="background:var(--navy-light); border:1px solid rgba(44,24,16,0.07); border-radius:var(--radius-lg); padding:24px 28px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+          <div>
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:rgba(44,24,16,0.4); margin-bottom:4px;">Your Team</div>
+            <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:700;">${escHtml(team.name)}</div>
+            <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+              <span class="badge badge--${team.pathway}">${track}</span>
+              <span class="badge badge--${team.is_eligible ? 'eligible' : 'ineligible'}">${team.is_eligible ? 'Eligible' : 'Ineligible'}</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.78rem; color:rgba(44,24,16,0.4); margin-bottom:4px;">Members</div>
+            <div style="font-family:var(--font-display); font-size:1.3rem;">${memberCount}</div>
+          </div>
+        </div>
+        ${(team.team_members || []).length > 0 ? `
+        <div style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(44,24,16,0.06);">
+          <div style="font-size:0.78rem; color:rgba(44,24,16,0.4); margin-bottom:8px;">Team Members</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            ${team.team_members.map(m => `
+              <div style="font-size:0.82rem; background:rgba(44,24,16,0.04); border-radius:6px; padding:4px 10px;">
+                ${escHtml(m.name)} <span style="color:rgba(44,24,16,0.35);">${escHtml(m.email)}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>` : ''}
+      </div>
+    `;
+  }
+
+  function renderTasks(tasks) {
+    if (!tasks.length) {
+      document.getElementById('tasks-empty').style.display = 'block';
+      return;
+    }
+
+    const now = new Date();
+
+    document.getElementById('tasks-list').innerHTML = tasks.map(task => {
+      const sub = mySubmissions[task.id];
+      const isLate = task.due_date && !sub && new Date(task.due_date) < now;
+      const status = sub ? 'submitted' : (isLate ? 'late' : 'pending');
+
+      const statusLabel = { submitted: 'Submitted', late: 'Late', pending: 'Not Started' }[status];
+      const statusClass = { submitted: 'badge--eligible', late: 'badge--ineligible', pending: 'badge--vc' }[status];
+
+      const dueStr = task.due_date
+        ? `Due ${formatDate(task.due_date)}`
+        : 'No deadline';
+
+      return `
+        <div class="task-row" id="task-${task.id}">
+          <div class="task-row__main">
+            <div class="task-row__left">
+              <div class="task-row__check ${sub ? 'task-row__check--done' : ''}">
+                ${sub ? '✓' : ''}
+              </div>
+              <div>
+                <div class="task-row__title">${escHtml(task.title)}</div>
+                ${task.description ? `<div class="task-row__desc">${escHtml(task.description)}</div>` : ''}
+                <div class="task-row__meta">
+                  <span>${dueStr}</span>
+                  <span class="badge ${statusClass}">${statusLabel}</span>
+                </div>
+              </div>
+            </div>
+            <div class="task-row__actions">
+              ${sub ? `
+                <button class="btn btn--sm btn--secondary" onclick="downloadSubmission('${sub.id}')">
+                  View
+                </button>
+                ${task.requires_file ? `
+                <button class="btn btn--sm btn--outline-gold" onclick="openUploadPanel('${task.id}')">
+                  Re-upload
+                </button>` : ''}
+              ` : (task.requires_file ? `
+                <button class="btn btn--sm btn--primary" onclick="openUploadPanel('${task.id}')">
+                  Upload
+                </button>
+              ` : '')}
+            </div>
+          </div>
+          ${sub ? `
+          <div class="task-row__submission">
+            <span style="font-size:0.8rem; color:rgba(44,24,16,0.45);">📎 ${escHtml(sub.file_name)} · ${formatFileSize(sub.file_size)} · Submitted ${formatDate(sub.updated_at || sub.submitted_at)}</span>
+          </div>` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ── Upload panel ────────────────────────────────────────────
+
+  function openUploadPanel(taskId) {
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) return;
+
+    currentTaskId = taskId;
+    selectedFile = null;
+
+    document.getElementById('upload-panel-title').textContent = task.title;
+    document.getElementById('upload-panel-desc').textContent = task.description || '';
+    document.getElementById('upload-hint').textContent = buildFileHint(task);
+
+    // Reset form state
+    document.getElementById('file-input').value = '';
+    document.getElementById('selected-file').style.display = 'none';
+    document.getElementById('upload-progress').style.display = 'none';
+    document.getElementById('upload-error').style.display = 'none';
+    document.getElementById('upload-success').style.display = 'none';
+    document.getElementById('upload-submit-btn').disabled = true;
+
+    document.getElementById('upload-panel').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeUploadPanel() {
+    document.getElementById('upload-panel').classList.remove('open');
+    document.body.style.overflow = '';
+    currentTaskId = null;
+    selectedFile = null;
+  }
+
+  document.getElementById('upload-panel').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeUploadPanel();
+  });
+
+  function buildFileHint(task) {
+    const types = task.allowed_file_types ? task.allowed_file_types.join(', ') : 'Any file type';
+    return `${types} · Up to ${task.max_file_size_mb || 50} MB`;
+  }
+
+  function handleDragOver(e) {
+    e.preventDefault();
+    document.getElementById('upload-zone').classList.add('drag-over');
+  }
+
+  function handleDragLeave() {
+    document.getElementById('upload-zone').classList.remove('drag-over');
+  }
+
+  function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('upload-zone').classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) setSelectedFile(file);
+  }
+
+  function handleFileSelect(e) {
+    const file = e.target.files[0];
+    if (file) setSelectedFile(file);
+  }
+
+  function setSelectedFile(file) {
+    selectedFile = file;
+    document.getElementById('selected-file-name').textContent = file.name;
+    document.getElementById('selected-file-size').textContent = formatFileSize(file.size);
+    document.getElementById('selected-file').style.display = 'flex';
+    document.getElementById('upload-submit-btn').disabled = false;
+    document.getElementById('upload-error').style.display = 'none';
+  }
+
+  function clearFile() {
+    selectedFile = null;
+    document.getElementById('file-input').value = '';
+    document.getElementById('selected-file').style.display = 'none';
+    document.getElementById('upload-submit-btn').disabled = true;
+  }
+
+  function submitUpload() {
+    if (!selectedFile || !currentTaskId) return;
+
+    const task = tasks.find(t => t.id === currentTaskId);
+    if (!task) return;
+
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    formData.append('task_id', currentTaskId);
+
+    document.getElementById('upload-progress').style.display = 'block';
+    document.getElementById('upload-error').style.display = 'none';
+    document.getElementById('upload-success').style.display = 'none';
+    document.getElementById('upload-submit-btn').disabled = true;
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.upload.addEventListener('progress', (e) => {
+      if (e.lengthComputable) {
+        const pct = Math.round((e.loaded / e.total) * 100);
+        document.getElementById('progress-fill').style.width = pct + '%';
+        document.getElementById('progress-text').textContent = pct + '%';
+      }
+    });
+
+    xhr.addEventListener('load', async () => {
+      const data = JSON.parse(xhr.responseText);
+      if (xhr.status >= 200 && xhr.status < 300) {
+        // Update local submission cache
+        mySubmissions[currentTaskId] = data.submission;
+        document.getElementById('upload-success').innerHTML = '<span>✓</span> File uploaded successfully!';
+        document.getElementById('upload-success').style.display = 'flex';
+        // Re-render task row
+        const tempDiv = document.createElement('div');
+        renderTasks(tasks);
+        setTimeout(() => closeUploadPanel(), 1500);
+      } else {
+        document.getElementById('upload-error').innerHTML = `<span>⚠</span> ${data.error || 'Upload failed.'}`;
+        document.getElementById('upload-error').style.display = 'flex';
+        document.getElementById('upload-submit-btn').disabled = false;
+      }
+    });
+
+    xhr.addEventListener('error', () => {
+      document.getElementById('upload-error').innerHTML = '<span>⚠</span> Network error. Please try again.';
+      document.getElementById('upload-error').style.display = 'flex';
+      document.getElementById('upload-submit-btn').disabled = false;
+    });
+
+    xhr.open('POST', `${API}/task-submissions/upload`);
+    xhr.setRequestHeader('Authorization', `Bearer ${authToken}`);
+    xhr.send(formData);
+  }
+
+  async function downloadSubmission(subId) {
+    try {
+      const res = await fetch(`${API}/task-submissions/download/${subId}`, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
+      const { url } = await res.json();
+      window.open(url, '_blank');
+    } catch {
+      alert('Failed to generate download link.');
+    }
+  }
+
+  // ── Utilities ─────────────────────────────────────────────────
+
+  function formatDate(isoStr) {
+    if (!isoStr) return '—';
+    return new Date(isoStr).toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric',
+      timeZone: 'America/Denver',
+    });
+  }
+
+  function formatFileSize(bytes) {
+    if (!bytes) return '—';
+    if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+</script>
+</body>
+</html>

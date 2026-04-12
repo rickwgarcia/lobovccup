@@ -1,5 +1,5 @@
 import { supabase, supabaseAdmin } from '../config/supabase.js';
-import { validateUnmEmail } from '../middleware/validate.middleware.js';
+import { validateEmail } from '../middleware/validate.middleware.js';
 
 export async function signup(req, res) {
   const { email, password } = req.body;
@@ -7,8 +7,8 @@ export async function signup(req, res) {
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required' });
   }
-  if (!validateUnmEmail(email)) {
-    return res.status(400).json({ error: 'Only @unm.edu email addresses are allowed' });
+  if (!validateEmail(email)) {
+    return res.status(400).json({ error: 'A valid email address is required' });
   }
   if (password.length < 8) {
     return res.status(400).json({ error: 'Password must be at least 8 characters' });
