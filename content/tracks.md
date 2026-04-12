@@ -17,8 +17,7 @@
 <li>Build your investor materials</li>
 <li>Founders win what they raise</li>
 </ul>
-<a href="pages/register.html?track=startup" class="btn btn--primary">Register as Founder</a>
-<a href="#" class="btn btn--secondary btn--sm founder-guide-trigger" style="margin-top:12px;">View Founder Guide</a>
+<a href="#" class="btn btn--secondary btn--sm founder-guide-trigger">View Founder Guide</a>
 </div>
 
 <div class="track-card">
@@ -32,8 +31,7 @@
 <li>Build an investment track record</li>
 <li>Compete for $16,000 in prizes</li>
 </ul>
-<a href="pages/register.html?track=vc" class="btn btn--gold">Register as VC</a>
-<a href="#" class="btn btn--secondary btn--sm vc-guide-trigger" style="margin-top:12px;">View VC Guide</a>
+<a href="#" class="btn btn--secondary btn--sm vc-guide-trigger">View VC Guide</a>
 </div>
 
 </div>
