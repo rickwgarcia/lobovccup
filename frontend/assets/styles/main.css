@@ -161,8 +161,7 @@ p { max-width: 68ch; }
   z-index: 100;
   padding: 16px 0;
   background: var(--bg-dark);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  transition: background var(--transition), box-shadow var(--transition);
+  transition: background var(--transition);
 }
 .nav__logo {
   font-family: var(--font-handwritten);
@@ -187,10 +186,9 @@ p { max-width: 68ch; }
   margin: 5px 0;
   transition: all var(--transition);
 }
-/* Scrolled state — slightly darker to show depth */
+/* Scrolled state */
 .nav.scrolled {
-  background: #0d0602;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+  background: var(--bg-dark);
 }
 .nav__inner {
   display: flex;
@@ -795,10 +793,17 @@ p { max-width: 68ch; }
     position: absolute;
     top: 100%;
     left: 0; right: 0;
-    background: var(--crimson);
+    background: var(--bg);
     padding: 24px;
     gap: 20px;
-    border-top: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .nav__links.mobile-open a {
+    color: var(--text);
+  }
+  .nav__links.mobile-open a:hover {
+    color: var(--crimson);
+    opacity: 1;
   }
   .hero__actions { flex-direction: column; align-items: center; }
   .countdown { gap: 12px; }
