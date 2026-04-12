@@ -3,5 +3,7 @@ import { env } from './env.js';
 
 export const supabase = createClient(env.supabaseUrl, env.supabaseAnonKey);
 
-// Alias — no service role key needed; RLS policies handle access control
-export const supabaseAdmin = supabase;
+// Service-role client — bypasses RLS for server-side operations
+export const supabaseAdmin = createClient(env.supabaseUrl, env.supabaseServiceRoleKey, {
+  auth: { autoRefreshToken: false, persistSession: false },
+});
