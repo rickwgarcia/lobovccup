@@ -8,30 +8,14 @@ import { fileURLToPath } from 'url';
 import { marked } from 'marked';
 import { env } from './config/env.js';
 
-import teamsRoutes from './routes/teams.routes.js';
-import submissionsRoutes from './routes/submissions.routes.js';
-import dealsRoutes from './routes/deals.routes.js';
-import adminRoutes from './routes/admin.routes.js';
-import tasksRoutes from './routes/tasks.routes.js';
-import taskSubmissionsRoutes from './routes/task-submissions.routes.js';
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
-// Security headers (relax CSP for font loading from Google Fonts)
-app.use(helmet({
-  contentSecurityPolicy: false,
-}));
-
-// CORS — open; auth is JWT-based not cookie-based
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
-
-// Body parsing
 app.use(express.json({ limit: '1mb' }));
-app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
-// Rate limiter
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 200,
@@ -41,16 +25,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// API routes
-app.use('/api/teams', teamsRoutes);
-app.use('/api/submissions', submissionsRoutes);
-app.use('/api/deals', dealsRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/tasks', tasksRoutes);
-app.use('/api/task-submissions', taskSubmissionsRoutes);
-
 // Content endpoint — reads /content/{page}.md, returns parsed HTML
-// Path is relative to this file: backend/src/app.js → ../../content
 const CONTENT_DIR = resolve(__dirname, '../../content');
 const VALID_PAGES = ['home', 'founder-guide', 'vc-guide', 'schedule', 'faq', 'hero', 'hero-stats', 'tracks', 'prizes', 'mentors', 'cta'];
 
@@ -73,25 +48,18 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', ts: new Date().toISOString() });
 });
 
-// Serve frontend statically in local dev (on Vercel, static files are served separately)
+// Serve frontend statically in local dev
 if (env.isDev) {
   app.use(express.static(join(__dirname, '../../frontend')));
 }
 
-// 404
 app.use((req, res) => {
   res.status(404).json({ error: `${req.method} ${req.path} not found` });
 });
 
-// Error handler
 app.use((err, req, res, _next) => {
-  if (err.code === 'LIMIT_FILE_SIZE') {
-    return res.status(413).json({ error: 'File too large' });
-  }
   console.error('Unhandled error:', err);
-  res.status(500).json({
-    error: env.isDev ? err.message : 'Internal server error',
-  });
+  res.status(500).json({ error: env.isDev ? err.message : 'Internal server error' });
 });
 
 export default app;
