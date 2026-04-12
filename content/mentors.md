@@ -45,4 +45,4 @@
 <div class="mentor-card__affil">NM Startup Factory</div>
 </div>
 </div>
-<p style="text-align:center; margin-top:32px; font-size:0.85rem; color:rgba(44,24,16,0.42);">Mentor list for 2027 coming soon.</p>
+<p style="text-align:center; margin-top:32px; font-size:0.85rem; color:rgba(44,24,16,0.42); max-width:none; margin-left:auto; margin-right:auto;">Mentor list for 2027 coming soon.</p>
