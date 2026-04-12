@@ -24,7 +24,20 @@ export async function requireAuth(req, res, next) {
       .single();
 
     if (profileError || !profile) {
-      return res.status(401).json({ error: 'User profile not found' });
+      // Profile row missing — create it now (handles users registered before fix)
+      const { data: newProfile, error: insertError } = await supabaseAdmin
+        .from('users')
+        .upsert({ id: data.user.id, email: data.user.email, role: 'founder' })
+        .select()
+        .single();
+
+      if (insertError || !newProfile) {
+        return res.status(401).json({ error: 'User profile not found' });
+      }
+
+      req.user = data.user;
+      req.userProfile = newProfile;
+      return next();
     }
 
     req.user = data.user;

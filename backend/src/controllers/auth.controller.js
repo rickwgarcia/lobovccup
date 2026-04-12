@@ -20,6 +20,13 @@ export async function signup(req, res) {
     return res.status(400).json({ error: error.message });
   }
 
+  // Create the user profile row so auth middleware can find it
+  if (data.user?.id) {
+    await supabaseAdmin
+      .from('users')
+      .upsert({ id: data.user.id, email: data.user.email, role: 'founder' });
+  }
+
   return res.status(201).json({
     message: 'Account created. Check your email to confirm your address.',
     user: { id: data.user?.id, email: data.user?.email },
