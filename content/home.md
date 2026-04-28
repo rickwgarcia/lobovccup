@@ -1,8 +1,8 @@
 # What is Lobo VC Cup?
 
-The **Lobo VC Cup** is the University of New Mexico's premier startup investment competition — where student-run VC funds go head-to-head to identify, evaluate, and invest in the next generation of UNM founders.
+The **Lobo VC Cup** is the University of New Mexico's student driven startup investment competition, where student-run VC funds go head-to-head to identify, evaluate, and invest in the next generation of student founders.
 
-This isn't a case competition. This is real deal-making. Student VCs pitch an LP panel for real capital, then deploy it into real startups built by their peers. Founders compete for investment, not just prizes.
+This isn't a case competition. This is real deal-making. Student VCs pitch an LP panel for real capital, then deploy it into real startups built by their peers. Founders compete for investment, not just bragging rights.
 
 ---
 
@@ -36,7 +36,7 @@ You want to learn how venture capital works, or want to go into venture capital.
 
 ## Who's Behind It?
 
-The Lobo VC Cup was founded by Rob DelCampo and Andoni Gajjo with a bold mission: bring real venture capital education to the University of New Mexico. Housed within the Anderson School of Management, the competition unites students from across the university, from business, engineering, CS, pre-med, and beyond, to discover what's possible at the intersection of innovation and entrepreneurship.
+The Lobo VC Cup was founded by Andoni Gajjo and  Rob DelCampo with a mission to bring real venture capital education to the University of New Mexico. Housed within the Anderson School of Management, the competition unites students from across the university, from business, engineering, CS, pre-med, and beyond, to discover what's possible at the intersection of innovation and entrepreneurship.
 
 ---
 
@@ -50,7 +50,7 @@ The Lobo VC Cup was founded by Rob DelCampo and Andoni Gajjo with a bold mission
 | 2nd | $5,000 |
 | 3rd | $1,000 |
 
-Founders receive **actual investment capital** from student VC teams — no fixed prize amount. The best pitch wins the most money.
+Founders receive **actual investment capital** from student VC teams, no fixed prize amount. The best pitch wins the most money.
 
 | Total Startup Pool |
 |--------------------|
