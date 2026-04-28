@@ -1,215 +1,100 @@
 # VC Pathway Guide
 
-Welcome to the Lobo VC Cup VC Track. You're building a fund, deploying capital, and competing for $16,000 in prizes. Here's your full playbook.
+## What You're Doing
+
+You'll learn to invest like a real VC, pitch to LPs for fund allocation, evaluate student startups, and make actual investment decisions. Top 3 teams win $10,000 (1st), $5,000 (2nd), and $1,000 (3rd) based on your performance.
 
 ---
 
-## Overview
+## Timeline & What to Expect
 
-VC teams form a student-run venture fund. You'll pitch an LP panel for real capital, source and evaluate startup deals during Discovery Days, conduct due diligence, structure term sheets, and make investment decisions. You'll be judged on the quality of your process — not just whether your companies succeed.
+### March 2–6: Education Week (Virtual)
 
-This is the most realistic VC simulation available to undergrads anywhere.
+Daily mentor sessions on VC fundamentals - how venture capital works, investment thesis development, due diligence, deal structure and term sheets, and fund strategy. Attend live or watch recordings.
 
----
+### March 7: Team Registration Due
 
-## Requirements
+Submit your team info: [Registration Form](https://docs.google.com/document/d/1BIPgCaye6sbsHqKr79l6j_rjUNdpuu85Ro8ISw_5KDo/edit?usp=sharing)
 
-- At least one team member must be a current UNM student
-- Teams can have 2–6 members
-- All team members must register at lobovccup.unm.edu
-- VC teams must attend Education Week sessions
-- Attendance at Discovery Days (both nights) is mandatory
+### March 9–12: Pitch Prep (Virtual)
 
----
+Work with your VC mentors to develop your investment thesis and prepare your LP pitch. This determines how much capital you'll get to deploy.
 
-## The VC Timeline
+### March 13: LP Pitch Video Due
 
-### Education Week — March 2–6 (Virtual)
-Your foundation. Live sessions covering:
-- Venture capital fundamentals and fund mechanics
-- How to build a fund thesis
-- Sourcing deals and evaluating startups
-- How to run diligence — what to look for, what questions to ask
-- Term sheet structure and negotiation basics
-- LP dynamics and what LPs care about
+Submit your LP pitch video presenting your fund's investment thesis and strategy. VC mentors will evaluate and allocate capital based on your pitch.
 
-**These sessions are mandatory for VC teams.**
+### March 25–26: Discovery Days (IN-PERSON)
 
-### Team Registration — Due March 7
-Register your team at lobovccup.unm.edu. You'll need:
-- Team name / fund name
-- Team member names and UNM emails
-- Brief fund thesis (optional at registration, required for LP pitch)
+Watch student startups pitch. Ask tough questions. Conduct due diligence. Take detailed notes - you'll need them for investment memos. You must evaluate at least 4 startups.
 
-### Pitch Prep Week — March 9–12 (Virtual)
-Refine your LP pitch deck and fund thesis with support from faculty advisors and industry mentors. This is also the time to start researching registered startup teams.
+### March 30: Investment Day (IN-PERSON)
 
-### LP Pitch & Submissions — Due March 13, 11:59 PM
-Upload your LP pitch video (MP4 or MOV) to the submissions portal.
+Negotiate with startup teams on investment terms - how much capital, equity stake, and deal structure. Make your final investment decisions as a team.
 
-**Your LP pitch should cover:**
-- Fund name and team
-- Investment thesis — what types of startups you're targeting and why
-- The opportunity — why UNM, why now
-- How you'll source and evaluate deals
-- Portfolio construction — how many companies, check sizes
-- What LPs get (terms, reporting)
-- Why your team
+### March 31: Final Investment Decisions Due
 
-**Format:** 5–7 minute video. Record together as a team. Strong delivery matters.
+Submit your deal memos, term sheets, and final investment decisions. You must make at least 2 investments.
 
-### Discovery Days — March 25–26 (IN-PERSON)
-**Location:** Mesa Computing Module (MCM), Room 1010
-**Time:** 5:00–7:00 PM
+### April 2: VC Partner Meeting
 
-This is your deal sourcing event. Startup teams present at booths across the room. Your job:
-- Meet every startup
-- Ask hard questions
-- Take notes on potential investments
-- Begin your internal discussions
+VC mentors meet to evaluate all teams' performance and determine winners based on investment strategy, due diligence quality, and decision-making.
 
-**You are evaluating. Approach this like a real investor.**
+### April 3: Awards Ceremony (IN-PERSON)
 
-### Investment Day — March 30 (IN-PERSON)
-**Location:** Johnson Student Center (JSC)
-**Time:** 6:30–8:30 PM
-
-Present your investment decisions. Term sheets are submitted to chosen startups. Negotiate. Finalize.
-
-### Final Deal Submissions — Due March 31, 11:59 PM
-Upload all post-Discovery Days deliverables through the submissions portal:
-- **Deal Memos** — one per company you invested in
-- **Term Sheets** — one per company you invested in
-- **Due Diligence Notes** — one per company
-- **Portfolio Summary** — one document covering your full fund
-
-### VC Partner Meeting — April 2
-Internal review of all VC team submissions with faculty advisors. Final scoring happens here.
-
-### Awards Ceremony — April 3 (IN-PERSON)
-**Location:** Johnson Student Center (JSC)
-**Time:** 11:30 AM – 1:00 PM
-
-Prize winners announced. Investment results revealed. The best VC team walks away with $10,000.
+Top 3 teams announced. Prizes awarded.
 
 ---
 
-## Building Your LP Pitch
+## How You Win
 
-Your LP pitch is your first impression with the capital committee. Treat it like you're pitching Sequoia.
+You're judged on:
 
-**What makes a strong LP pitch:**
-- A crisp, differentiated thesis — "student startups at UNM" is not a thesis
-- Evidence that your team can source deals better than anyone else
-- A realistic portfolio construction with conviction behind check sizes
-- Specific criteria for what makes a company investable
-- Clear LP terms and reporting commitments
+- **Investment thesis quality** — Clear strategy and focus
+- **Due diligence rigor** — Thorough evaluation and smart questions
+- **Decision-making** — Sound investment rationale backed by analysis
+- **Overall execution** — Professional conduct and strategic thinking
 
-**Common mistakes to avoid:**
-- Being too broad ("we'll invest in anything innovative")
-- Underselling your sourcing advantage
-- Ignoring risk — every good VC acknowledges what can go wrong
-- Delivering a boring presentation — your energy signals how much you want this
+This isn't about picking "winners" - it's about demonstrating you can think and operate like a real investor.
 
 ---
 
-## Running Due Diligence
+## Requirements (Must-Dos to Stay Eligible)
 
-After Discovery Days, you have until March 31 to complete diligence on every company you're considering. Here's what to cover:
+- ✓ Submit LP pitch video by March 13
+- ✓ At least one team member must attend each Discovery Day (March 25–26)
+- ✓ Evaluate at least 4 startups during Discovery Days
+- ✓ Make at least 2 investments with complete deal memos and term sheets
+- ✓ Deploy your entire allocated fund (must invest 100% of your capital)
+- ✓ Submit final investment decisions by March 31
+- ✓ Attend Awards Ceremony (April 3)
+- ✓ Stay within your allocated fund constraints
 
-**Team Diligence**
-- Founder backgrounds and relevant experience
-- Team completeness — are all the key roles covered?
-- Commitment level — full-time, part-time?
-
-**Market Diligence**
-- Is the market real? How big?
-- Competitive landscape — who else is doing this?
-- Regulatory risk?
-
-**Business Model Diligence**
-- Is the revenue model viable?
-- What are unit economics today vs. at scale?
-- What does customer acquisition look like?
-
-**Product Diligence**
-- Is there a working product? How far along?
-- What is technically differentiated?
-- IP, proprietary data, or moats?
-
-**Traction Diligence**
-- Customers, revenue, pilots, LOIs
-- Growth rate
-- Churn or engagement metrics
+**Failure to submit required investments = ineligible for prizes**
 
 ---
 
-## Structuring Term Sheets
+## Your Mentors
 
-Your term sheets don't need to be complex — but they need to be real. Include:
+**VC Mentors:**
 
-- **Investment amount** — how much you're putting in
-- **Valuation** — pre-money or SAFE cap
-- **Instrument** — equity or SAFE (simple agreement for future equity is fine)
-- **Pro-rata rights** — will you have rights to follow on?
-- **Information rights** — what reporting does the company owe you?
-- **Use of proceeds** — what the company will do with your capital
+- Ward Hendon — Dangerous Ventures
+- Joey Juang — Tramway Ventures
+- Stephanie Dubois — Farmtíes Capital
+- John Chavez — NM Startup Factory
 
-Faculty advisors will review for completeness, not for legal precision.
+They'll teach you how VCs actually operate and evaluate your LP pitches. Learn from their pattern recognition and experience.
 
 ---
 
-## How You're Judged
+## Important Links
 
-VC teams are evaluated across five dimensions:
-
-| Dimension | Weight |
-|-----------|--------|
-| LP Pitch Quality | 25% |
-| Deal Sourcing & Selection | 25% |
-| Due Diligence Rigor | 20% |
-| Term Sheet Quality | 15% |
-| Portfolio Summary & Thesis Consistency | 15% |
-
-**Judges:** Faculty advisors from the Anderson School plus invited members of the Albuquerque investor community.
-
----
-
-## Mentor Network
-
-| Mentor | Affiliation |
-|--------|-------------|
-| Rob DelCampo | Anderson School of Management, UNM |
-| Andoni Gajjo | Anderson School of Management, UNM |
-| Local VC Partners | Albuquerque Venture Community |
-| Angel Investors | UNM Alumni Network |
-| Fund Managers | New Mexico Investment Community |
-
-*Full mentor list and office hours schedule will be shared during registration.*
-
----
-
-## FAQs for VC Teams
-
-**Do we need finance or business backgrounds?**
-No. The strongest VC teams are often cross-disciplinary. Engineers can diligence the tech. Pre-med students can diligence health startups. Bring your whole team's expertise.
-
-**How much capital are we deploying?**
-The LP panel awards capital to qualifying VC teams. Amounts vary based on LP pitch quality. Full details shared during Education Week.
-
-**Can we invest in companies we know personally?**
-Yes, but you must disclose any prior relationship. Knowing a founder can be an advantage — it means you have real insight into the team.
-
-**What if we pass on all startups?**
-That's a valid investment decision — but you'll need to defend it rigorously in your portfolio summary. "Nothing was good enough" is defensible if you show your work.
-
-**What happens to the investments after the competition?**
-Investments made during Lobo VC Cup are for competition purposes. However, the relationships, deal flow, and skills you build here are real and lasting.
+- [Team Registration](https://docs.google.com/document/d/1BIPgCaye6sbsHqKr79l6j_rjUNdpuu85Ro8ISw_5KDo/edit?usp=sharing)
+- [Refer Friends (Win a Laptop)](https://forms.gle/r83vmVrG5tuC8C9V6)
 
 ---
 
 ## Contact
 
-Questions? Reach out to:
-- **Rob DelCampo** — delcampo@unm.edu
-- **Andoni Gajjo** — agajjo@unm.edu
+- Rob DelCampo — delcampo@unm.edu
+- Andoni — agajjo@unm.edu
