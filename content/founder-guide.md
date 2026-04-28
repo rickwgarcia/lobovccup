@@ -1,5 +1,3 @@
-# Founder Guide
-
 ## What You're Doing
 
 You'll develop your startup idea, pitch to student VCs during Discovery Days, and win the capital you raise from a $20,000 prize pool. The better you pitch, the more you win.

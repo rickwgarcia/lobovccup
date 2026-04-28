@@ -1,5 +1,3 @@
-# VC Pathway Guide
-
 ## What You're Doing
 
 You'll learn to invest like a real VC, pitch to LPs for fund allocation, evaluate student startups, and make actual investment decisions. Top 3 teams win $10,000 (1st), $5,000 (2nd), and $1,000 (3rd) based on your performance.
