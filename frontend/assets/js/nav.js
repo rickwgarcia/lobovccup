@@ -31,9 +31,7 @@
 
     const links = [
       { href: `${base}index.html#about`,    label: 'About'    },
-      { href: `${base}index.html#tracks`,   label: 'Tracks'   },
       { href: `${base}index.html#schedule`, label: 'Schedule' },
-      { href: `${base}index.html#mentors`,  label: 'Mentors'  },
     ];
 
     const linksHtml = links.map(l => `

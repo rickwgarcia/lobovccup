@@ -709,7 +709,7 @@ p { max-width: 68ch; }
   padding: 60px 0 40px;
   color: var(--white);
 }
-.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
 .footer__logo { font-family: var(--font-handwritten); font-size: 2.1rem; color: var(--white); margin-bottom: 12px; }
 .footer__logo span { color: var(--gold); }
 .footer__tagline { color: rgba(255,255,255,0.42); font-size: 0.85rem; }
