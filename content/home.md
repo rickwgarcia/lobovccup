@@ -20,39 +20,8 @@ You want to learn how venture capital works, or want to go into venture capital.
 
 ---
 
-## Why Participate?
-
-**For Founders:**
-- Real money, not just a trophy
-- Exposure to UNM's investor and mentor network
-- Feedback from experienced operators and VCs
-
-**For VCs:**
-- Run a real fund from thesis to deployment
-- Learn deal sourcing, diligence, term sheet negotiation, and portfolio management
-- Network with Albuquerque's venture and startup ecosystem
-
----
-
 ## Who's Behind It?
 
 The Lobo VC Cup was founded by Andoni Gajjo and  Rob DelCampo with a mission to bring real venture capital education to the University of New Mexico. Housed within the Anderson School of Management, the competition unites students from across the university, from business, engineering, CS, pre-med, and beyond, to discover what's possible at the intersection of innovation and entrepreneurship.
 
----
-
-## Real Money
-
-**$36,000 total in prizes**
-
-| Place | VC Prize |
-|-------|----------|
-| 1st | $10,000 |
-| 2nd | $5,000 |
-| 3rd | $1,000 |
-
-Founders receive **actual investment capital** from student VC teams, no fixed prize amount. The best pitch wins the most money.
-
-| Total Startup Pool |
-|--------------------|
-| $20,000 |
 

@@ -41,15 +41,6 @@
   </div>
 </section>
 
-<!-- ── Tracks ─────────────────────────────────────────────── -->
-<section class="section" id="tracks" style="background: var(--bg-alt);">
-  <div class="container">
-    <div id="content-tracks">
-      <div style="text-align:center; padding: 60px 0; color: rgba(44,24,16,0.35);"><div class="spinner"></div></div>
-    </div>
-  </div>
-</section>
-
 <!-- ── Schedule ───────────────────────────────────────────── -->
 <section class="section" id="schedule">
   <div class="container">
@@ -77,19 +68,6 @@
   </div>
 </section>
 
-<!-- ── Guide Modal ────────────────────────────────────────── -->
-<div class="modal-overlay" id="guide-modal">
-  <div class="modal" style="max-width:720px; max-height:80vh; overflow-y:auto;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-      <h2 class="modal__title" id="guide-modal-title">Guide</h2>
-      <button onclick="closeGuide()" style="background:none;border:none;color:rgba(44,24,16,0.45);cursor:pointer;font-size:1.5rem;">✕</button>
-    </div>
-    <div id="guide-modal-content" class="content-body">
-      <div style="text-align:center;padding:40px;"><div class="spinner"></div></div>
-    </div>
-  </div>
-</div>
-
 <!-- ── Footer ─────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="container">
@@ -101,17 +79,7 @@
       <div>
         <div class="footer__col-title">Competition</div>
         <div class="footer__links">
-          <a href="#tracks">Founder Track</a>
-          <a href="#tracks">VC Track</a>
           <a href="#schedule">Schedule</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Resources</div>
-        <div class="footer__links">
-          <a href="#" id="footer-founder-guide">Founder Guide</a>
-          <a href="#" id="footer-vc-guide">VC Guide</a>
-          <a href="mailto:delcampo@unm.edu">FAQ</a>
         </div>
       </div>
       <div>
@@ -220,54 +188,11 @@
   loadContent('hero',       'content-hero');
   loadContent('hero-stats', 'content-hero-stats');
   loadContent('home',     'content-home');
-  loadContent('tracks',   'content-tracks');
   loadContent('schedule', 'content-schedule');
   loadContent('mentors',  'content-mentors');
   loadContent('cta',      'content-cta');
 
-  // ── Guide modal
-  let guideLoaded = {};
 
-  async function openGuide(page) {
-    const modal = document.getElementById('guide-modal');
-    const content = document.getElementById('guide-modal-content');
-    const title = document.getElementById('guide-modal-title');
-
-    title.textContent = page === 'founder-guide' ? 'Founder Guide' : 'VC Guide';
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-
-    if (!guideLoaded[page]) {
-      content.innerHTML = '<div style="text-align:center;padding:40px;"><div class="spinner"></div></div>';
-      try {
-        const res = await fetch(`${API}/content/${page}`);
-        const { html } = await res.json();
-        content.innerHTML = html;
-        guideLoaded[page] = true;
-      } catch {
-        content.innerHTML = '<p style="color:rgba(44,24,16,0.42)">Guide unavailable.</p>';
-      }
-    }
-  }
-
-  function closeGuide() {
-    document.getElementById('guide-modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('guide-modal').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closeGuide();
-  });
-
-  // Event delegation for guide triggers (content is loaded dynamically)
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('.founder-guide-trigger, #footer-founder-guide');
-    if (link) { e.preventDefault(); openGuide('founder-guide'); }
-  });
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('.vc-guide-trigger, #footer-vc-guide');
-    if (link) { e.preventDefault(); openGuide('vc-guide'); }
-  });
 </script>
 </body>
 </html>
