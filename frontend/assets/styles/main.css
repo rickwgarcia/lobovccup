@@ -709,7 +709,8 @@ p { max-width: 68ch; }
   padding: 60px 0 40px;
   color: var(--white);
 }
-.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer__grid { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
+.footer__col--right { text-align: right; }
 .footer__logo { font-family: var(--font-handwritten); font-size: 2.1rem; color: var(--white); margin-bottom: 12px; }
 .footer__logo span { color: var(--gold); }
 .footer__tagline { color: rgba(255,255,255,0.42); font-size: 0.85rem; }
@@ -777,7 +778,7 @@ p { max-width: 68ch; }
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 900px) {
   .tracks { grid-template-columns: 1fr; }
-  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer__grid { gap: 24px; }
   .prize-section { padding: 40px 24px; }
 }
 
@@ -808,7 +809,8 @@ p { max-width: 68ch; }
   .hero__actions { flex-direction: column; align-items: center; }
   .countdown { gap: 12px; }
   .countdown__value { font-size: 2rem; min-width: 52px; }
-  .footer__grid { grid-template-columns: 1fr; }
+  .footer__grid { flex-direction: column; gap: 32px; }
+  .footer__col--right { text-align: left; }
   .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
   .section { padding: 56px 0; }
   .member-row { grid-template-columns: 1fr; }
