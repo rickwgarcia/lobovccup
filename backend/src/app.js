@@ -27,7 +27,7 @@ app.use(limiter);
 
 // Content endpoint — reads /content/{page}.md, returns parsed HTML
 const CONTENT_DIR = resolve(__dirname, '../../content');
-const VALID_PAGES = ['home', 'founder-guide', 'vc-guide', 'schedule', 'faq', 'hero', 'hero-stats', 'tracks', 'prizes', 'cta'];
+const VALID_PAGES = ['home', 'founder-guide', 'vc-guide', 'schedule', 'faq', 'hero', 'hero-stats', 'tracks', 'prizes', 'cta', 'recap'];
 
 app.get('/api/content/:page', async (req, res) => {
   const { page } = req.params;

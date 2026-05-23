@@ -986,6 +986,58 @@ p { max-width: 68ch; }
   border-top: 1px solid rgba(44,24,16,0.05);
 }
 
+/* ── 2025 Recap ──────────────────────────────────────────── */
+.recap__quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+.recap__quotes blockquote {
+  border-left: 3px solid var(--crimson);
+  padding: 20px 24px;
+  background: rgba(192,57,43,0.04);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  margin: 0;
+}
+.recap__quotes blockquote p {
+  font-family: var(--font-handwritten);
+  font-size: 1.35rem;
+  line-height: 1.45;
+  color: var(--text);
+  font-style: italic;
+  margin: 0;
+  max-width: none;
+}
+.recap__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.recap__photo {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(44,24,16,0.06);
+  border: 1px solid rgba(44,24,16,0.08);
+}
+.recap__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.recap__photo:hover img { transform: scale(1.04); }
+
+@media (max-width: 900px) {
+  .recap__quotes { grid-template-columns: 1fr; }
+  .recap__gallery { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .recap__gallery { grid-template-columns: 1fr; }
+}
+
 /* ── Progress bar ────────────────────────────────────────── */
 .progress-bar {
   height: 6px;
