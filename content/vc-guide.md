@@ -94,5 +94,4 @@ They'll teach you how VCs actually operate and evaluate your LP pitches. Learn f
 
 ## Contact
 
-- Rob DelCampo — delcampo@unm.edu
-- Andoni — agajjo@unm.edu
+- Lobo VC Cup — lobovccup@unmm.onmicrosoft.com

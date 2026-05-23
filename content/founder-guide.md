@@ -86,5 +86,4 @@ They'll guide you through Education Week and help you refine your pitch. Use the
 
 ## Contact
 
-- Rob DelCampo — delcampo@unm.edu
-- Andoni — agajjo@unm.edu
+- Lobo VC Cup — lobovccup@unmm.onmicrosoft.com
