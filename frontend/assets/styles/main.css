@@ -709,18 +709,14 @@ p { max-width: 68ch; }
   padding: 60px 0 40px;
   color: var(--white);
 }
-.footer__grid { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
-.footer__col--right { text-align: right; }
-.footer__logo { font-family: var(--font-handwritten); font-size: 2.1rem; color: var(--white); margin-bottom: 12px; }
-.footer__logo span { color: var(--gold); }
-.footer__tagline { color: rgba(255,255,255,0.42); font-size: 0.85rem; }
-.footer__col-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.38); margin-bottom: 16px; }
-.footer__links { display: flex; flex-direction: column; gap: 10px; }
+.footer__centered { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 48px; gap: 16px; }
+.footer__logo { font-family: var(--font-sans); font-size: 1.4rem; font-weight: 600; color: var(--white); letter-spacing: 0; }
+.footer__col-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.38); }
+.footer__links { display: flex; flex-direction: column; gap: 10px; align-items: center; }
 .footer__links a { color: rgba(255,255,255,0.58); font-size: 0.9rem; transition: color var(--transition); }
 .footer__links a:hover { color: var(--white); opacity: 1; }
-.footer__bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); }
+.footer__bottom { display: flex; align-items: center; justify-content: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); }
 .footer__copy { font-size: 0.8rem; color: rgba(255,255,255,0.28); }
-.footer__unm { font-size: 0.8rem; color: rgba(255,255,255,0.28); }
 /* Override any inline dark rgba inside footer (from global replace) */
 .footer [style*="color:rgba(44,24,16"] { color: rgba(255,255,255,0.50) !important; }
 
@@ -778,7 +774,6 @@ p { max-width: 68ch; }
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 900px) {
   .tracks { grid-template-columns: 1fr; }
-  .footer__grid { gap: 24px; }
   .prize-section { padding: 40px 24px; }
 }
 
@@ -809,9 +804,7 @@ p { max-width: 68ch; }
   .hero__actions { flex-direction: column; align-items: center; }
   .countdown { gap: 12px; }
   .countdown__value { font-size: 2rem; min-width: 52px; }
-  .footer__grid { flex-direction: column; gap: 32px; }
-  .footer__col--right { text-align: left; }
-  .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .footer__bottom { flex-direction: column; gap: 8px; }
   .section { padding: 56px 0; }
   .member-row { grid-template-columns: 1fr; }
 }
