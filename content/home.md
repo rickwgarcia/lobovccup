@@ -1,8 +1,8 @@
 # What is Lobo VC Cup?
 
-The **Lobo VC Cup** is the University of New Mexico's student driven startup investment competition, where student-run VC funds go head-to-head to identify, evaluate, and invest in the next generation of student founders. This isn't a case competition. This is real deal-making. Student VCs pitch an LP panel for real capital, then deploy it into real startups built by their peers. Founders compete for investment, not just bragging rights.
+The Lobo VC Cup is the University of New Mexico's student driven startup investment competition, where student-run VC funds go head-to-head to identify, evaluate, and invest in the next generation of student founders. This isn't a case competition. This is real deal-making. Student VCs pitch an LP panel for real capital, then deploy it into real startups built by their peers. Founders compete for investment, not just bragging rights.
 
-The Lobo VC Cup was founded by Andoni Gajjo and  Rob DelCampo with a mission to bring real venture capital education to the University of New Mexico. Housed within the Anderson School of Management, the competition unites students from across the university, from business, engineering, CS, pre-med, and beyond, to discover what's possible at the intersection of innovation and entrepreneurship.
+The Lobo VC Cup was founded by Andoni Gajjo and  Rob DelCampo with a mission to bring real venture capital education to the University of New Mexico. The competition unites students from across the university, from business, engineering, CS, pre-med, and beyond, to discover what's possible at the intersection of innovation and entrepreneurship.
 
 ---
 
@@ -11,11 +11,11 @@ The Lobo VC Cup was founded by Andoni Gajjo and  Rob DelCampo with a mission to 
 ### The Founder Track
 You've built something, you're building it or want to learn how to build something. Bring your ideas or startup to Discovery Days, pitch student VC teams, and compete for real investment capital. The winners aren't picked by judges. They're picked by student ran VCs.
 
-**Founders win what they raise from $20,000 pool.**
+**Founders win what they raise from startup price pool.**
 
 ### The VC Track
 You want to learn how venture capital works, or want to go into venture capital. Build a fund thesis, pitch real LPs for capital, identify the strongest startups on campus, run due diligence, structure term sheets, and deploy. You'll be judged on your investment process, not just your returns.
 
-**VCs compete for $16,000 in prizes.**
+**Top three VC teams take home prize money**
 
 

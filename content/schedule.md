@@ -1,7 +1,7 @@
 <div class="section-header">
 <div class="section-header__eyebrow">Key Dates</div>
 <h2 class="section-header__title">Competition Timeline</h2>
-<p class="section-header__subtitle">Six weeks. From first pitch deck to Investment Day.</p>
+<p class="section-header__subtitle">Eight weeks. From first lecture to real deal making.</p>
 </div>
 
 <div style="max-width: 700px; margin: 0 auto;">
