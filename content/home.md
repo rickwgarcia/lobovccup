@@ -6,7 +6,7 @@ The Lobo VC Cup was founded by Andoni Gajjo and  Rob DelCampo with a mission to 
 
 ---
 
-## Two Ways to Compete
+# Two Ways to Compete
 
 ### The Founder Track
 You've built something, you're building it or want to learn how to build something. Bring your ideas or startup to Discovery Days, pitch student VC teams, and compete for real investment capital. The winners aren't picked by judges. They're picked by student ran VCs.
