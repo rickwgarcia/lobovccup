@@ -1,3 +1,3 @@
-> "This competition changed how I think about investing. I left with conviction in a real company and a deal memo I'm proud of." — 2026 VC Team
+> “My biggest takeaway from this competition was to put myself out there more. I competed with no prior knowledge about the VC world, but after the tournament, I walked away with an extensive amount of knowledge” -Breanna (VC winner)
 
-> "The feedback we got from judges in the final round was more valuable than anything I'd learned in a classroom." — 2026 Founder Team
+> "[I] wanted to try something completely out of my comfort zone” - Loryn (Startupwinner)
