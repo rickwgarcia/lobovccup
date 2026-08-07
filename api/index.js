@@ -1,4 +1,4 @@
-// Vercel serverless entry point — exports the Express app as a handler
-import app from '../backend/src/app.js';
-
-export default app;
+// Vercel serverless entry point — placeholder until the new site is built
+export default function handler(req, res) {
+  res.status(200).send('Site under construction.');
+}
