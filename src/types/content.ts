@@ -14,7 +14,8 @@ export interface MentorItem {
   id: string;
   name: string;
   title: string;
-  bio: string;
+  bio?: string;
+  photoSrc: string;
   photoAlt: string;
   socialHref: string;
 }
