@@ -7,7 +7,7 @@ export default {
         turquoise: '#077A86',
         'brand-gray': '#63666A',
         'brand-silver': '#A7A8AA',
-        ink: '#191A23',
+        ink: '#000000',
       },
       fontFamily: {
         grotesk: ['"Space Grotesk"', 'sans-serif'],
@@ -26,7 +26,7 @@ export default {
         pill: '6px',
       },
       boxShadow: {
-        hard: '0px 3px 0px 0px #191A23',
+        hard: '0px 3px 0px 0px #000000',
       },
     },
   },
