@@ -6,7 +6,7 @@ interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
-  solid: 'bg-brand-gray text-white',
+  solid: 'bg-ink text-white',
   'solid-turquoise': 'bg-turquoise text-black',
 };
 
