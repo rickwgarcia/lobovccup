@@ -2,6 +2,7 @@ import Container from '@/components/common/Container';
 import SectionLabel from '@/components/common/SectionLabel';
 import CaseStudyCard from '@/components/recap/CaseStudyCard';
 import ProjectSpotlightRow from '@/components/recap/ProjectSpotlightRow';
+import WinnersGallery from '@/components/recap/WinnersGallery';
 import TestimonialsCarousel from '@/components/recap/TestimonialsCarousel';
 import { projectSpotlights } from '@/data/projects';
 
@@ -17,6 +18,8 @@ export default function RecapSection() {
 
       <Container className="mt-8 flex flex-col gap-8">
         <CaseStudyCard />
+
+        <WinnersGallery />
 
         {projectSpotlights.map((project) => (
           <ProjectSpotlightRow key={project.id} project={project} />

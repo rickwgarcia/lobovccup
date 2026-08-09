@@ -23,8 +23,19 @@ export interface ProjectSpotlight {
   id: string;
   name: string;
   description: string;
+  deckSrc: string;
   imageAlt: string;
   imageSide: 'left' | 'right';
+}
+
+export interface Winner {
+  id: string;
+  teamName: string;
+  track: string;
+  place: string;
+  prize: string;
+  photoSrc: string;
+  photoAlt: string;
 }
 
 export interface Testimonial {

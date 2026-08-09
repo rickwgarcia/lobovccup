@@ -13,10 +13,11 @@ export default function ProjectSpotlightRow({ project }: ProjectSpotlightRowProp
         imageOnRightAtDesktop ? 'sm:flex-row-reverse' : ''
       }`}
     >
-      <div
-        role="img"
-        aria-label={project.imageAlt}
-        className="h-[160px] w-full shrink-0 rounded-card bg-brand-silver/40 sm:h-auto sm:w-1/2 sm:max-w-[480px]"
+      <iframe
+        src={project.deckSrc}
+        title={project.imageAlt}
+        className="h-[320px] w-full shrink-0 rounded-card border border-brand-gray bg-brand-silver/40 sm:h-auto sm:min-h-[360px] sm:w-1/2 sm:max-w-[480px]"
+        loading="lazy"
       />
       <div className="flex w-full flex-col items-start justify-center gap-3 rounded-card border border-brand-gray bg-brand-silver p-6 shadow-hard sm:w-1/2 sm:max-w-[460px] sm:p-9">
         <h3 className="font-grotesk text-xl font-bold leading-tight text-black sm:text-h3">
