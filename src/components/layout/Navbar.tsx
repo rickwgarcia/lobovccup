@@ -22,7 +22,12 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button href="#join" className="px-5 py-2.5 text-sm lg:px-6 lg:py-3 lg:text-base">
+          <Button
+            href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=lobovccup%40unmm.onmicrosoft.com&bO=true"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 text-sm lg:px-6 lg:py-3 lg:text-base"
+          >
             Join Email List
           </Button>
         </nav>
@@ -53,7 +58,12 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Button href="#join" className="w-full">
+            <Button
+              href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=lobovccup%40unmm.onmicrosoft.com&bO=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full"
+            >
               Join Email List
             </Button>
           </Container>

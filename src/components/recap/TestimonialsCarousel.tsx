@@ -3,7 +3,6 @@ import { testimonials } from '@/data/testimonials';
 import testimonialBubble from '@/assets/images/testimonial-bubble.svg';
 import carouselArrowLeft from '@/assets/icons/carousel-arrow-left.svg';
 import carouselArrowRight from '@/assets/icons/carousel-arrow-right.svg';
-import carouselStars from '@/assets/icons/carousel-stars.svg';
 
 const VISIBLE_COUNT = 3;
 
@@ -47,7 +46,21 @@ export default function TestimonialsCarousel() {
         <button type="button" aria-label="Previous testimonial" onClick={goPrev}>
           <img src={carouselArrowLeft} alt="" className="h-[22px] w-auto" />
         </button>
-        <img src={carouselStars} alt="5 star rating" className="h-[14px] w-auto" />
+        <div className="flex items-center gap-2" role="tablist" aria-label="Testimonial navigation">
+          {testimonials.map((testimonial, i) => (
+            <button
+              key={testimonial.id}
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Show testimonial ${i + 1} of ${total}`}
+              onClick={() => setIndex(i)}
+              className={`h-2 w-2 rounded-full transition-colors ${
+                i === index ? 'bg-black' : 'bg-white/60'
+              }`}
+            />
+          ))}
+        </div>
         <button type="button" aria-label="Next testimonial" onClick={goNext}>
           <img src={carouselArrowRight} alt="" className="h-[22px] w-auto" />
         </button>

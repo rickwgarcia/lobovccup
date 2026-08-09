@@ -45,7 +45,9 @@ export default function Footer() {
 
             <div className="flex w-full items-center justify-center rounded-btn bg-ink/90 px-6 py-6 sm:px-8 sm:py-10 lg:w-[560px]">
               <a
-                href="#join"
+                href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=lobovccup%40unmm.onmicrosoft.com&bO=true"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex w-full max-w-[480px] items-center justify-center rounded-btn bg-turquoise px-6 py-4 text-center font-grotesk text-base leading-6 text-black hover:opacity-90"
               >
                 Join Email List

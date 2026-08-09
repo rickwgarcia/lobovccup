@@ -19,6 +19,13 @@ export default function TrackCard({ track }: TrackCardProps) {
         <SectionLabel as="h3" size="h3">
           {track.heading}
         </SectionLabel>
+        <p
+          className={`text-center font-grotesk text-body sm:text-left ${
+            isDark ? 'text-white' : 'text-black'
+          }`}
+        >
+          {track.description}
+        </p>
         <IconLink
           icon={track.iconSrc}
           iconAlt=""

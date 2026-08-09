@@ -38,6 +38,7 @@ export interface Testimonial {
 export interface TrackInfo {
   id: 'startup' | 'vc';
   heading: string;
+  description: string;
   detailsHref: string;
   illustrationSrc: string;
   illustrationAlt: string;
