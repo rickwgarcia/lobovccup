@@ -56,7 +56,7 @@ export default function TestimonialsCarousel() {
               aria-label={`Show testimonial ${i + 1} of ${total}`}
               onClick={() => setIndex(i)}
               className={`h-2 w-2 rounded-full transition-colors ${
-                i === index ? 'bg-white' : 'bg-white/60'
+                i === index ? 'bg-black' : 'bg-white'
               }`}
             />
           ))}
