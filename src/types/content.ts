@@ -34,8 +34,10 @@ export interface Winner {
   track: string;
   place: string;
   prize: string;
+  description: string;
   photoSrc: string;
   photoAlt: string;
+  imageSide: 'left' | 'right';
 }
 
 export interface Testimonial {
