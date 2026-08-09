@@ -6,7 +6,7 @@ interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
-  solid: 'bg-ink text-white',
+  solid: 'bg-ink text-brand-silver',
   'solid-turquoise': 'bg-turquoise text-black',
 };
 
@@ -18,7 +18,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <a
-      className={`inline-flex items-center justify-center rounded-btn border border-brand-gray px-6 py-3 text-center font-grotesk text-base leading-6 transition-opacity hover:opacity-90 ${variantClasses[variant]} ${className}`}
+      className={`inline-flex items-center justify-center rounded-btn px-6 py-3 text-center font-grotesk text-base leading-6 transition-opacity hover:opacity-90 ${variantClasses[variant]} ${className}`}
       {...anchorProps}
     >
       {children}
