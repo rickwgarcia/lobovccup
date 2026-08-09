@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import type { TrackInfo } from '@/types/content';
 import SectionLabel from '@/components/common/SectionLabel';
-import IconLink from '@/components/common/IconLink';
 
 interface TrackCardProps {
   track: TrackInfo;
 }
 
 export default function TrackCard({ track }: TrackCardProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const isDark = track.variant === 'dark';
+  const panelId = `track-details-${track.id}`;
+  const textColor = isDark ? 'text-white' : 'text-black';
 
   return (
     <div
@@ -19,21 +22,23 @@ export default function TrackCard({ track }: TrackCardProps) {
         <SectionLabel as="h3" size="h3">
           {track.heading}
         </SectionLabel>
-        <p
-          className={`text-center font-grotesk text-body sm:text-left ${
-            isDark ? 'text-white' : 'text-black'
-          }`}
+
+        <button
+          type="button"
+          onClick={() => setIsOpen((open) => !open)}
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+          className={`inline-flex items-center gap-3 font-grotesk text-base leading-6 ${textColor}`}
         >
-          {track.description}
-        </p>
-        <IconLink
-          icon={track.iconSrc}
-          iconAlt=""
-          href={track.detailsHref}
-          className={isDark ? 'text-white' : 'text-black'}
-        >
-          Details
-        </IconLink>
+          <img src={track.iconSrc} alt="" className="size-8 shrink-0" />
+          <span>{isOpen ? 'Hide Details' : 'Details'}</span>
+        </button>
+
+        {isOpen && (
+          <p id={panelId} className={`text-center font-grotesk text-body sm:text-left ${textColor}`}>
+            {track.description}
+          </p>
+        )}
       </div>
 
       <img
