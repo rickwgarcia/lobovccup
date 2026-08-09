@@ -6,7 +6,7 @@ import socialIcon from '@/assets/icons/social-icon.svg';
 
 export default function Footer() {
   return (
-    <footer className="w-full rounded-t-card bg-brand-gray">
+    <footer className="w-full rounded-t-card bg-brand-silver">
       <Container className="flex flex-col gap-10 py-10 sm:gap-12 lg:py-12">
         <div className="flex flex-col gap-8 lg:gap-12">
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -27,31 +27,18 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-20">
-            <div className="flex flex-col gap-5 lg:gap-5">
-              <SectionLabel as="h4" size="h4">
-                Contact us:
-              </SectionLabel>
-              <div className="flex flex-col gap-3 font-grotesk text-body text-black sm:gap-4">
-                <p>lobovccup@unmm.onmicrosoft.com</p>
-                <p>University of New Mexico</p>
-                <p>
-                  1155 University Blvd SE
-                  <br />
-                  Albuquerque, NM 87106
-                </p>
-              </div>
-            </div>
-
-            <div className="flex w-full items-center justify-center rounded-btn bg-ink/90 px-6 py-6 sm:px-8 sm:py-10 lg:w-[560px]">
-              <a
-                href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=lobovccup%40unmm.onmicrosoft.com&bO=true"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full max-w-[480px] items-center justify-center rounded-btn bg-turquoise px-6 py-4 text-center font-grotesk text-base leading-6 text-black hover:opacity-90"
-              >
-                Join Email List
-              </a>
+          <div className="flex flex-col gap-5 lg:gap-5">
+            <SectionLabel as="h4" size="h4">
+              Contact us:
+            </SectionLabel>
+            <div className="flex flex-col gap-3 font-grotesk text-body text-black sm:gap-4">
+              <p>lobovccup@unmm.onmicrosoft.com</p>
+              <p>University of New Mexico</p>
+              <p>
+                1155 University Blvd SE
+                <br />
+                Albuquerque, NM 87106
+              </p>
             </div>
           </div>
         </div>
