@@ -27,8 +27,8 @@ export default function TestimonialsCarousel() {
             className={`flex w-full min-w-0 flex-1 flex-col items-end gap-5 ${testimonial.slot === 0 ? '' : 'hidden sm:flex'}`}
           >
             <div className="relative w-full max-w-[606px]">
-              <img src={testimonialBubble} alt="" className="h-auto w-full" />
-              <p className="absolute left-[8.5%] top-[18%] w-[83%] font-grotesk text-sm leading-normal text-black sm:text-body">
+              <img src={testimonialBubble} alt="" className="aspect-[606/310] w-full" />
+              <p className="absolute left-[8.5%] top-[15%] w-[83%] font-grotesk text-sm leading-normal text-black sm:text-body">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
             </div>
