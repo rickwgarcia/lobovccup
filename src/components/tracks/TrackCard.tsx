@@ -11,11 +11,11 @@ export default function TrackCard({ track }: TrackCardProps) {
 
   return (
     <div
-      className={`flex w-full min-w-0 max-w-[600px] flex-1 flex-col items-center gap-8 rounded-card border border-brand-gray p-8 shadow-hard sm:flex-row sm:items-center sm:justify-between sm:p-[50px] ${
+      className={`flex w-full min-w-0 max-w-[600px] flex-1 flex-col items-center gap-6 rounded-card border border-brand-gray p-6 shadow-hard sm:flex-row sm:items-center sm:justify-between sm:p-9 ${
         isDark ? 'bg-brand-gray' : 'bg-brand-silver'
       }`}
     >
-      <div className="flex flex-col items-center gap-8 sm:items-start sm:justify-center sm:gap-16 lg:gap-[93px]">
+      <div className="flex flex-col items-center gap-6 sm:items-start sm:justify-center sm:gap-10 lg:gap-14">
         <SectionLabel as="h3" size="h3">
           {track.heading}
         </SectionLabel>
@@ -32,7 +32,7 @@ export default function TrackCard({ track }: TrackCardProps) {
       <img
         src={track.illustrationSrc}
         alt={track.illustrationAlt}
-        className="h-auto w-[150px] shrink-0 sm:w-[180px] lg:w-[210px]"
+        className="h-auto w-[120px] shrink-0 sm:w-[140px] lg:w-[160px]"
       />
     </div>
   );

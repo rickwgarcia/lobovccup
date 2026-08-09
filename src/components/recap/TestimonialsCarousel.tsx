@@ -20,8 +20,8 @@ export default function TestimonialsCarousel() {
   }));
 
   return (
-    <div className="flex w-full flex-col items-center gap-12 rounded-card bg-brand-gray px-6 py-12 sm:gap-16 sm:px-16 sm:py-16">
-      <div className="flex w-full flex-col items-stretch gap-10 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+    <div className="flex w-full flex-col items-center gap-8 rounded-card bg-brand-gray px-5 py-8 sm:gap-10 sm:px-10 sm:py-10">
+      <div className="flex w-full flex-col items-stretch gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
         {visible.map((testimonial) => (
           <div
             key={testimonial.id}

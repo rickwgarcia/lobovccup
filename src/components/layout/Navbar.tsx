@@ -9,20 +9,20 @@ export default function Navbar() {
 
   return (
     <header id="top" className="sticky top-0 z-50 w-full bg-brand-silver">
-      <Container className="flex items-center justify-between py-4 lg:h-[102px] lg:py-0">
+      <Container className="flex items-center justify-between py-4 lg:h-[84px] lg:py-0">
         <Logo />
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-grotesk text-lg leading-7 text-black hover:opacity-80"
+              className="font-grotesk text-base leading-6 text-black hover:opacity-80"
             >
               {link.label}
             </a>
           ))}
-          <Button href="#join" className="px-7 py-3 text-base lg:px-[35px] lg:py-5 lg:text-lg">
+          <Button href="#join" className="px-5 py-2.5 text-sm lg:px-6 lg:py-3 lg:text-base">
             Join Email List
           </Button>
         </nav>
@@ -48,7 +48,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="font-grotesk text-lg text-black"
+                className="font-grotesk text-base text-black"
               >
                 {link.label}
               </a>

@@ -17,10 +17,10 @@ export default function IconLink({
 }: IconLinkProps) {
   return (
     <a
-      className={`inline-flex items-center gap-[15px] font-grotesk text-lg leading-7 ${underline ? 'underline decoration-solid underline-offset-2' : ''} ${className}`}
+      className={`inline-flex items-center gap-3 font-grotesk text-base leading-6 ${underline ? 'underline decoration-solid underline-offset-2' : ''} ${className}`}
       {...anchorProps}
     >
-      <img src={icon} alt={iconAlt} className="size-[41px] shrink-0" />
+      <img src={icon} alt={iconAlt} className="size-8 shrink-0" />
       <span>{children}</span>
     </a>
   );

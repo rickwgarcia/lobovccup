@@ -7,8 +7,8 @@ import socialIcon from '@/assets/icons/social-icon.svg';
 export default function Footer() {
   return (
     <footer className="w-full rounded-t-card bg-brand-gray">
-      <Container className="flex flex-col gap-12 py-12 sm:gap-16 lg:py-[55px]">
-        <div className="flex flex-col gap-10 lg:gap-[66px]">
+      <Container className="flex flex-col gap-10 py-10 sm:gap-12 lg:py-12">
+        <div className="flex flex-col gap-8 lg:gap-12">
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
             <Logo />
             <nav className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
@@ -27,12 +27,12 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className="flex flex-col gap-10 lg:flex-row lg:gap-[154px]">
-            <div className="flex flex-col gap-6 lg:gap-[27px]">
+          <div className="flex flex-col gap-8 lg:flex-row lg:gap-20">
+            <div className="flex flex-col gap-5 lg:gap-5">
               <SectionLabel as="h4" size="h4">
                 Contact us:
               </SectionLabel>
-              <div className="flex flex-col gap-4 font-grotesk text-body text-black sm:gap-5">
+              <div className="flex flex-col gap-3 font-grotesk text-body text-black sm:gap-4">
                 <p>lobovccup@unmm.onmicrosoft.com</p>
                 <p>University of New Mexico</p>
                 <p>
@@ -43,10 +43,10 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex w-full items-center justify-center rounded-btn bg-ink/90 px-6 py-8 sm:px-10 sm:py-[58px] lg:w-[646px]">
+            <div className="flex w-full items-center justify-center rounded-btn bg-ink/90 px-6 py-6 sm:px-8 sm:py-10 lg:w-[560px]">
               <a
                 href="#join"
-                className="flex w-full max-w-[554px] items-center justify-center rounded-btn bg-turquoise px-8 py-5 text-center font-grotesk text-lg leading-7 text-black hover:opacity-90"
+                className="flex w-full max-w-[480px] items-center justify-center rounded-btn bg-turquoise px-6 py-4 text-center font-grotesk text-base leading-6 text-black hover:opacity-90"
               >
                 Join Email List
               </a>
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-10 lg:gap-[50px]">
+        <div className="flex flex-col gap-8 lg:gap-10">
           <div className="h-px w-full bg-black" />
           <p className="font-grotesk text-body leading-7 text-black">Lobo VC Cup</p>
         </div>

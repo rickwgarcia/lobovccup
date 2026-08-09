@@ -7,7 +7,7 @@ import { projectSpotlights } from '@/data/projects';
 
 export default function RecapSection() {
   return (
-    <section id="recap" className="py-16 lg:py-20">
+    <section id="recap" className="py-12 lg:py-16">
       <Container className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
         <SectionLabel size="h2">2026 Recap</SectionLabel>
         <p className="max-w-[580px] font-grotesk text-body text-black">
@@ -15,7 +15,7 @@ export default function RecapSection() {
         </p>
       </Container>
 
-      <Container className="mt-10 flex flex-col gap-8">
+      <Container className="mt-8 flex flex-col gap-8">
         <CaseStudyCard />
 
         {projectSpotlights.map((project) => (

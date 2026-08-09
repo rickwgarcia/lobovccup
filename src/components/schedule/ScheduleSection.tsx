@@ -8,7 +8,7 @@ export default function ScheduleSection() {
   const [openId, setOpenId] = useState<string | null>(scheduleItems[0]?.id ?? null);
 
   return (
-    <section id="schedule" className="py-16 lg:py-20">
+    <section id="schedule" className="py-12 lg:py-16">
       <Container className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
         <SectionLabel size="h2">2027 Schedule</SectionLabel>
         <p className="max-w-[580px] font-grotesk text-body text-black">
@@ -16,7 +16,7 @@ export default function ScheduleSection() {
         </p>
       </Container>
 
-      <Container className="mt-10 flex flex-col gap-[30px]">
+      <Container className="mt-8 flex flex-col gap-[30px]">
         {scheduleItems.map((item) => (
           <AccordionItem
             key={item.id}
