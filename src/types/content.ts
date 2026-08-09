@@ -1,0 +1,46 @@
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+export interface ScheduleItem {
+  id: string;
+  title: string;
+  dateRange: string;
+  details: string;
+}
+
+export interface MentorItem {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  photoAlt: string;
+  socialHref: string;
+}
+
+export interface ProjectSpotlight {
+  id: string;
+  name: string;
+  description: string;
+  imageAlt: string;
+  imageSide: 'left' | 'right';
+}
+
+export interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  title: string;
+  rating: number;
+}
+
+export interface TrackInfo {
+  id: 'startup' | 'vc';
+  heading: string;
+  detailsHref: string;
+  illustrationSrc: string;
+  illustrationAlt: string;
+  iconSrc: string;
+  variant: 'silver' | 'dark';
+}
