@@ -19,13 +19,9 @@ export default function WinnersGallery() {
               className="h-[320px] w-full shrink-0 rounded-card border border-brand-gray object-cover sm:h-auto sm:min-h-[360px] sm:w-1/2 sm:max-w-[480px]"
             />
             <div className="flex w-full flex-col items-start justify-center gap-3 rounded-card border border-brand-gray bg-brand-silver p-6 shadow-hard sm:w-1/2 sm:max-w-[460px] sm:p-9">
-              <span className="rounded-pill bg-turquoise px-[7px] font-grotesk text-sm font-medium leading-tight text-black">
-                {winner.place} · {winner.prize}
-              </span>
               <h3 className="font-grotesk text-xl font-bold leading-tight text-black sm:text-h3">
                 {winner.teamName}
               </h3>
-              <p className="font-grotesk text-body text-black">{winner.track}</p>
               <p className="font-grotesk text-body text-black">{winner.description}</p>
             </div>
           </div>
