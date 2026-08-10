@@ -123,7 +123,7 @@ export default function PdfSlideViewer({ src, title, className = '' }: PdfSlideV
             type="button"
             aria-label="Previous slide"
             onClick={goPrev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 shadow-hard"
+            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full border-2 border-black bg-white p-1.5"
           >
             <img src={carouselArrowLeft} alt="" className="h-[18px] w-auto invert" />
           </button>
@@ -131,7 +131,7 @@ export default function PdfSlideViewer({ src, title, className = '' }: PdfSlideV
             type="button"
             aria-label="Next slide"
             onClick={goNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 shadow-hard"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full border-2 border-black bg-white p-1.5"
           >
             <img src={carouselArrowRight} alt="" className="h-[18px] w-auto invert" />
           </button>
