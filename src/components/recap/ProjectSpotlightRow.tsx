@@ -1,4 +1,5 @@
 import type { ProjectSpotlight } from '@/types/content';
+import PdfSlideViewer from './PdfSlideViewer';
 
 interface ProjectSpotlightRowProps {
   project: ProjectSpotlight;
@@ -13,11 +14,10 @@ export default function ProjectSpotlightRow({ project }: ProjectSpotlightRowProp
         imageOnRightAtDesktop ? 'sm:flex-row-reverse' : ''
       }`}
     >
-      <iframe
+      <PdfSlideViewer
         src={project.deckSrc}
         title={project.imageAlt}
-        className="h-[280px] w-full shrink-0 rounded-card border border-brand-gray bg-brand-silver/40 sm:h-[320px] sm:w-1/2 sm:max-w-[540px]"
-        loading="lazy"
+        className="h-[280px] w-full shrink-0 sm:h-[320px] sm:w-1/2 sm:max-w-[540px]"
       />
       <div className="flex h-[280px] w-full flex-col items-start justify-center gap-3 rounded-card border border-brand-gray bg-brand-silver p-6 shadow-hard sm:h-[320px] sm:w-1/2 sm:max-w-[540px] sm:p-9">
         <h3 className="font-grotesk text-xl font-bold leading-tight text-black sm:text-h3">
