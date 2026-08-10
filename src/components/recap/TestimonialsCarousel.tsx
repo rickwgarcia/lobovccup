@@ -33,10 +33,10 @@ export default function TestimonialsCarousel() {
               </p>
             </div>
             <div className="flex w-full flex-col items-end text-right">
-              <p className="font-grotesk text-h4 font-medium leading-normal text-black">
+              <p className="font-grotesk text-h4 font-medium leading-normal text-white">
                 {testimonial.name}
               </p>
-              <p className="font-grotesk text-body leading-normal text-black">{testimonial.title}</p>
+              <p className="font-grotesk text-body leading-normal text-white">{testimonial.title}</p>
             </div>
           </div>
         ))}
