@@ -33,7 +33,7 @@ export const mentors: MentorItem[] = [
   {
     id: 'billy-rogers',
     name: 'Billy Rogers',
-    title: 'Institutional Asset Management and FinTech',
+    title: 'Cutter Associates',
     photoSrc: '/mentors/billy-rogers.png',
     photoAlt: 'Billy Rogers',
     socialHref: 'https://www.linkedin.com/in/billyrogersnm/',
