@@ -9,7 +9,7 @@ export default function MentorsSection() {
       <Container className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
         <SectionLabel size="h2">Mentors</SectionLabel>
         <p className="max-w-[580px] font-grotesk text-body text-black">
-          [Meet the mentors guiding this year&rsquo;s founders and investors]
+          Mentors share real-world insights on building and analyzing startups.
         </p>
       </Container>
 
