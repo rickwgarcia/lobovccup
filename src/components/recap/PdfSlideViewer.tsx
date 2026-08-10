@@ -125,7 +125,7 @@ export default function PdfSlideViewer({ src, title, className = '' }: PdfSlideV
             onClick={goPrev}
             className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 shadow-hard"
           >
-            <img src={carouselArrowLeft} alt="" className="h-[18px] w-auto" />
+            <img src={carouselArrowLeft} alt="" className="h-[18px] w-auto invert" />
           </button>
           <button
             type="button"
@@ -133,7 +133,7 @@ export default function PdfSlideViewer({ src, title, className = '' }: PdfSlideV
             onClick={goNext}
             className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 shadow-hard"
           >
-            <img src={carouselArrowRight} alt="" className="h-[18px] w-auto" />
+            <img src={carouselArrowRight} alt="" className="h-[18px] w-auto invert" />
           </button>
           <span className="absolute bottom-2 right-3 rounded-full bg-white/80 px-2 py-0.5 font-grotesk text-xs text-black">
             {pageNum} / {pageCount}
