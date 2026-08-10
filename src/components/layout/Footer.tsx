@@ -22,7 +22,12 @@ export default function Footer() {
                 </a>
               ))}
             </nav>
-            <a href="#" aria-label="Lobo VC Cup on social media">
+            <a
+              href="https://www.linkedin.com/company/lobovccup"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lobo VC Cup on LinkedIn"
+            >
               <img src={socialIcon} alt="" className="size-[30px]" />
             </a>
           </div>
