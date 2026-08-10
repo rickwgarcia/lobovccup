@@ -12,7 +12,7 @@ export default function MentorCard({ mentor }: MentorCardProps) {
   return (
     <div className="flex w-full flex-col gap-5 rounded-card border border-ink bg-white p-6 shadow-hard sm:p-7">
       <div className="flex w-full items-start justify-between gap-4">
-        <div className="flex items-end gap-4">
+        <div className="flex items-center gap-4">
           {photoFailed ? (
             <div
               role="img"
