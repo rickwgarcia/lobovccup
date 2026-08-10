@@ -4,14 +4,14 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-rick-garcia',
     quote:
-      'Albuquerque entrepreneurship community is very inviting, supportive, and motivating.',
+      'Albuquerque entrepreneurship community is very inviting, supportive, and motivating',
     name: 'Rick Garcia',
     title: 'Startup Track',
     rating: 5,
   },
   {
     id: 'testimonial-loryn-montoya',
-    quote: '...wanted to try something completely out of my comfort zone',
+    quote: 'Wanted to try something completely out of my comfort zone',
     name: 'Loryn Montoya',
     title: 'Startup Track',
     rating: 5,

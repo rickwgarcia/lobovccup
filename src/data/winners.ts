@@ -10,7 +10,7 @@ export const winners: Winner[] = [
     place: '1st Place',
     prize: '$10,000',
     description:
-      "G Ventures paired founder instincts with the analytical rigor of trained economists, diligencing each pitch with a dual lens that set their investment thesis apart.",
+      "G Ventures paired entrepreneurial marketing with economics, it was this dual lens that set their investment thesis apart.",
     photoSrc: gVenturesPhoto,
     photoAlt: 'G Ventures accepting the first place award for the Venture Capital track',
     imageSide: 'left',
