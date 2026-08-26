@@ -9,7 +9,7 @@ export const scheduleItems: ScheduleItem[] = [
     id: '00',
     title: 'VC Cup Social',
     dateRange: 'Mar 1 - Mar 5',
-    details: 'Kickoff mixer to meet fellow founders and investors, form teams, and get an overview of the competition.',
+    details: 'Kickoff mixer to meet fellow founders, investors, mentors, form teams, and get an overview of the competition.',
   },
   {
     id: '01',
