@@ -20,7 +20,7 @@ export default function Hero() {
       <img
         src={heroIllustration}
         alt="Illustration of a trophy on a pedestal representing the Lobo VC Cup"
-        className="w-full max-w-[320px] lg:max-w-[420px]"
+        className="h-auto max-h-[260px] w-auto sm:max-h-[300px] lg:max-h-[380px]"
       />
     </Container>
   );
