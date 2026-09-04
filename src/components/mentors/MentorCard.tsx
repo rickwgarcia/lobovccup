@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import type { MentorItem } from '@/types/content';
+import SectionLabel from '@/components/common/SectionLabel';
 import socialIcon from '@/assets/icons/social-icon.svg';
 
 interface MentorCardProps {
   mentor: MentorItem;
 }
+
+const trackAccentClassName: Record<MentorItem['track'], string> = {
+  startup: 'bg-track-startup',
+  vc: 'bg-track-vc',
+};
 
 export default function MentorCard({ mentor }: MentorCardProps) {
   const [photoFailed, setPhotoFailed] = useState(false);
@@ -27,8 +33,10 @@ export default function MentorCard({ mentor }: MentorCardProps) {
               className="size-16 shrink-0 rounded-full object-cover sm:size-20"
             />
           )}
-          <div className="flex flex-col text-black">
-            <p className="font-grotesk text-base font-medium leading-normal">{mentor.name}</p>
+          <div className="flex flex-col gap-1 text-black">
+            <SectionLabel as="p" size="h4" bgClassName={trackAccentClassName[mentor.track]}>
+              {mentor.name}
+            </SectionLabel>
             <p className="font-grotesk text-sm leading-normal">{mentor.title}</p>
           </div>
         </div>

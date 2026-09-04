@@ -14,6 +14,7 @@ export interface MentorItem {
   id: string;
   name: string;
   title: string;
+  track: 'startup' | 'vc';
   bio?: string;
   photoSrc: string;
   photoAlt: string;
