@@ -45,7 +45,7 @@ export interface Testimonial {
   id: string;
   quote: string;
   name: string;
-  title: string;
+  track: 'startup' | 'vc';
   rating: number;
 }
 

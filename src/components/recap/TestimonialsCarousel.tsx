@@ -1,5 +1,11 @@
 import { useState } from 'react';
+import SectionLabel from '@/components/common/SectionLabel';
 import { testimonials } from '@/data/testimonials';
+
+const trackAccentClassName: Record<'startup' | 'vc', string> = {
+  startup: 'bg-track-startup',
+  vc: 'bg-track-vc',
+};
 import testimonialBubble from '@/assets/images/testimonial-bubble.svg';
 import carouselArrowLeft from '@/assets/icons/carousel-arrow-left.svg';
 import carouselArrowRight from '@/assets/icons/carousel-arrow-right.svg';
@@ -33,10 +39,9 @@ export default function TestimonialsCarousel() {
               </p>
             </div>
             <div className="flex w-full flex-col items-end text-right">
-              <p className="font-grotesk text-h4 font-medium leading-normal text-white">
+              <SectionLabel as="p" size="h4" bgClassName={trackAccentClassName[testimonial.track]}>
                 {testimonial.name}
-              </p>
-              <p className="font-grotesk text-body leading-normal text-white">{testimonial.title}</p>
+              </SectionLabel>
             </div>
           </div>
         ))}
