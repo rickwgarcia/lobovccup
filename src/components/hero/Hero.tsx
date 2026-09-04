@@ -21,7 +21,7 @@ export default function Hero() {
         <img
           src={heroIllustration}
           alt="Illustration of a trophy on a pedestal representing the Lobo VC Cup"
-          className="h-auto max-h-[300px] w-auto sm:max-h-[360px] lg:max-h-[220px]"
+          className="h-auto max-h-[300px] w-auto sm:max-h-[360px] lg:max-h-[320px]"
         />
       </div>
     </Container>
