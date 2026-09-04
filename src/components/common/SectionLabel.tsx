@@ -5,6 +5,7 @@ interface SectionLabelProps {
   as?: ElementType;
   size?: 'h2' | 'h3' | 'h4';
   className?: string;
+  bgClassName?: string;
 }
 
 const sizeClasses: Record<NonNullable<SectionLabelProps['size']>, string> = {
@@ -18,9 +19,10 @@ export default function SectionLabel({
   as: Tag = 'h2',
   size = 'h2',
   className = '',
+  bgClassName = 'bg-turquoise',
 }: SectionLabelProps) {
   return (
-    <div className={`inline-flex flex-col items-start rounded-pill bg-turquoise px-[7px] ${className}`}>
+    <div className={`inline-flex flex-col items-start rounded-pill ${bgClassName} px-[7px] ${className}`}>
       <Tag className={`font-grotesk font-medium leading-tight text-black ${sizeClasses[size]}`}>
         {children}
       </Tag>

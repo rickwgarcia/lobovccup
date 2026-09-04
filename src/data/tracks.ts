@@ -14,6 +14,7 @@ export const tracks: TrackInfo[] = [
     illustrationAlt: 'Startup Track illustration',
     iconSrc: trackDetailsIconStartup,
     variant: 'silver',
+    accentClassName: 'bg-track-startup',
   },
   {
     id: 'vc',
@@ -24,5 +25,6 @@ export const tracks: TrackInfo[] = [
     illustrationAlt: 'VC Track illustration',
     iconSrc: trackDetailsIconVc,
     variant: 'dark',
+    accentClassName: 'bg-track-vc',
   },
 ];

@@ -57,4 +57,5 @@ export interface TrackInfo {
   illustrationAlt: string;
   iconSrc: string;
   variant: 'silver' | 'dark';
+  accentClassName: string;
 }

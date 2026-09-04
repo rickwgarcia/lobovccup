@@ -20,7 +20,7 @@ export default function TrackCard({ track }: TrackCardProps) {
     >
       <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col items-center gap-6 sm:items-start sm:justify-center sm:gap-10 lg:gap-14">
-          <SectionLabel as="h3" size="h3">
+          <SectionLabel as="h3" size="h3" bgClassName={track.accentClassName}>
             {track.heading}
           </SectionLabel>
 

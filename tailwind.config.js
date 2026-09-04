@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        turquoise: '#BA0C2F',
+        turquoise: '#007A86',
         'brand-gray': '#63666A',
         'brand-silver': '#A7A8AA',
         ink: '#000000',
+        'track-startup': '#ED8B00',
+        'track-vc': '#A8AA19',
       },
       fontFamily: {
         grotesk: ['"Space Grotesk"', 'sans-serif'],
