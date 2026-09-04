@@ -10,11 +10,6 @@ import MentorsSection from '@/components/mentors/MentorsSection';
 function App() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
-        <filter id="logo-mark-thicken">
-          <feMorphology operator="dilate" radius="1.1" />
-        </filter>
-      </svg>
       <Navbar />
       <Hero />
       <LogoStrip />
