@@ -11,3 +11,7 @@
     @apply bg-white text-black font-grotesk font-normal;
   }
 }
+
+.logo-mark {
+  filter: url(#logo-mark-thicken);
+}

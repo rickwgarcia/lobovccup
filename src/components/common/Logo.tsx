@@ -9,7 +9,7 @@ interface LogoProps {
 export default function Logo({ className = '', markClassName = '', textClassName = '' }: LogoProps) {
   return (
     <a href="#top" className={`inline-flex items-center gap-3 ${className}`}>
-      <img src={logoMark} alt="" className={`h-[24px] w-[34px] ${markClassName}`} />
+      <img src={logoMark} alt="" className={`logo-mark h-[24px] w-[34px] ${markClassName}`} />
       <span className={`font-grotesk text-lg font-bold leading-none text-black sm:text-xl ${textClassName}`}>
         Lobo VC Cup
       </span>
