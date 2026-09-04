@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        turquoise: '#077A86',
+        turquoise: '#BA0C2F',
         'brand-gray': '#63666A',
         'brand-silver': '#A7A8AA',
         ink: '#000000',
