@@ -3,8 +3,8 @@ import heroIllustration from '@/assets/images/hero-illustration.png';
 
 export default function Hero() {
   return (
-    <Container className="flex flex-col items-center gap-10 py-12 lg:flex-row lg:items-center lg:justify-center lg:gap-20 lg:py-16">
-      <div className="flex max-w-[480px] flex-col gap-5 text-center lg:gap-6 lg:text-left">
+    <Container className="flex flex-col items-center gap-10 py-12 lg:flex-row lg:items-start lg:gap-10 lg:py-16">
+      <div className="flex max-w-[480px] flex-col gap-5 text-center lg:flex-[3] lg:gap-6 lg:text-left">
         <h1 className="font-grotesk text-3xl font-medium leading-tight text-black sm:text-4xl lg:text-h1">
           Student founders pitch. Student VCs invest.
         </h1>
@@ -17,7 +17,7 @@ export default function Hero() {
         </p>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center lg:flex-[2]">
         <img
           src={heroIllustration}
           alt="Illustration of a trophy on a pedestal representing the Lobo VC Cup"
