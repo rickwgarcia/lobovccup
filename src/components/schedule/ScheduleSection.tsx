@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Container from '@/components/common/Container';
 import SectionLabel from '@/components/common/SectionLabel';
 import AccordionItem from '@/components/schedule/AccordionItem';
+import ScheduleDownloadCard from '@/components/schedule/ScheduleDownloadCard';
 import { scheduleItems } from '@/data/schedule';
 
 export default function ScheduleSection() {
@@ -25,6 +26,8 @@ export default function ScheduleSection() {
             onToggle={() => setOpenId((current) => (current === item.id ? null : item.id))}
           />
         ))}
+
+        <ScheduleDownloadCard />
       </Container>
     </section>
   );
