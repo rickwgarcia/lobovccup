@@ -10,9 +10,9 @@ export default function Navbar() {
   return (
     <header id="top" className="sticky top-0 z-50 w-full bg-brand-silver">
       <Container className="flex items-center justify-between py-4 lg:h-[84px] lg:py-0">
-        <Logo className="-ml-5 sm:-ml-8 lg:-ml-16" />
+        <Logo />
 
-        <nav className="hidden items-center gap-8 md:flex md:-mr-8 lg:-mr-16">
+        <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
