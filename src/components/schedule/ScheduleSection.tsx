@@ -12,7 +12,7 @@ export default function ScheduleSection() {
       <Container className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
         <SectionLabel size="h2">2027 Schedule</SectionLabel>
         <p className="max-w-[580px] font-grotesk text-body text-black">
-          Ten weeks. From first lecture to real deal making.
+          Eight weeks. From first lecture to real deal making.
         </p>
       </Container>
 
