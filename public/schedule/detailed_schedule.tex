@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+
+% ---------- Layout ----------
+\usepackage[margin=0.85in]{geometry}
+\usepackage{fontspec}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+
+% ---------- Font (Space Grotesk, matches the website) ----------
+\setmainfont{space-grotesk}[
+  Path = fonts/,
+  Extension = .ttf,
+  UprightFont = *-latin-400-normal,
+  BoldFont = *-latin-700-normal,
+  ItalicFont = *-latin-400-normal,
+  ItalicFeatures = {FakeSlant=0.15},
+  BoldItalicFont = *-latin-700-normal,
+  BoldItalicFeatures = {FakeSlant=0.15},
+]
+
+% ---------- Colors (Lobo VC Cup brand) ----------
+\definecolor{turquoise}{HTML}{007A86}
+\definecolor{trackvc}{HTML}{A8AA19}
+\definecolor{trackstartup}{HTML}{ED8B00}
+\definecolor{lightband}{HTML}{E6F2F3}
+\definecolor{rulegray}{HTML}{A7A8AA}
+
+% ---------- Section styling ----------
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {}{0em}{}
+\titlespacing{\section}{0pt}{18pt}{6pt}
+
+\newcommand{\weekheader}[1]{%
+  \vspace{4pt}
+  \noindent
+  \colorbox{turquoise}{\parbox{\dimexpr\textwidth-2\fboxsep}{\bfseries\large #1}}
+  \vspace{6pt}
+}
+
+% Website-style highlight: colored background, black text (see SectionLabel component)
+\newcommand{\deliverable}[2]{\colorbox{#1}{\textbf{#2}}}
+
+% ---------- Header/Footer ----------
+\setlength{\tabcolsep}{4pt}
+\pagestyle{fancy}
+\setlength{\headheight}{28pt}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rulegray}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\raisebox{-0.28\height}{\includegraphics[height=18pt]{lobo-icon.png}}\hspace{5pt}\small\bfseries Lobo VC Cup | University of New Mexico}
+\fancyhead[R]{\small Spring 2027 Schedule}
+\fancyfoot[C]{\small\thepage}
+
+\setlength{\parindent}{0pt}
+
+% Column type for wrapped, left-justified text in tables
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newcommand{\entry}[5]{%
+  #1 & #2 & \textbf{#3} & #4 & #5 \\
+}
+
+\title{}
+\date{}
+
+\newcommand{\legenditem}[2]{\raisebox{0.5pt}{\colorbox{#1}{\rule{0pt}{6pt}\rule{6pt}{0pt}}}~\small#2}
+
+\begin{document}
+
+\noindent\legenditem{trackvc}{VC Deliverable}\hspace{14pt}\legenditem{trackstartup}{Startup Deliverable}
+\vspace{2pt}
+
+% =========================================================
+\weekheader{VC Cup Social Week}
+\begin{longtable}{L{2.2cm} L{2.2cm} L{4.5cm} L{1.7cm} L{4.7cm}}
+\toprule
+\rowcolor{lightband}
+\textbf{Date} & \textbf{Time} & \textbf{Event} & \textbf{Location} & \textbf{Details} \\
+\midrule
+\entry{Fri, Mar 5}{4:30--6:30 PM}{VC Cup Social}{JSC}{Ranging from 3/3 to 3/5.}
+\bottomrule
+\end{longtable}
+
+% =========================================================
+\weekheader{VC Education Week}
+\begin{longtable}{L{2.2cm} L{2.2cm} L{4.5cm} L{1.7cm} L{4.7cm}}
+\toprule
+\rowcolor{lightband}
+\textbf{Date} & \textbf{Time} & \textbf{Event} & \textbf{Location} & \textbf{Details} \\
+\midrule
+\entry{Mon, Mar 22}{4:30--5:30 PM}{How Venture Capital Works}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. What is venture capital? How are funds structured? Who are the key players (GPs, LPs, founders)?}
+\addlinespace
+\entry{Tue, Mar 23}{4:30--5:30 PM}{Investment Thesis \& Deal Sourcing}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. What kind of companies do you want to invest in and why? How do you find and evaluate opportunities?}
+\addlinespace
+\entry{Wed, Mar 24}{4:30--5:30 PM}{Due Diligence \& Startup Evaluation}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. How do you assess whether a startup is worth investing in? What do you look for in the team, market, and product?}
+\addlinespace
+\entry{Thu, Mar 25}{4:30--5:30 PM}{Deal Structure \& Term Sheets}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. How do venture deals actually work? What are the key terms, and how do they impact both the investor and the founder?}
+\addlinespace
+\entry{Fri, Mar 26}{4:30--5:30 PM}{Fund Strategy \& LP Relations}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. How do you build and communicate your fund's strategy? What do limited partners care about and how do you earn their trust?}
+\addlinespace
+\entry{Fri, Mar 26}{5:30--6:30 PM}{Office Hours: VC Education Week}{MCM 1010}{w/ \textit{$\langle$2 Mentor Names$\rangle$}.}
+\bottomrule
+\end{longtable}
+
+% =========================================================
+\weekheader{Startup Education Week}
+\begin{longtable}{L{2.2cm} L{2.2cm} L{4.5cm} L{1.7cm} L{4.7cm}}
+\toprule
+\rowcolor{lightband}
+\textbf{Date} & \textbf{Time} & \textbf{Event} & \textbf{Location} & \textbf{Details} \\
+\midrule
+\entry{Mon, Mar 29}{4:30--5:30 PM}{Problem \& Idea Validation}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. What problem are you solving and why does it matter? How do you talk to users to prove it's real?}
+\addlinespace
+\entry{Tue, Mar 30}{4:30--5:30 PM}{Customer Discovery \& Market Research}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. Who is your customer? How big is the opportunity? What does the competitive landscape look like?}
+\addlinespace
+\entry{Wed, Mar 31}{4:30--5:30 PM}{Business Model \& Value Proposition}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. How does your idea become a business? What's your value proposition and how will you make money?}
+\addlinespace
+\entry{Thu, Apr 1}{4:30--5:30 PM}{MVP \& Product Development}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. What's the minimum you can build to test your idea? How do you prioritize and get it into users' hands? Does your MVP actually solve the problem?}
+\addlinespace
+\entry{Fri, Apr 2}{4:30--5:30 PM}{Go-to-Market \& Marketing}{MCM 1110}{w/ \textit{$\langle$Mentor Name$\rangle$}. How do you launch and get customers? What channels and strategies will you use to gain traction?}
+\addlinespace
+\entry{Fri, Apr 2}{5:30--6:30 PM}{Office Hours: Startup Education Week}{MCM 1010}{w/ \textit{$\langle$2 Mentor Names$\rangle$}.}
+\bottomrule
+\end{longtable}
+
+% =========================================================
+\weekheader{Research Week 1}
+\begin{longtable}{L{2.2cm} L{2.2cm} L{4.5cm} L{1.7cm} L{4.7cm}}
+\toprule
+\rowcolor{lightband}
+\textbf{Date} & \textbf{Time} & \textbf{Event} & \textbf{Location} & \textbf{Details} \\
+\midrule
+\entry{Fri, Apr 9}{3:30--6:30 PM}{Office Hours: Research Week 1}{MCM 1010}{w/ \textit{$\langle$Mentor Name$\rangle$}.}
+\addlinespace
+\entry{Fri, Apr 9}{4:30--6:30 PM}{\deliverable{trackvc}{VC Deliverables Due}}{MCM 2032}{LP Pitch, in person. w/ \textit{$\langle$3 Mentors$\rangle$}.}
+\addlinespace
+\entry{Fri, Apr 9}{Due 11:59 PM}{\deliverable{trackvc}{VC Deliverables Due}}{Canvas}{Thesis -- online submission.}
+\bottomrule
+\end{longtable}
+
+% =========================================================
+\weekheader{Research Week 2}
+\begin{longtable}{L{2.2cm} L{2.2cm} L{4.5cm} L{1.7cm} L{4.7cm}}
+\toprule
+\rowcolor{lightband}
+\textbf{Date} & \textbf{Time} & \textbf{Event} & \textbf{Location} & \textbf{Details} \\
+\midrule
+\entry{Fri, Apr 16}{4:30--5:30 PM}{Office Hours: Research Week 2}{MCM 1010}{w/ \textit{$\langle$2 Mentor Names$\rangle$}.}
+\addlinespace
+\entry{Fri, Apr 16}{Due 11:59 PM}{\deliverable{trackstartup}{Startup Deliverables Due}}{Canvas}{Pitch deck and other materials \textit{(TBD)}}
+\bottomrule
+\end{longtable}
+
+% =========================================================
+\weekheader{Discovery and Due Diligence}
+\begin{longtable}{L{2.2cm} L{2.2cm} L{4.5cm} L{1.7cm} L{4.7cm}}
+\toprule
+\rowcolor{lightband}
+\textbf{Date} & \textbf{Time} & \textbf{Event} & \textbf{Location} & \textbf{Details} \\
+\midrule
+\entry{Fri, Apr 23}{4:30--5:30 PM}{Office Hours: Discovery \& Due Diligence}{MCM 1010}{w/ \textit{$\langle$2 Mentor Names$\rangle$}.}
+\addlinespace
+\entry{Tue, Apr 27}{Due 11:59 PM}{\deliverable{trackvc}{Final Submission: VC}}{Canvas}{Deal memos and other materials \textit{(TBD)}}
+\bottomrule
+\end{longtable}
+
+% =========================================================
+\weekheader{Awards Ceremony}
+\begin{longtable}{L{2.2cm} L{2.2cm} L{4.5cm} L{1.7cm} L{4.7cm}}
+\toprule
+\rowcolor{lightband}
+\textbf{Date} & \textbf{Time} & \textbf{Event} & \textbf{Location} & \textbf{Details} \\
+\midrule
+\entry{Fri, May 7}{4:30--6:30 PM}{\textbf{Awards}}{JSC}{All mentors, students \& faculty.}
+\bottomrule
+\end{longtable}
+
+\vspace{10pt}
+\noindent\textcolor{rulegray}{\rule{\textwidth}{0.6pt}}\\[4pt]
+{\small Items in \textit{italic angle brackets} indicate placeholders to be filled in with assigned mentor names. Items marked \textit{(TBD)} indicate deliverables still to be finalized.}
+
+\end{document}
