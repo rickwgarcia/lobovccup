@@ -29,6 +29,7 @@ uploads/
 *.mp4
 *.mov
 !public/decks/*.pdf
+!public/schedule/*.pdf
 
 # =============================================================================
 # OS junk
