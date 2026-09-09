@@ -8,20 +8,20 @@ export const scheduleItems: ScheduleItem[] = [
   {
     id: '00',
     title: 'VC Cup Social',
-    dateRange: 'Mar 1 - Mar 5',
+    dateRange: 'Mar 3 - Mar 5',
     details: 'Kickoff mixer to meet fellow founders, investors, mentors, form teams, and get an overview of the competition.',
   },
   {
     id: '01',
-    title: 'VC Education Week',
+    title: 'Startup Education Week',
     dateRange: 'Mar 22 - Mar 26',
-    details: 'VC teams attend workshops on investment theses, due diligence, and fund allocation, led by working VCs.',
+    details: 'Founders attend workshops on business models and pitch decks with guidance from entrepreneur mentors.',
   },
   {
     id: '02',
-    title: 'Startup Education Week',
+    title: 'VC Education Week',
     dateRange: 'Mar 29 - Apr 2',
-    details: 'Founders attend workshops on business models and pitch decks with guidance from entrepreneur mentors.',
+    details: 'VC teams attend workshops on investment theses, due diligence, and fund allocation, led by working VCs.',
   },
   {
     id: '03',
