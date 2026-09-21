@@ -37,7 +37,7 @@ export default function Footer() {
               Contact us:
             </SectionLabel>
             <div className="flex flex-col gap-3 font-grotesk text-body text-black sm:gap-4">
-              <p>lobovccup@unmm.onmicrosoft.com</p>
+              <p>entrepreneurship@clubs.unm.edu</p>
               <p>University of New Mexico</p>
               <p>
                 1155 University Blvd SE

@@ -23,7 +23,7 @@ export default function Navbar() {
             </a>
           ))}
           <Button
-            href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=lobovccup%40unmm.onmicrosoft.com&bO=true"
+            href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=entrepreneurship%40clubs.unm.edu&bO=true"
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2.5 text-sm lg:px-6 lg:py-3 lg:text-base"
@@ -59,7 +59,7 @@ export default function Navbar() {
               </a>
             ))}
             <Button
-              href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=lobovccup%40unmm.onmicrosoft.com&bO=true"
+              href="https://outlook.office365.com/groups/groupsubscription?action=join&smtp=entrepreneurship%40clubs.unm.edu&bO=true"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full"
