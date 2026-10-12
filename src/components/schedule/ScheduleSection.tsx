@@ -27,6 +27,17 @@ export default function ScheduleSection() {
           />
         ))}
 
+        <iframe
+          src="https://luma.com/embed/calendar/cal-MxV4UlKG78FbP9M/events?compact=true&lt=light"
+          title="Lobo VC Cup events calendar"
+          width="600"
+          height="450"
+          allowFullScreen
+          aria-hidden="false"
+          tabIndex={0}
+          className="h-[450px] w-full max-w-[600px] rounded border border-[#bfcbda88]"
+        />
+
         <ScheduleDownloadCard />
       </Container>
     </section>
