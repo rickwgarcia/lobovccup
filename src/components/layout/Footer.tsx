@@ -3,6 +3,7 @@ import Logo from '@/components/common/Logo';
 import SectionLabel from '@/components/common/SectionLabel';
 import { navLinks } from '@/data/nav';
 import socialIcon from '@/assets/icons/social-icon.svg';
+import instagramIcon from '@/assets/icons/instagram-icon.svg';
 
 export default function Footer() {
   return (
@@ -22,14 +23,24 @@ export default function Footer() {
                 </a>
               ))}
             </nav>
-            <a
-              href="https://www.linkedin.com/company/lobovccup"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Lobo VC Cup on LinkedIn"
-            >
-              <img src={socialIcon} alt="" className="size-[30px]" />
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/company/lobovccup"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Lobo VC Cup on LinkedIn"
+              >
+                <img src={socialIcon} alt="" className="size-[30px]" />
+              </a>
+              <a
+                href="https://www.instagram.com/lobovccup/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Lobo VC Cup on Instagram"
+              >
+                <img src={instagramIcon} alt="" className="size-[30px]" />
+              </a>
+            </div>
           </div>
 
           <div className="flex flex-col gap-5 lg:gap-5">
