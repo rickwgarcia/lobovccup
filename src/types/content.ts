@@ -61,9 +61,17 @@ export interface TrackInfo {
   accentClassName: string;
 }
 
+export interface SocialPost {
+  platform: 'instagram' | 'linkedin';
+  /** Link to the original post */
+  href: string;
+  /** Image path under /public, e.g. /updates/post-1.jpg */
+  imageSrc: string;
+  alt: string;
+}
+
 export interface SocialUpdatesConfig {
   instagramProfileUrl: string;
   linkedinCompanyUrl: string;
-  /** LinkedIn post embed URLs: https://www.linkedin.com/embed/feed/update/urn:li:share:<id> */
-  linkedinPostEmbeds: string[];
+  posts: SocialPost[];
 }

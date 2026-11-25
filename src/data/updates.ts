@@ -1,11 +1,17 @@
 import type { SocialUpdatesConfig } from '@/types/content';
 
-// LinkedIn has no profile/company-page embed. To show posts, open a post on
-// LinkedIn → "..." → "Embed this post", and paste the iframe `src` URL here
-// (looks like https://www.linkedin.com/embed/feed/update/urn:li:share:123...).
-// Newest first. With none listed, a link card to the company page is shown.
+// Each post is an image tile that links to the original post.
+// Save a screenshot/export of the post in public/updates/ (square or 4:5 works best)
+// and add an entry here, newest first. The first 5 are shown.
 export const socialUpdates: SocialUpdatesConfig = {
   instagramProfileUrl: 'https://www.instagram.com/lobovccup/',
   linkedinCompanyUrl: 'https://www.linkedin.com/company/lobovccup',
-  linkedinPostEmbeds: [],
+  posts: [
+    // {
+    //   platform: 'instagram',
+    //   href: 'https://www.instagram.com/p/XXXXXXXXXXX/',
+    //   imageSrc: '/updates/post-1.jpg',
+    //   alt: 'Short description of the post',
+    // },
+  ],
 };
