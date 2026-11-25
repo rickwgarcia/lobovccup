@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Container from '@/components/common/Container';
 import SectionLabel from '@/components/common/SectionLabel';
 import AccordionItem from '@/components/schedule/AccordionItem';
+import LumaCalendarEmbed from '@/components/schedule/LumaCalendarEmbed';
 import ScheduleDownloadCard from '@/components/schedule/ScheduleDownloadCard';
 import { scheduleItems } from '@/data/schedule';
 
@@ -27,16 +28,7 @@ export default function ScheduleSection() {
           />
         ))}
 
-        <iframe
-          src="https://luma.com/embed/calendar/cal-MxV4UlKG78FbP9M/events?compact=true&lt=light"
-          title="Lobo VC Cup events calendar"
-          height="450"
-          allowFullScreen
-          aria-hidden="false"
-          tabIndex={0}
-          className="h-[450px] w-full rounded border border-[#bfcbda88]"
-        />
-
+        <LumaCalendarEmbed />
         <ScheduleDownloadCard />
       </Container>
     </section>

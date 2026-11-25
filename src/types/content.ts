@@ -60,3 +60,10 @@ export interface TrackInfo {
   variant: 'silver' | 'dark';
   accentClassName: string;
 }
+
+export interface SocialUpdatesConfig {
+  instagramProfileUrl: string;
+  linkedinCompanyUrl: string;
+  /** LinkedIn post embed URLs: https://www.linkedin.com/embed/feed/update/urn:li:share:<id> */
+  linkedinPostEmbeds: string[];
+}
