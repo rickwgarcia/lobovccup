@@ -2,12 +2,13 @@ import type { AnchorHTMLAttributes, ReactNode } from 'react';
 
 interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
-  variant?: 'solid' | 'solid-turquoise';
+  variant?: 'solid' | 'solid-turquoise' | 'solid-white';
 }
 
 const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
   solid: 'bg-ink text-brand-silver',
   'solid-turquoise': 'bg-turquoise text-black',
+  'solid-white': 'bg-white text-black',
 };
 
 export default function Button({
