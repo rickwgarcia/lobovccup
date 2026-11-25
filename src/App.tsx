@@ -3,7 +3,6 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/hero/Hero';
 import LogoStrip from '@/components/sponsors/LogoStrip';
 import EmailSignup from '@/components/signup/EmailSignup';
-import UpdatesSection from '@/components/updates/UpdatesSection';
 import TracksSection from '@/components/tracks/TracksSection';
 import RecapSection from '@/components/recap/RecapSection';
 import ScheduleSection from '@/components/schedule/ScheduleSection';
@@ -16,7 +15,6 @@ function App() {
       <Hero />
       <LogoStrip />
       <EmailSignup />
-      <UpdatesSection />
       <TracksSection />
       <RecapSection />
       <ScheduleSection />

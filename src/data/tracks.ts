@@ -1,7 +1,6 @@
 import type { TrackInfo } from '@/types/content';
 import trackStartupIllustration from '@/assets/images/track-startup-illustration.png';
 import trackVcIllustration from '@/assets/images/track-vc-illustration.png';
-import trackDetailsIconStartup from '@/assets/icons/track-details-icon-startup.svg';
 import trackDetailsIconVc from '@/assets/icons/track-details-icon-vc.svg';
 
 export const tracks: TrackInfo[] = [
@@ -12,8 +11,8 @@ export const tracks: TrackInfo[] = [
       'Student founders form teams to develop and pitch their own startup ideas. With guidance from experienced entrepreneur mentors, they refine their business models, craft their pitch decks, and present to student VC teams on pitch day. The capital they raise from student investors becomes their prize money. The better the pitch, the bigger the win.',
     illustrationSrc: trackStartupIllustration,
     illustrationAlt: 'Startup Track illustration',
-    iconSrc: trackDetailsIconStartup,
-    variant: 'silver',
+    iconSrc: trackDetailsIconVc,
+    variant: 'dark',
     accentClassName: 'bg-track-startup',
   },
   {
